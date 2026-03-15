@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BuzzDesigns — Creative Studio</title>
+<link rel="icon" href="favicon.ico">
+<style>
+/* RESET */
+* {margin:0;padding:0;box-sizing:border-box;}
+body {font-family: 'Poppins', sans-serif; background:#111; color:#fff; overflow-x:hidden;}
+
+/* LOADER */
+#loader {position: fixed; top:0; left:0; width:100%; height:100%; background:#111; display:flex; justify-content:center; align-items:center; z-index:9999;}
+#loader span { width:20px; height:20px; margin:5px; background:#f7d342; border-radius:50%; display:inline-block; animation: bounce 0.6s infinite alternate; }
+#loader span:nth-child(2){animation-delay:0.2s;}
+#loader span:nth-child(3){animation-delay:0.4s;}
+@keyframes bounce { 0%{transform:translateY(0);}100%{transform:translateY(-20px);} }
+
+/* PARTICLES */
+#particles { position: fixed; top:0; left:0; width:100%; height:100%; z-index:-1; background:#111; }
+
+/* HERO SECTION */
+.hero { height: 80vh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;
+    background: linear-gradient(270deg, #f7d342, #ffdd55, #f0c530);
+    background-size: 600% 600%; animation: bgMove 12s ease infinite;}
+@keyframes bgMove {0%{background-position:0% 50%;}50%{background-position:100% 50%;}100%{background-position:0% 50%;}}
+.hero h1 {font-size:4em; font-weight:900;}
+.hero p {font-size:1.5em; margin-top:10px;}
+.cta-btn { margin-top:20px; padding:12px 30px; background:#000; color:#fff; text-decoration:none; border-radius:12px;
+    font-size:1.2em; box-shadow:0 0 10px #f7d342; transition:all .3s; cursor:pointer;}
+.cta-btn:hover { transform: scale(1.1); box-shadow:0 0 20px #f7d342; }
+.cta-btn:active { transform: scale(0.95); }
+
+/* SECTIONS */
+.section { width:80%; margin:60px auto; padding:40px; background:rgba(255,255,255,0.05); border-radius:20px; backdrop-filter:blur(12px); position:relative; overflow:hidden; }
+
+/* DIVIDER */
+.divider { height:4px; background:linear-gradient(90deg,#f7d342,#ffdd55,#f0c530); margin:40px 0; animation: slide 2s infinite linear; }
+@keyframes slide {0%{background-position:0%}100%{background-position:100%;}}
+
+/* GLASS CARDS */
+.glass-card { background: rgba(255,255,255,0.1); backdrop-filter: blur(12px); border:1px solid rgba(255,255,255,0.2);
+padding:20px; border-radius:25px; text-align:center; flex:1; min-width:200px; margin:10px; transition:.3s; opacity:0; transform:translateY(50px);}
+.glass-card.visible {opacity:1; transform:translateY(0);}
+.glass-card:hover { transform:scale(1.05); box-shadow:0 10px 30px rgba(0,0,0,0.4); }
+.icon { font-size:40px; margin-bottom:10px; animation: float 3s infinite ease-in-out; }
+@keyframes float { 0%,100%{transform:translateY(0);}50%{transform:translateY(-12px);} }
+
+/* FORM */
+input, textarea {width:100%; padding:12px; font-size:16px; margin:8px 0; border:1px solid #333; border-radius:6px; background:rgba(255,255,255,0.05); color:#fff;}
+input::placeholder, textarea::placeholder {color:#ccc;}
+button {background:#000; color:#fff; padding:12px; font-size:18px; border-radius:8px; cursor:pointer; width:100%; margin-top:10px; box-shadow:0 0 10px #f7d342;}
+button:hover { box-shadow:0 0 20px #f7d342; transform:scale(1.05);}
+</style>
+</head>
+<body>
+
+<!-- LOADER -->
+<div id="loader">
+  <span></span><span></span><span></span>
+</div>
+
+<!-- PARTICLES -->
+<canvas id="particles"></canvas>
+
+<!-- HERO -->
+<section class="hero">
+    <h1>BuzzDesigns</h1>
+    <p>Creative Designs That Make Your Brand Stand Out</p>
+    <a href="#services" class="cta-btn" id="ctaBtn">Explore Services</a>
+</section>
+
+<div class="divider"></div>
+
+<!-- SERVICES -->
+<div id="services" class="section">
+    <h2>Our Services</h2>
+    <div style="display:flex; flex-wrap:wrap; gap:20px;">
+        <div class="glass-card"><div class="icon">🎨</div><h3>Logo Design</h3><p>Unique logos with strong brand identity.</p></div>
+        <div class="glass-card"><div class="icon">📜</div><h3>Posters</h3><p>Attractive posters that turn heads instantly.</p></div>
+        <div class="glass-card"><div class="icon">⚡</div><h3>Advertisements</h3><p>Creative ads that boost your business growth.</p></div>
+    </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<div class="section">
+    <h2>Contact Us</h2>
+
+    <!-- FORMSPREE FORM -->
+    <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+        <button type="submit" id="sendBtn">Send Message</button>
+    </form>
+
+    <p><b>Email:</b> bonkerdesignz@gmail.com<br><b>Phone:</b> +91 73510 08716</p>
+</div>
+
+<script>
+// LOADER
+window.addEventListener("load",()=>{document.getElementById("loader").style.display="none";});
+
+// SMOOTH SCROLL + BUTTON SOUND
+const ctaBtn=document.getElementById("ctaBtn");
+ctaBtn.addEventListener("click", e=>{
+  e.preventDefault();
+  new Audio('https://freesound.org/data/previews/66/66717_931655-lq.mp3').play();
+  document.querySelector('#services').scrollIntoView({behavior:'smooth'});
+});
+
+// SCROLL REVEAL
+const cards=document.querySelectorAll('.glass-card');
+window.addEventListener('scroll',()=>{cards.forEach(card=>{const rect=card.getBoundingClientRect(); if(rect.top<window.innerHeight-100){card.classList.add('visible');}});});
+
+// PARTICLES
+const canvas=document.getElementById("particles"); const ctx=canvas.getContext("2d"); canvas.width=window.innerWidth; canvas.height=window.innerHeight; let particles=[]; for(let i=0;i<100;i++){particles.push({x:Math.random()*canvas.width, y:Math.random()*canvas.height, r:Math.random()*3+1, dx:(Math.random()-0.5)*0.5, dy:(Math.random()-0.5)*0.5});} function animate(){ctx.clearRect(0,0,canvas.width,canvas.height); particles.forEach(p=>{ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fillStyle='rgba(247,211,66,0.7)'; ctx.fill(); p.x+=p.dx; p.y+=p.dy; if(p.x<0||p.x>canvas.width)p.dx*=-1;if(p.y<0||p.y>canvas.height)p.dy*=-1;}); requestAnimationFrame(animate);} animate();
+window.addEventListener("resize",()=>{canvas.width=window.innerWidth; canvas.height=window.innerHeight;});
+</script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bonker T-Shirts | Custom Cotton T-Shirts</title>
+  <style>
+    :root {
+      --bg: #080812;
+      --bg-soft: #121225;
+      --card: rgba(23, 25, 46, 0.8);
+      --text: #f5f7ff;
+      --muted: #b8bfd3;
+      --primary: #f6c445;
+      --primary-deep: #e0ac2f;
+      --accent: #49f2ff;
+      --success: #57d38c;
+      --danger: #ff6575;
+      --shadow: 0 20px 35px rgba(0, 0, 0, 0.35);
+      --radius: 18px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Inter", "Segoe UI", Arial, sans-serif;
+      background:
+        radial-gradient(circle at 10% 15%, rgba(73, 242, 255, 0.14), transparent 30%),
+        radial-gradient(circle at 90% 5%, rgba(255, 207, 51, 0.16), transparent 32%),
+        linear-gradient(145deg, #070712 0%, #101429 46%, #0a0f1d 100%);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.55;
+    }
+
+    .container {
+      width: min(1100px, 92vw);
+      margin: 0 auto;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(12px);
+      background: rgba(8, 8, 18, 0.75);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 0;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      font-weight: 800;
+      letter-spacing: 0.6px;
+      color: var(--primary);
+      text-shadow: 0 0 20px rgba(255, 207, 51, 0.35);
+      font-size: 1.2rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 8px 10px;
+      border-radius: 8px;
+      transition: 0.2s ease;
+    }
+
+    nav a:hover {
+      background: rgba(255, 255, 255, 0.09);
+      color: var(--accent);
+    }
+
+    .hero {
+      padding: 92px 0 70px;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      align-items: center;
+      gap: 36px;
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: clamp(2rem, 5.2vw, 4rem);
+      line-height: 1.1;
+      letter-spacing: 0.5px;
+    }
+
+    .hero h1 span {
+      color: var(--primary);
+      text-shadow: 0 0 25px rgba(255, 207, 51, 0.45);
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 1.05rem;
+      max-width: 580px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 24px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      border: 0;
+      border-radius: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      padding: 13px 20px;
+      transition: 0.2s ease;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #000;
+      background: var(--primary);
+      box-shadow: 0 12px 24px rgba(255, 207, 51, 0.22);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      background: var(--primary-deep);
+    }
+
+    .btn.secondary {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: none;
+    }
+
+    .btn.secondary:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: rgba(73, 242, 255, 0.08);
+    }
+
+    .hero-card {
+      background: linear-gradient(160deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card h3 {
+      margin-top: 0;
+    }
+
+    .hero-list {
+      margin: 0;
+      padding-left: 20px;
+      color: var(--muted);
+    }
+
+    section {
+      padding: 52px 0;
+    }
+
+    h2 {
+      font-size: 1.75rem;
+      margin-bottom: 14px;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      margin-top: 0;
+    }
+
+    .runtime-note {
+      display: none;
+      margin: 10px 0 0;
+      color: #ffd68a;
+      font-weight: 600;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    label {
+      display: block;
+      margin: 12px 0 8px;
+      color: #d9deee;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    input,
+    select {
+      width: 100%;
+      border: 1px solid rgba(255, 255, 255, 0.13);
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+      color: var(--text);
+      padding: 12px;
+      font: inherit;
+      outline: none;
+      transition: border-color 0.2s ease;
+    }
+
+    input:focus,
+    select:focus {
+      border-color: var(--accent);
+    }
+
+    select,
+    .status-select {
+      color: var(--text);
+      background-color: rgba(13, 18, 36, 0.95);
+    }
+
+    option {
+      background: #0d1224;
+      color: #f5f7ff;
+    }
+
+
+    .wa-highlight {
+      display: inline-block;
+      margin: 10px 0 0;
+      padding: 10px 14px;
+      border-radius: 10px;
+      background: rgba(37, 211, 102, 0.14);
+      border: 1px solid rgba(37, 211, 102, 0.35);
+      color: #b9ffd6;
+      font-weight: 700;
+    }
+
+    .wa-highlight a {
+      color: #7dffb1;
+      text-decoration: none;
+    }
+
+    .wa-highlight a:hover {
+      text-decoration: underline;
+    }
+
+    .message {
+      margin-top: 12px;
+      font-weight: 600;
+    }
+
+    .status-ok {
+      color: var(--success);
+    }
+
+    .status-bad {
+      color: var(--danger);
+    }
+
+    .pay-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .payment-box {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 12px;
+      text-align: center;
+      background: linear-gradient(155deg, rgba(27, 35, 64, 0.95), rgba(18, 22, 41, 0.92));
+    }
+
+    .payment-box img {
+      width: 270px;
+      max-width: 100%;
+      border-radius: 16px;
+      border: 2px solid rgba(255, 255, 255, 0.18);
+      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.35);
+      background: #fff;
+      padding: 8px;
+    }
+
+    .payment-steps {
+      background: linear-gradient(165deg, rgba(246, 196, 69, 0.12), rgba(73, 242, 255, 0.08));
+    }
+
+    .step-list {
+      margin: 0;
+      padding-left: 20px;
+      color: #e6ebff;
+      display: grid;
+      gap: 10px;
+    }
+
+    .admin-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+
+    .admin-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .btn.small {
+      padding: 8px 12px;
+      font-size: 0.85rem;
+      border-radius: 9px;
+    }
+
+    .btn.danger {
+      background: #ff5a6e;
+      color: #fff;
+      box-shadow: none;
+    }
+
+    .btn.danger:hover {
+      background: #ee3f55;
+    }
+
+    .admin-note {
+      margin: 10px 0 0;
+      color: #b8c3ea;
+      font-size: 0.9rem;
+    }
+
+    .order {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 14px;
+      margin-top: 12px;
+    }
+
+    .order-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .chip {
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      background: rgba(87, 211, 140, 0.15);
+      color: #94f4bc;
+    }
+
+    .chip.shipped {
+      background: rgba(73, 242, 255, 0.16);
+      color: #8df6ff;
+    }
+
+    .chip.processing {
+      background: rgba(246, 196, 69, 0.28);
+      color: #fff3d1;
+    }
+
+    .chip.cancelled {
+      background: rgba(255, 101, 117, 0.18);
+      color: #ffa4ad;
+    }
+
+    .whatsapp {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      width: 58px;
+      height: 58px;
+      display: grid;
+      place-items: center;
+      text-decoration: none;
+      font-size: 1.45rem;
+      color: #fff;
+      border-radius: 50%;
+      background: #25d366;
+      box-shadow: 0 14px 25px rgba(0, 0, 0, 0.35);
+    }
+
+    footer {
+      padding: 32px 0 46px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+        padding-top: 64px;
+      }
+
+      .pay-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <div class="container nav-inner">
+      <div class="brand">Bonker T-Shirts</div>
+      <div class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#order">Order</a>
+        <a href="#track">Track</a>
+        <a href="#pay">Pay</a>
+        <a href="#admin">Admin</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="container hero" id="home">
+    <div>
+      <h1>Premium <span>Cotton T-Shirts</span>, Ready Fast</h1>
+      <p>
+        Bonker T-Shirts is focused only on premium cotton t-shirts with clean printing, quick production, live tracking, and simple UPI payment.
+      </p>
+      <p class="wa-highlight">📲 WhatsApp Orders: <a href="https://wa.me/917351008716" target="_blank" rel="noopener">+91 73510 08716</a></p>
+      <p id="runtimeNote" class="runtime-note">Running in limited mode: orders may reset if browser storage is blocked.</p>
+      <div class="hero-actions">
+        <a class="btn" href="https://wa.me/917351008716" target="_blank" rel="noopener">Order T-Shirts on WhatsApp</a>
+        <a class="btn secondary" href="#order">Place Order</a>
+      </div>
+    </div>
+
+    <aside class="hero-card">
+      <h3>Why customers love us</h3>
+      <ul class="hero-list">
+        <li>100% cotton t-shirts only — no other products.</li>
+        <li>Live order tracking with instant status updates.</li>
+        <li>Direct WhatsApp ordering for quick t-shirt booking.</li>
+        <li>Admin panel to update order status in one click.</li>
+      </ul>
+    </aside>
+  </header>
+
+  <main class="container">
+    <section id="order">
+      <h2>Place Your T-Shirt Order</h2>
+      <p class="subtitle">Choose quantity and size for your t-shirts and get an instant Order ID.</p>
+      <div class="grid">
+        <div class="card">
+          <label for="name">Customer Name</label>
+          <input id="name" placeholder="Enter your name" />
+
+          <label for="qty">Quantity</label>
+          <input id="qty" type="number" min="1" placeholder="How many shirts?" />
+
+          <label for="size">Size</label>
+          <select id="size">
+            <option value="S">S</option>
+            <option value="M" selected>M</option>
+            <option value="L">L</option>
+            <option value="XL">XL</option>
+            <option value="XXL">XXL</option>
+          </select>
+
+          <button class="btn" style="margin-top:16px; width:100%;" onclick="createOrder()">Create Order</button>
+          <p id="orderMessage" class="message"></p>
+        </div>
+      </div>
+    </section>
+
+    <section id="track">
+      <h2>Track Your Order</h2>
+      <p class="subtitle">Enter your Order ID to check current production status.</p>
+      <div class="grid">
+        <div class="card">
+          <label for="trackID">Order ID</label>
+          <input id="trackID" placeholder="Example: TS129" />
+          <button class="btn" style="margin-top:16px; width:100%;" onclick="track()">Check Status</button>
+          <p id="status" class="message"></p>
+        </div>
+      </div>
+    </section>
+
+    <section id="pay">
+      <h2>T-Shirt Payment</h2>
+      <p class="subtitle">Simple, fast UPI ID payment built for shirt orders only.</p>
+      <div class="pay-grid">
+        <div class="card payment-box">
+          <p><strong>UPI ID:</strong> someshtandon75@okicici</p>
+          <p>Use this UPI ID in any app and complete payment for your shirt order.</p>
+          <button class="btn" type="button" onclick="copyUpiId()">Copy UPI ID</button>
+          <p id="upiMessage" class="message"></p>
+          <a class="btn secondary" href="https://wa.me/917351008716" target="_blank" rel="noopener">Send Payment Screenshot</a>
+          
+        </div>
+
+        <div class="card payment-steps">
+          <h3 style="margin-top:0;">How to complete payment</h3>
+          <ol class="step-list">
+            <li>Place your t-shirt order and copy your Order ID.</li>
+            <li>Tap "Copy UPI ID", paste it in your UPI app, and complete payment.</li>
+            <li>Send payment screenshot on WhatsApp with your Order ID.</li>
+            <li>Your order status will be updated in the admin panel.</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section id="admin">
+      <h2>Admin Panel</h2>
+      <p class="subtitle">Manage shirt orders, update status quickly, and keep customers informed.</p>
+      <div class="card">
+        <label for="adminPass">Admin Password</label>
+        <input id="adminPass" type="password" placeholder="Enter password" />
+        <button class="btn" style="margin-top:16px; width:100%;" onclick="login()">Login to Admin</button>
+        <p id="adminMessage" class="message"></p>
+
+        <div id="adminPanel" style="display:none; margin-top:18px;">
+          <div class="admin-header">
+            <h3 style="margin:0;">All Shirt Orders</h3>
+            <div class="admin-actions">
+              <button class="btn secondary small" onclick="logoutAdmin()">Logout</button>
+              <button class="btn danger small" onclick="clearOrders()">Clear All Orders</button>
+            </div>
+          </div>
+          <p class="admin-note">Tip: update the status right after payment confirmation to keep tracking accurate.</p>
+          <div id="orders"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © <span id="year"></span> Bonker T-Shirts · 100% Custom T-Shirt Studio
+  </footer>
+
+  <a class="whatsapp" href="https://wa.me/917351008716" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">💬</a>
+
+  <script>
+    const ORDER_KEY = "orders";
+    const statuses = ["Printing", "Processing", "Ready", "Shipped", "Delivered", "Cancelled"];
+    const memoryStore = { orders: [] };
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    function canUseStorage() {
+      try {
+        const key = "__bonker_test__";
+        localStorage.setItem(key, "1");
+        localStorage.removeItem(key);
+        return true;
+      } catch (e) {
+        return false;
+      }
+    }
+
+    const storageEnabled = canUseStorage();
+    if (!storageEnabled) {
+      const note = document.getElementById("runtimeNote");
+      note.style.display = "block";
+    }
+
+    function getOrders() {
+      if (!storageEnabled) return memoryStore.orders;
+      return JSON.parse(localStorage.getItem(ORDER_KEY) || "[]");
+    }
+
+    function saveOrders(orders) {
+      if (!storageEnabled) {
+        memoryStore.orders = orders;
+        return;
+      }
+
+      localStorage.setItem(ORDER_KEY, JSON.stringify(orders));
+    }
+
+
+    function copyUpiId() {
+      const upiId = "someshtandon75@okicici";
+      const msg = document.getElementById("upiMessage");
+
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(upiId).then(() => {
+          msg.textContent = `UPI ID copied: ${upiId}`;
+          msg.className = "message status-ok";
+        }).catch(() => {
+          msg.textContent = `Copy failed. UPI ID: ${upiId}`;
+          msg.className = "message status-bad";
+        });
+        return;
+      }
+
+      msg.textContent = `Copy manually: ${upiId}`;
+      msg.className = "message status-ok";
+    }
+
+    function createOrder() {
+      const name = document.getElementById("name").value.trim();
+      const qty = Number(document.getElementById("qty").value);
+      const size = document.getElementById("size").value;
+      const message = document.getElementById("orderMessage");
+
+      if (!name || !qty || qty < 1) {
+        message.textContent = "Please enter a valid name and quantity.";
+        message.className = "message status-bad";
+        return;
+      }
+
+      const id = "TS" + Math.floor(Math.random() * 900 + 100);
+      const order = {
+        id,
+        name,
+        qty,
+        size,
+        status: "Printing",
+        createdAt: new Date().toLocaleString()
+      };
+
+      const orders = getOrders();
+      orders.push(order);
+      saveOrders(orders);
+
+      message.textContent = `Order created! Your ID is ${id}`;
+      message.className = "message status-ok";
+
+      document.getElementById("name").value = "";
+      document.getElementById("qty").value = "";
+      document.getElementById("size").value = "M";
+
+      const adminPanelVisible = document.getElementById("adminPanel").style.display === "block";
+      if (adminPanelVisible) loadOrders();
+    }
+
+    function track() {
+      const id = document.getElementById("trackID").value.trim();
+      const statusEl = document.getElementById("status");
+      const found = getOrders().find((o) => o.id.toLowerCase() === id.toLowerCase());
+
+      if (found) {
+        statusEl.textContent = `Status: ${found.status} | Qty: ${found.qty} | Size: ${found.size}`;
+        statusEl.className = "message status-ok";
+      } else {
+        statusEl.textContent = "Order not found. Please check your Order ID.";
+        statusEl.className = "message status-bad";
+      }
+    }
+
+    function login() {
+      const pass = document.getElementById("adminPass").value;
+      const message = document.getElementById("adminMessage");
+
+      if (pass === "admin123") {
+        document.getElementById("adminPanel").style.display = "block";
+        message.textContent = "Admin access granted.";
+        message.className = "message status-ok";
+        loadOrders();
+      } else {
+        message.textContent = "Wrong password.";
+        message.className = "message status-bad";
+      }
+    }
+
+    function logoutAdmin() {
+      document.getElementById("adminPanel").style.display = "none";
+      document.getElementById("adminPass").value = "";
+      const message = document.getElementById("adminMessage");
+      message.textContent = "Logged out.";
+      message.className = "message";
+    }
+
+    function clearOrders() {
+      const confirmed = confirm("Delete all shirt orders? This cannot be undone.");
+      if (!confirmed) return;
+
+      saveOrders([]);
+      loadOrders();
+    }
+
+    function updateOrderStatus(id, newStatus) {
+      const orders = getOrders();
+      const index = orders.findIndex((o) => o.id === id);
+
+      if (index >= 0) {
+        orders[index].status = newStatus;
+        saveOrders(orders);
+        loadOrders();
+      }
+    }
+
+    function getStatusClass(status) {
+      if (status === "Shipped") return "shipped";
+      if (status === "Processing" || status === "Printing") return "processing";
+      if (status === "Cancelled") return "cancelled";
+      return "";
+    }
+
+    function loadOrders() {
+      const orders = getOrders();
+      const container = document.getElementById("orders");
+
+      if (!orders.length) {
+        container.innerHTML = "<p class='subtitle'>No orders yet.</p>";
+        return;
+      }
+
+      const html = orders
+        .map((o) => {
+          const options = statuses
+            .map((s) => `<option value="${s}" ${s === o.status ? "selected" : ""}>${s}</option>`)
+            .join("");
+
+          return `
+            <div class="order">
+              <div class="order-head">
+                <strong>${o.id}</strong>
+                <span class="chip ${getStatusClass(o.status)}">${o.status}</span>
+              </div>
+              <div>${o.name} · Qty: ${o.qty} · Size: ${o.size}</div>
+              <div style="margin-top:4px; color: var(--muted); font-size:0.85rem;">Created: ${o.createdAt || "N/A"}</div>
+              <label style="margin-top:10px;">Change Status</label>
+              <select class="status-select" onchange="updateOrderStatus('${o.id}', this.value)">${options}</select>
+            </div>
+          `;
+        })
+        .join("");
+
+      container.innerHTML = html;
+    }
+  </script>
+</body>
+</html>
