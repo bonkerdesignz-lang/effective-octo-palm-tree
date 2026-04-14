@@ -374,7 +374,6 @@ window.addEventListener("resize",()=>{canvas.width=window.innerWidth; canvas.hei
       color: #f5f7ff;
     }
 
-
     .wa-highlight {
       display: inline-block;
       margin: 10px 0 0;
@@ -422,16 +421,6 @@ window.addEventListener("resize",()=>{canvas.width=window.innerWidth; canvas.hei
       gap: 12px;
       text-align: center;
       background: linear-gradient(155deg, rgba(27, 35, 64, 0.95), rgba(18, 22, 41, 0.92));
-    }
-
-    .payment-box img {
-      width: 270px;
-      max-width: 100%;
-      border-radius: 16px;
-      border: 2px solid rgba(255, 255, 255, 0.18);
-      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.35);
-      background: #fff;
-      padding: 8px;
     }
 
     .payment-steps {
@@ -648,7 +637,6 @@ window.addEventListener("resize",()=>{canvas.width=window.innerWidth; canvas.hei
           <button class="btn" type="button" onclick="copyUpiId()">Copy UPI ID</button>
           <p id="upiMessage" class="message"></p>
           <a class="btn secondary" href="https://wa.me/917351008716" target="_blank" rel="noopener">Send Payment Screenshot</a>
-          
         </div>
 
         <div class="card payment-steps">
@@ -730,7 +718,6 @@ window.addEventListener("resize",()=>{canvas.width=window.innerWidth; canvas.hei
 
       localStorage.setItem(ORDER_KEY, JSON.stringify(orders));
     }
-
 
     function copyUpiId() {
       const upiId = "someshtandon75@okicici";
