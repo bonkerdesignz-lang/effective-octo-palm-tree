@@ -3,12 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bonker T-Shirts | Custom Cotton T-Shirts</title>
+  <title>Bonker T-Shirts | Full Stack Orders</title>
   <style>
     :root {
       --bg: #080812;
-      --bg-soft: #121225;
-      --card: rgba(23, 25, 46, 0.8);
+      --card: rgba(23, 25, 46, 0.86);
       --text: #f5f7ff;
       --muted: #b8bfd3;
       --primary: #f6c445;
@@ -16,41 +15,32 @@
       --accent: #49f2ff;
       --success: #57d38c;
       --danger: #ff6575;
-      --shadow: 0 20px 35px rgba(0, 0, 0, 0.35);
       --radius: 18px;
+      --shadow: 0 20px 35px rgba(0, 0, 0, 0.35);
     }
 
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
       margin: 0;
-      font-family: "Inter", "Segoe UI", Arial, sans-serif;
+      font-family: Inter, Segoe UI, Arial, sans-serif;
       background:
         radial-gradient(circle at 10% 15%, rgba(73, 242, 255, 0.14), transparent 30%),
         radial-gradient(circle at 90% 5%, rgba(255, 207, 51, 0.16), transparent 32%),
         linear-gradient(145deg, #070712 0%, #101429 46%, #0a0f1d 100%);
       color: var(--text);
       min-height: 100vh;
-      line-height: 1.55;
+      line-height: 1.5;
     }
 
-    .container {
-      width: min(1100px, 92vw);
-      margin: 0 auto;
-    }
+    .container { width: min(1100px, 92vw); margin: 0 auto; }
 
     nav {
       position: sticky;
       top: 0;
-      z-index: 100;
+      z-index: 10;
       backdrop-filter: blur(12px);
-      background: rgba(8, 8, 18, 0.75);
+      background: rgba(8, 8, 18, 0.8);
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
 
@@ -65,364 +55,145 @@
 
     .brand {
       font-weight: 800;
-      letter-spacing: 0.6px;
       color: var(--primary);
       text-shadow: 0 0 20px rgba(255, 207, 51, 0.35);
-      font-size: 1.2rem;
     }
 
-    .nav-links {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-    }
-
-    nav a {
+    .nav-links { display: flex; gap: 10px; flex-wrap: wrap; }
+    .nav-links a {
       color: var(--text);
       text-decoration: none;
       font-weight: 600;
-      font-size: 0.95rem;
       padding: 8px 10px;
       border-radius: 8px;
-      transition: 0.2s ease;
     }
-
-    nav a:hover {
-      background: rgba(255, 255, 255, 0.09);
-      color: var(--accent);
-    }
+    .nav-links a:hover { background: rgba(255,255,255,0.09); color: var(--accent); }
 
     .hero {
-      padding: 92px 0 70px;
+      padding: 80px 0 50px;
       display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      align-items: center;
-      gap: 36px;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 24px;
+      align-items: start;
     }
 
-    .hero h1 {
-      margin: 0;
-      font-size: clamp(2rem, 5.2vw, 4rem);
-      line-height: 1.1;
-      letter-spacing: 0.5px;
-    }
-
-    .hero h1 span {
-      color: var(--primary);
-      text-shadow: 0 0 25px rgba(255, 207, 51, 0.45);
-    }
-
-    .hero p {
-      color: var(--muted);
-      font-size: 1.05rem;
-      max-width: 580px;
-    }
-
-    .hero-actions {
-      display: flex;
-      gap: 12px;
-      margin-top: 24px;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      border: 0;
-      border-radius: 12px;
-      font-weight: 700;
-      cursor: pointer;
-      padding: 13px 20px;
-      transition: 0.2s ease;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      color: #000;
-      background: var(--primary);
-      box-shadow: 0 12px 24px rgba(255, 207, 51, 0.22);
-    }
-
-    .btn:hover {
-      transform: translateY(-2px);
-      background: var(--primary-deep);
-    }
-
-    .btn.secondary {
-      background: transparent;
-      color: var(--text);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      box-shadow: none;
-    }
-
-    .btn.secondary:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-      background: rgba(73, 242, 255, 0.08);
-    }
-
-    .hero-card {
-      background: linear-gradient(160deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: var(--radius);
-      padding: 24px;
-      box-shadow: var(--shadow);
-    }
-
-    .hero-card h3 {
-      margin-top: 0;
-    }
-
-    .hero-list {
-      margin: 0;
-      padding-left: 20px;
-      color: var(--muted);
-    }
-
-    section {
-      padding: 52px 0;
-    }
-
-    h2 {
-      font-size: 1.75rem;
-      margin-bottom: 14px;
-    }
-
-    .subtitle {
-      color: var(--muted);
-      margin-top: 0;
-    }
-
-    .runtime-note {
-      display: none;
-      margin: 10px 0 0;
-      color: #ffd68a;
-      font-weight: 600;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
-    }
-
-    .card {
-      background: var(--card);
-      border: 1px solid rgba(255, 255, 255, 0.09);
-      border-radius: var(--radius);
-      padding: 24px;
-      box-shadow: var(--shadow);
-    }
-
-    label {
-      display: block;
-      margin: 12px 0 8px;
-      color: #d9deee;
-      font-weight: 600;
-      font-size: 0.95rem;
-    }
-
-    input,
-    select {
-      width: 100%;
-      border: 1px solid rgba(255, 255, 255, 0.13);
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 10px;
-      color: var(--text);
-      padding: 12px;
-      font: inherit;
-      outline: none;
-      transition: border-color 0.2s ease;
-    }
-
-    input:focus,
-    select:focus {
-      border-color: var(--accent);
-    }
-
-    select,
-    .status-select {
-      color: var(--text);
-      background-color: rgba(13, 18, 36, 0.95);
-    }
-
-    option {
-      background: #0d1224;
-      color: #f5f7ff;
-    }
+    .hero h1 { margin: 0; font-size: clamp(2rem, 4.8vw, 3.8rem); line-height: 1.1; }
+    .hero h1 span { color: var(--primary); }
+    .hero p { color: var(--muted); max-width: 620px; }
 
     .wa-highlight {
       display: inline-block;
-      margin: 10px 0 0;
       padding: 10px 14px;
       border-radius: 10px;
       background: rgba(37, 211, 102, 0.14);
       border: 1px solid rgba(37, 211, 102, 0.35);
       color: #b9ffd6;
       font-weight: 700;
+      margin-top: 6px;
     }
 
-    .wa-highlight a {
-      color: #7dffb1;
+    .hero-card,
+    .card {
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: var(--radius);
+      padding: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card ul { margin: 0; padding-left: 20px; color: var(--muted); }
+
+    section { padding: 26px 0 30px; }
+    h2 { margin: 0 0 12px; font-size: 1.65rem; }
+    .subtitle { color: var(--muted); margin: 0 0 12px; }
+
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; }
+
+    label { display: block; margin: 12px 0 6px; font-weight: 600; color: #d9deee; }
+    input, select, textarea {
+      width: 100%;
+      border: 1px solid rgba(255,255,255,0.15);
+      background: rgba(255,255,255,0.05);
+      color: var(--text);
+      border-radius: 10px;
+      padding: 11px;
+      font: inherit;
+    }
+
+    .btn {
+      border: none;
+      border-radius: 11px;
+      font-weight: 700;
+      cursor: pointer;
+      padding: 11px 16px;
       text-decoration: none;
-    }
-
-    .wa-highlight a:hover {
-      text-decoration: underline;
-    }
-
-    .message {
-      margin-top: 12px;
-      font-weight: 600;
-    }
-
-    .status-ok {
-      color: var(--success);
-    }
-
-    .status-bad {
-      color: var(--danger);
-    }
-
-    .pay-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-    }
-
-    .payment-box {
-      display: flex;
+      background: var(--primary);
+      color: #000;
+      margin-top: 14px;
+      display: inline-flex;
       align-items: center;
       justify-content: center;
-      flex-direction: column;
-      gap: 12px;
-      text-align: center;
-      background: linear-gradient(155deg, rgba(27, 35, 64, 0.95), rgba(18, 22, 41, 0.92));
     }
 
-    .payment-steps {
-      background: linear-gradient(165deg, rgba(246, 196, 69, 0.12), rgba(73, 242, 255, 0.08));
-    }
+    .btn:hover { background: var(--primary-deep); }
+    .btn.secondary { background: transparent; color: var(--text); border: 1px solid rgba(255,255,255,0.24); }
+    .btn.small { padding: 8px 11px; margin-top: 0; font-size: 0.85rem; }
 
-    .step-list {
-      margin: 0;
-      padding-left: 20px;
-      color: #e6ebff;
+    .message { margin-top: 12px; font-weight: 600; }
+    .ok { color: var(--success); }
+    .bad { color: var(--danger); }
+
+    .stats {
       display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
       gap: 10px;
+      margin-bottom: 12px;
     }
 
-    .admin-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-bottom: 10px;
+    .stat {
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 10px;
+      padding: 10px;
+      background: rgba(255,255,255,0.04);
     }
 
-    .admin-actions {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    .btn.small {
-      padding: 8px 12px;
-      font-size: 0.85rem;
-      border-radius: 9px;
-    }
-
-    .btn.danger {
-      background: #ff5a6e;
-      color: #fff;
-      box-shadow: none;
-    }
-
-    .btn.danger:hover {
-      background: #ee3f55;
-    }
-
-    .admin-note {
-      margin: 10px 0 0;
-      color: #b8c3ea;
-      font-size: 0.9rem;
-    }
+    .stat b { display: block; font-size: 1.2rem; margin-top: 3px; }
 
     .order {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255,255,255,0.11);
       border-radius: 12px;
-      padding: 14px;
+      padding: 12px;
       margin-top: 12px;
+      background: rgba(255,255,255,0.05);
     }
 
     .order-head {
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
       gap: 10px;
       flex-wrap: wrap;
     }
 
     .chip {
-      padding: 4px 10px;
       border-radius: 999px;
-      font-size: 0.82rem;
+      padding: 4px 10px;
+      font-size: 0.78rem;
       font-weight: 700;
-      background: rgba(87, 211, 140, 0.15);
-      color: #94f4bc;
-    }
-
-    .chip.shipped {
       background: rgba(73, 242, 255, 0.16);
       color: #8df6ff;
     }
 
-    .chip.processing {
-      background: rgba(246, 196, 69, 0.28);
-      color: #fff3d1;
-    }
+    .row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+    .hidden { display: none !important; }
 
-    .chip.cancelled {
-      background: rgba(255, 101, 117, 0.18);
-      color: #ffa4ad;
-    }
-
-    .whatsapp {
-      position: fixed;
-      right: 20px;
-      bottom: 20px;
-      width: 58px;
-      height: 58px;
-      display: grid;
-      place-items: center;
-      text-decoration: none;
-      font-size: 1.45rem;
-      color: #fff;
-      border-radius: 50%;
-      background: #25d366;
-      box-shadow: 0 14px 25px rgba(0, 0, 0, 0.35);
-    }
-
-    footer {
-      padding: 32px 0 46px;
-      text-align: center;
-      color: var(--muted);
-      font-size: 0.9rem;
-    }
+    footer { color: var(--muted); text-align: center; padding: 30px 0 40px; }
 
     @media (max-width: 900px) {
-      .hero {
-        grid-template-columns: 1fr;
-        padding-top: 64px;
-      }
-
-      .pay-grid {
-        grid-template-columns: 1fr;
-      }
+      .hero { grid-template-columns: 1fr; padding-top: 55px; }
     }
   </style>
 </head>
-
 <body>
   <nav>
     <div class="container nav-inner">
@@ -431,7 +202,6 @@
         <a href="#home">Home</a>
         <a href="#order">Order</a>
         <a href="#track">Track</a>
-        <a href="#pay">Pay</a>
         <a href="#admin">Admin</a>
       </div>
     </div>
@@ -439,25 +209,16 @@
 
   <header class="container hero" id="home">
     <div>
-      <h1>Premium <span>Cotton T-Shirts</span>, Ready Fast</h1>
-      <p>
-        Bonker T-Shirts is focused only on premium cotton t-shirts with clean printing, quick production, live tracking, and simple UPI payment.
-      </p>
+      <h1>Premium <span>Cotton T-Shirts</span> with live order tracking</h1>
+      <p>Orders are saved in Firebase Realtime Database, so admin updates work across devices.</p>
       <p class="wa-highlight">📲 WhatsApp Orders: <a href="https://wa.me/917351008716" target="_blank" rel="noopener">+91 73510 08716</a></p>
-      <p id="runtimeNote" class="runtime-note">Running in limited mode: orders may reset if browser storage is blocked.</p>
-      <div class="hero-actions">
-        <a class="btn" href="https://wa.me/917351008716" target="_blank" rel="noopener">Order T-Shirts on WhatsApp</a>
-        <a class="btn secondary" href="#order">Place Order</a>
-      </div>
     </div>
-
     <aside class="hero-card">
-      <h3>Why customers love us</h3>
-      <ul class="hero-list">
-        <li>100% cotton t-shirts only — no other products.</li>
-        <li>Live order tracking with instant status updates.</li>
-        <li>Direct WhatsApp ordering for quick t-shirt booking.</li>
-        <li>Admin panel to update order status in one click.</li>
+      <h3 style="margin-top:0;">What's improved</h3>
+      <ul>
+        <li>Backend API (Express) for order creation/tracking.</li>
+        <li>Firebase Realtime Database to persist every order.</li>
+        <li>Admin panel connected to Firebase for live status updates.</li>
       </ul>
     </aside>
   </header>
@@ -465,14 +226,17 @@
   <main class="container">
     <section id="order">
       <h2>Place Your T-Shirt Order</h2>
-      <p class="subtitle">Choose quantity and size for your t-shirts and get an instant Order ID.</p>
+      <p class="subtitle">Fill your details and get a real database-backed Order ID.</p>
       <div class="grid">
-        <div class="card">
+        <form class="card" id="orderForm">
           <label for="name">Customer Name</label>
-          <input id="name" placeholder="Enter your name" />
+          <input id="name" required minlength="2" placeholder="Enter your name" />
+
+          <label for="phone">Phone (10 digits)</label>
+          <input id="phone" required pattern="[0-9]{10}" inputmode="numeric" placeholder="9876543210" />
 
           <label for="qty">Quantity</label>
-          <input id="qty" type="number" min="1" placeholder="How many shirts?" />
+          <input id="qty" type="number" required min="1" max="500" value="1" />
 
           <label for="size">Size</label>
           <select id="size">
@@ -483,267 +247,383 @@
             <option value="XXL">XXL</option>
           </select>
 
-          <button class="btn" style="margin-top:16px; width:100%;" onclick="createOrder()">Create Order</button>
+          <label for="color">Color</label>
+          <select id="color">
+            <option value="Black">Black</option>
+            <option value="White">White</option>
+            <option value="Navy">Navy</option>
+            <option value="Maroon">Maroon</option>
+          </select>
+
+          <label for="note">Print Note (optional)</label>
+          <textarea id="note" rows="3" placeholder="Text/logo instruction"></textarea>
+
+          <button class="btn" type="submit" style="width:100%;">Create Order</button>
           <p id="orderMessage" class="message"></p>
-        </div>
+        </form>
       </div>
     </section>
 
     <section id="track">
       <h2>Track Your Order</h2>
-      <p class="subtitle">Enter your Order ID to check current production status.</p>
+      <p class="subtitle">Check latest status directly from server database.</p>
       <div class="grid">
-        <div class="card">
+        <form class="card" id="trackForm">
           <label for="trackID">Order ID</label>
-          <input id="trackID" placeholder="Example: TS129" />
-          <button class="btn" style="margin-top:16px; width:100%;" onclick="track()">Check Status</button>
-          <p id="status" class="message"></p>
-        </div>
-      </div>
-    </section>
-
-    <section id="pay">
-      <h2>T-Shirt Payment</h2>
-      <p class="subtitle">Simple, fast UPI ID payment built for shirt orders only.</p>
-      <div class="pay-grid">
-        <div class="card payment-box">
-          <p><strong>UPI ID:</strong> someshtandon75@okicici</p>
-          <p>Use this UPI ID in any app and complete payment for your shirt order.</p>
-          <button class="btn" type="button" onclick="copyUpiId()">Copy UPI ID</button>
-          <p id="upiMessage" class="message"></p>
-          <a class="btn secondary" href="https://wa.me/917351008716" target="_blank" rel="noopener">Send Payment Screenshot</a>
-        </div>
-
-        <div class="card payment-steps">
-          <h3 style="margin-top:0;">How to complete payment</h3>
-          <ol class="step-list">
-            <li>Place your t-shirt order and copy your Order ID.</li>
-            <li>Tap "Copy UPI ID", paste it in your UPI app, and complete payment.</li>
-            <li>Send payment screenshot on WhatsApp with your Order ID.</li>
-            <li>Your order status will be updated in the admin panel.</li>
-          </ol>
-        </div>
+          <input id="trackID" required placeholder="Example: TS123456" />
+          <button class="btn" type="submit" style="width:100%;">Check Status</button>
+          <p id="trackMessage" class="message"></p>
+        </form>
       </div>
     </section>
 
     <section id="admin">
       <h2>Admin Panel</h2>
-      <p class="subtitle">Manage shirt orders, update status quickly, and keep customers informed.</p>
+      <p class="subtitle">Login and manage all orders across devices.</p>
       <div class="card">
-        <label for="adminPass">Admin Password</label>
-        <input id="adminPass" type="password" placeholder="Enter password" />
-        <button class="btn" style="margin-top:16px; width:100%;" onclick="login()">Login to Admin</button>
-        <p id="adminMessage" class="message"></p>
+        <form id="adminLoginForm">
+          <label for="adminUser">Admin Username</label>
+          <input id="adminUser" placeholder="admin" required />
 
-        <div id="adminPanel" style="display:none; margin-top:18px;">
-          <div class="admin-header">
+          <label for="adminPass">Admin Password</label>
+          <input id="adminPass" type="password" placeholder="Enter password" required />
+
+          <button class="btn" type="submit" style="width:100%;">Login to Admin</button>
+          <p id="adminMessage" class="message"></p>
+        </form>
+
+        <div id="adminPanel" class="hidden" style="margin-top:18px;">
+          <div class="row" style="justify-content:space-between;">
             <h3 style="margin:0;">All Shirt Orders</h3>
-            <div class="admin-actions">
-              <button class="btn secondary small" onclick="logoutAdmin()">Logout</button>
-              <button class="btn danger small" onclick="clearOrders()">Clear All Orders</button>
+            <div class="row">
+              <button class="btn secondary small" id="refreshBtn" type="button">Refresh</button>
+              <button class="btn secondary small" id="logoutBtn" type="button">Logout</button>
             </div>
           </div>
-          <p class="admin-note">Tip: update the status right after payment confirmation to keep tracking accurate.</p>
+
+          <div class="stats" id="stats"></div>
           <div id="orders"></div>
         </div>
       </div>
     </section>
   </main>
 
-  <footer>
-    © <span id="year"></span> Bonker T-Shirts · 100% Custom T-Shirt Studio
-  </footer>
+  <footer>© <span id="year"></span> Bonker T-Shirts · Full Stack Ordering System</footer>
 
-  <a class="whatsapp" href="https://wa.me/917351008716" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">💬</a>
-
+  <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-database-compat.js"></script>
   <script>
-    const ORDER_KEY = "orders";
-    const statuses = ["Printing", "Processing", "Ready", "Shipped", "Delivered", "Cancelled"];
-    const memoryStore = { orders: [] };
+    const firebaseConfig = {
+      apiKey: "AIzaSyBr_Y35_d02wdvLyiLn3GfD416_377kclM",
+      authDomain: "bonker-448ff.firebaseapp.com",
+      projectId: "bonker-448ff",
+      storageBucket: "bonker-448ff.firebasestorage.app",
+      messagingSenderId: "1021425830931",
+      appId: "1:1021425830931:web:aff544a716cae2c922c3e6",
+      measurementId: "G-J6CDDW0JZ9",
+      databaseURL: "https://bonker-448ff-default-rtdb.firebaseio.com"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+
+    const STATUS_OPTIONS = ["Pending", "Printing", "Processing", "Ready", "Shipped", "Delivered", "Cancelled"];
+    const PAYMENT_OPTIONS = ["Unpaid", "Paid"];
+    let adminLoggedIn = false;
+
+    const els = {
+      orderForm: document.getElementById("orderForm"),
+      trackForm: document.getElementById("trackForm"),
+      adminLoginForm: document.getElementById("adminLoginForm"),
+      orderMessage: document.getElementById("orderMessage"),
+      trackMessage: document.getElementById("trackMessage"),
+      adminMessage: document.getElementById("adminMessage"),
+      adminPanel: document.getElementById("adminPanel"),
+      orders: document.getElementById("orders"),
+      stats: document.getElementById("stats")
+    };
 
     document.getElementById("year").textContent = new Date().getFullYear();
+    document.getElementById("refreshBtn").addEventListener("click", loadAdminOrders);
+    document.getElementById("logoutBtn").addEventListener("click", logoutAdmin);
 
-    function canUseStorage() {
-      try {
-        const key = "__bonker_test__";
-        localStorage.setItem(key, "1");
-        localStorage.removeItem(key);
-        return true;
-      } catch (e) {
-        return false;
-      }
+    function setMessage(el, text, ok = false) {
+      el.textContent = text;
+      el.className = `message ${ok ? "ok" : "bad"}`;
     }
 
-    const storageEnabled = canUseStorage();
-    if (!storageEnabled) {
-      const note = document.getElementById("runtimeNote");
-      note.style.display = "block";
+    function toSafeText(value) {
+      return String(value || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
     }
 
-    function getOrders() {
-      if (!storageEnabled) return memoryStore.orders;
-      return JSON.parse(localStorage.getItem(ORDER_KEY) || "[]");
+    function normalizeOrder(key, order) {
+      return {
+        key,
+        order_code: order.order_code || "",
+        customer_name: order.customer_name || "",
+        phone: order.phone || "",
+        quantity: Number(order.quantity || 0),
+        size: order.size || "M",
+        color: order.color || "Black",
+        note: order.note || "",
+        status: STATUS_OPTIONS.includes(order.status) ? order.status : "Pending",
+        payment_status: PAYMENT_OPTIONS.includes(order.payment_status) ? order.payment_status : "Unpaid",
+        created_at: order.created_at || new Date().toISOString()
+      };
     }
 
-    function saveOrders(orders) {
-      if (!storageEnabled) {
-        memoryStore.orders = orders;
-        return;
-      }
-
-      localStorage.setItem(ORDER_KEY, JSON.stringify(orders));
+    function createOrderCode() {
+      return `TS${Date.now().toString().slice(-8)}${Math.floor(Math.random() * 90 + 10)}`;
     }
 
-    function copyUpiId() {
-      const upiId = "someshtandon75@okicici";
-      const msg = document.getElementById("upiMessage");
+    async function createOrder(payload) {
+      const orderCode = createOrderCode();
+      const createdAt = new Date().toISOString();
 
-      if (navigator.clipboard && window.isSecureContext) {
-        navigator.clipboard.writeText(upiId).then(() => {
-          msg.textContent = `UPI ID copied: ${upiId}`;
-          msg.className = "message status-ok";
-        }).catch(() => {
-          msg.textContent = `Copy failed. UPI ID: ${upiId}`;
-          msg.className = "message status-bad";
-        });
-        return;
-      }
-
-      msg.textContent = `Copy manually: ${upiId}`;
-      msg.className = "message status-ok";
-    }
-
-    function createOrder() {
-      const name = document.getElementById("name").value.trim();
-      const qty = Number(document.getElementById("qty").value);
-      const size = document.getElementById("size").value;
-      const message = document.getElementById("orderMessage");
-
-      if (!name || !qty || qty < 1) {
-        message.textContent = "Please enter a valid name and quantity.";
-        message.className = "message status-bad";
-        return;
-      }
-
-      const id = "TS" + Math.floor(Math.random() * 900 + 100);
       const order = {
-        id,
-        name,
-        qty,
-        size,
-        status: "Printing",
-        createdAt: new Date().toLocaleString()
+        order_code: orderCode,
+        customer_name: payload.customerName,
+        phone: payload.phone,
+        quantity: payload.quantity,
+        size: payload.size,
+        color: payload.color,
+        note: payload.note,
+        status: "Pending",
+        payment_status: "Unpaid",
+        created_at: createdAt
       };
 
-      const orders = getOrders();
-      orders.push(order);
-      saveOrders(orders);
-
-      message.textContent = `Order created! Your ID is ${id}`;
-      message.className = "message status-ok";
-
-      document.getElementById("name").value = "";
-      document.getElementById("qty").value = "";
-      document.getElementById("size").value = "M";
-
-      const adminPanelVisible = document.getElementById("adminPanel").style.display === "block";
-      if (adminPanelVisible) loadOrders();
+      const orderRef = db.ref("orders").push();
+      await orderRef.set(order);
+      return orderCode;
     }
 
-    function track() {
-      const id = document.getElementById("trackID").value.trim();
-      const statusEl = document.getElementById("status");
-      const found = getOrders().find((o) => o.id.toLowerCase() === id.toLowerCase());
+    async function findOrderByCode(code) {
+      const snap = await db
+        .ref("orders")
+        .orderByChild("order_code")
+        .equalTo(code)
+        .limitToFirst(1)
+        .once("value");
 
-      if (found) {
-        statusEl.textContent = `Status: ${found.status} | Qty: ${found.qty} | Size: ${found.size}`;
-        statusEl.className = "message status-ok";
+      if (!snap.exists()) return null;
+
+      const val = snap.val();
+      const key = Object.keys(val)[0];
+      return normalizeOrder(key, val[key]);
+    }
+
+    async function fetchAllOrders() {
+      const snap = await db.ref("orders").once("value");
+      if (!snap.exists()) return [];
+
+      const rows = snap.val();
+      return Object.keys(rows)
+        .map((key) => normalizeOrder(key, rows[key]))
+        .sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+    }
+
+    async function updateOrderInFirebase(key, patch) {
+      await db.ref(`orders/${key}`).update(patch);
+    }
+
+    els.orderForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const payload = {
+        customerName: document.getElementById("name").value.trim(),
+        phone: document.getElementById("phone").value.trim(),
+        quantity: Number(document.getElementById("qty").value),
+        size: document.getElementById("size").value,
+        color: document.getElementById("color").value,
+        note: document.getElementById("note").value.trim()
+      };
+
+      if (!payload.customerName || !payload.phone || !payload.quantity || payload.quantity < 1) {
+        setMessage(els.orderMessage, "Please fill all required fields correctly.", false);
+        return;
+      }
+
+      try {
+        const orderCode = await createOrder(payload);
+        setMessage(els.orderMessage, `Order created successfully. Order ID: ${orderCode}`, true);
+        els.orderForm.reset();
+        document.getElementById("qty").value = 1;
+
+        if (adminLoggedIn) {
+          await loadAdminOrders();
+        }
+      } catch (err) {
+        setMessage(els.orderMessage, `Could not create order: ${err.message}`, false);
+      }
+    });
+
+    els.trackForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const code = document.getElementById("trackID").value.trim().toUpperCase();
+      if (!code) {
+        setMessage(els.trackMessage, "Please enter an Order ID.", false);
+        return;
+      }
+
+      try {
+        const order = await findOrderByCode(code);
+        if (!order) {
+          setMessage(els.trackMessage, "Order not found. Please check your Order ID.", false);
+          return;
+        }
+
+        setMessage(
+          els.trackMessage,
+          `${order.order_code}: ${order.status} | Payment: ${order.payment_status} | Qty: ${order.quantity} | Size: ${order.size} | Color: ${order.color}`,
+          true
+        );
+      } catch (err) {
+        setMessage(els.trackMessage, `Could not track order: ${err.message}`, false);
+      }
+    });
+
+    els.adminLoginForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const username = document.getElementById("adminUser").value.trim();
+      const password = document.getElementById("adminPass").value;
+
+      if (username === "admin" && password === "admin123") {
+        adminLoggedIn = true;
+        setMessage(els.adminMessage, "Admin login successful.", true);
+        els.adminPanel.classList.remove("hidden");
+        await loadAdminOrders();
       } else {
-        statusEl.textContent = "Order not found. Please check your Order ID.";
-        statusEl.className = "message status-bad";
+        setMessage(els.adminMessage, "Wrong admin username or password.", false);
+      }
+    });
+
+    function renderStats(orders) {
+      const countByStatus = STATUS_OPTIONS.reduce((acc, s) => {
+        acc[s] = 0;
+        return acc;
+      }, {});
+
+      let paid = 0;
+      orders.forEach((order) => {
+        countByStatus[order.status] = (countByStatus[order.status] || 0) + 1;
+        if (order.payment_status === "Paid") paid += 1;
+      });
+
+      els.stats.innerHTML = `
+        <div class="stat">Total<b>${orders.length}</b></div>
+        <div class="stat">Pending<b>${countByStatus.Pending || 0}</b></div>
+        <div class="stat">Printing<b>${countByStatus.Printing || 0}</b></div>
+        <div class="stat">Processing<b>${countByStatus.Processing || 0}</b></div>
+        <div class="stat">Shipped<b>${countByStatus.Shipped || 0}</b></div>
+        <div class="stat">Delivered<b>${countByStatus.Delivered || 0}</b></div>
+        <div class="stat">Paid<b>${paid}</b></div>
+      `;
+    }
+
+    function createSelect(options, selectedValue, onChange) {
+      const select = document.createElement("select");
+      options.forEach((optionValue) => {
+        const option = document.createElement("option");
+        option.value = optionValue;
+        option.textContent = optionValue;
+        option.selected = optionValue === selectedValue;
+        select.appendChild(option);
+      });
+      select.addEventListener("change", onChange);
+      return select;
+    }
+
+    async function updateOrder(key, patch) {
+      try {
+        await updateOrderInFirebase(key, patch);
+        await loadAdminOrders();
+      } catch (err) {
+        alert(`Failed to update order: ${err.message}`);
       }
     }
 
-    function login() {
-      const pass = document.getElementById("adminPass").value;
-      const message = document.getElementById("adminMessage");
+    function renderOrders(orders) {
+      if (!orders.length) {
+        els.orders.innerHTML = "<p class='subtitle'>No orders yet.</p>";
+        return;
+      }
 
-      if (pass === "admin123") {
-        document.getElementById("adminPanel").style.display = "block";
-        message.textContent = "Admin access granted.";
-        message.className = "message status-ok";
-        loadOrders();
-      } else {
-        message.textContent = "Wrong password.";
-        message.className = "message status-bad";
+      els.orders.innerHTML = "";
+
+      orders.forEach((order) => {
+        const card = document.createElement("div");
+        card.className = "order";
+
+        const statusSelect = createSelect(STATUS_OPTIONS, order.status, (e) => {
+          updateOrder(order.key, { status: e.target.value });
+        });
+
+        const paymentSelect = createSelect(PAYMENT_OPTIONS, order.payment_status, (e) => {
+          updateOrder(order.key, { payment_status: e.target.value });
+        });
+
+        card.innerHTML = `
+          <div class="order-head">
+            <strong>${toSafeText(order.order_code)}</strong>
+            <span class="chip">${toSafeText(order.status)}</span>
+          </div>
+          <div>${toSafeText(order.customer_name)} · ${toSafeText(order.phone)}</div>
+          <div>Qty: ${toSafeText(order.quantity)} · Size: ${toSafeText(order.size)} · Color: ${toSafeText(order.color)}</div>
+          <div style="color:var(--muted); font-size:0.88rem; margin-top:6px;">Created: ${new Date(order.created_at).toLocaleString()}</div>
+        `;
+
+        const row = document.createElement("div");
+        row.className = "row";
+
+        const statusWrap = document.createElement("div");
+        statusWrap.style.flex = "1";
+        statusWrap.appendChild(statusSelect);
+
+        const paymentWrap = document.createElement("div");
+        paymentWrap.style.flex = "1";
+        paymentWrap.appendChild(paymentSelect);
+
+        row.appendChild(statusWrap);
+        row.appendChild(paymentWrap);
+        card.appendChild(row);
+
+        if (order.note) {
+          const note = document.createElement("div");
+          note.style.marginTop = "8px";
+          note.style.color = "#dbe7ff";
+          note.textContent = `Note: ${order.note}`;
+          card.appendChild(note);
+        }
+
+        els.orders.appendChild(card);
+      });
+    }
+
+    async function loadAdminOrders() {
+      if (!adminLoggedIn) return;
+
+      try {
+        const orders = await fetchAllOrders();
+        renderStats(orders);
+        renderOrders(orders);
+      } catch (err) {
+        setMessage(els.adminMessage, `Could not load orders: ${err.message}`, false);
       }
     }
 
     function logoutAdmin() {
-      document.getElementById("adminPanel").style.display = "none";
+      adminLoggedIn = false;
+      els.adminPanel.classList.add("hidden");
+      els.orders.innerHTML = "";
+      els.stats.innerHTML = "";
+      setMessage(els.adminMessage, "Logged out.", true);
       document.getElementById("adminPass").value = "";
-      const message = document.getElementById("adminMessage");
-      message.textContent = "Logged out.";
-      message.className = "message";
-    }
-
-    function clearOrders() {
-      const confirmed = confirm("Delete all shirt orders? This cannot be undone.");
-      if (!confirmed) return;
-
-      saveOrders([]);
-      loadOrders();
-    }
-
-    function updateOrderStatus(id, newStatus) {
-      const orders = getOrders();
-      const index = orders.findIndex((o) => o.id === id);
-
-      if (index >= 0) {
-        orders[index].status = newStatus;
-        saveOrders(orders);
-        loadOrders();
-      }
-    }
-
-    function getStatusClass(status) {
-      if (status === "Shipped") return "shipped";
-      if (status === "Processing" || status === "Printing") return "processing";
-      if (status === "Cancelled") return "cancelled";
-      return "";
-    }
-
-    function loadOrders() {
-      const orders = getOrders();
-      const container = document.getElementById("orders");
-
-      if (!orders.length) {
-        container.innerHTML = "<p class='subtitle'>No orders yet.</p>";
-        return;
-      }
-
-      const html = orders
-        .map((o) => {
-          const options = statuses
-            .map((s) => `<option value="${s}" ${s === o.status ? "selected" : ""}>${s}</option>`)
-            .join("");
-
-          return `
-            <div class="order">
-              <div class="order-head">
-                <strong>${o.id}</strong>
-                <span class="chip ${getStatusClass(o.status)}">${o.status}</span>
-              </div>
-              <div>${o.name} · Qty: ${o.qty} · Size: ${o.size}</div>
-              <div style="margin-top:4px; color: var(--muted); font-size:0.85rem;">Created: ${o.createdAt || "N/A"}</div>
-              <label style="margin-top:10px;">Change Status</label>
-              <select class="status-select" onchange="updateOrderStatus('${o.id}', this.value)">${options}</select>
-            </div>
-          `;
-        })
-        .join("");
-
-      container.innerHTML = html;
     }
   </script>
 </body>
