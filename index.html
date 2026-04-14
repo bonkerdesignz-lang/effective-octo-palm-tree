@@ -1,630 +1,156 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bonker T-Shirts | Full Stack Orders</title>
-  <style>
-    :root {
-      --bg: #080812;
-      --card: rgba(23, 25, 46, 0.86);
-      --text: #f5f7ff;
-      --muted: #b8bfd3;
-      --primary: #f6c445;
-      --primary-deep: #e0ac2f;
-      --accent: #49f2ff;
-      --success: #57d38c;
-      --danger: #ff6575;
-      --radius: 18px;
-      --shadow: 0 20px 35px rgba(0, 0, 0, 0.35);
-    }
-
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      font-family: Inter, Segoe UI, Arial, sans-serif;
-      background:
-        radial-gradient(circle at 10% 15%, rgba(73, 242, 255, 0.14), transparent 30%),
-        radial-gradient(circle at 90% 5%, rgba(255, 207, 51, 0.16), transparent 32%),
-        linear-gradient(145deg, #070712 0%, #101429 46%, #0a0f1d 100%);
-      color: var(--text);
-      min-height: 100vh;
-      line-height: 1.5;
-    }
-
-    .container { width: min(1100px, 92vw); margin: 0 auto; }
-
-    nav {
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      backdrop-filter: blur(12px);
-      background: rgba(8, 8, 18, 0.8);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    .nav-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 14px 0;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-
-    .brand {
-      font-weight: 800;
-      color: var(--primary);
-      text-shadow: 0 0 20px rgba(255, 207, 51, 0.35);
-    }
-
-    .nav-links { display: flex; gap: 10px; flex-wrap: wrap; }
-    .nav-links a {
-      color: var(--text);
-      text-decoration: none;
-      font-weight: 600;
-      padding: 8px 10px;
-      border-radius: 8px;
-    }
-    .nav-links a:hover { background: rgba(255,255,255,0.09); color: var(--accent); }
-
-    .hero {
-      padding: 80px 0 50px;
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 24px;
-      align-items: start;
-    }
-
-    .hero h1 { margin: 0; font-size: clamp(2rem, 4.8vw, 3.8rem); line-height: 1.1; }
-    .hero h1 span { color: var(--primary); }
-    .hero p { color: var(--muted); max-width: 620px; }
-
-    .wa-highlight {
-      display: inline-block;
-      padding: 10px 14px;
-      border-radius: 10px;
-      background: rgba(37, 211, 102, 0.14);
-      border: 1px solid rgba(37, 211, 102, 0.35);
-      color: #b9ffd6;
-      font-weight: 700;
-      margin-top: 6px;
-    }
-
-    .hero-card,
-    .card {
-      background: var(--card);
-      border: 1px solid rgba(255,255,255,0.09);
-      border-radius: var(--radius);
-      padding: 22px;
-      box-shadow: var(--shadow);
-    }
-
-    .hero-card ul { margin: 0; padding-left: 20px; color: var(--muted); }
-
-    section { padding: 26px 0 30px; }
-    h2 { margin: 0 0 12px; font-size: 1.65rem; }
-    .subtitle { color: var(--muted); margin: 0 0 12px; }
-
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; }
-
-    label { display: block; margin: 12px 0 6px; font-weight: 600; color: #d9deee; }
-    input, select, textarea {
-      width: 100%;
-      border: 1px solid rgba(255,255,255,0.15);
-      background: rgba(255,255,255,0.05);
-      color: var(--text);
-      border-radius: 10px;
-      padding: 11px;
-      font: inherit;
-    }
-
-    .btn {
-      border: none;
-      border-radius: 11px;
-      font-weight: 700;
-      cursor: pointer;
-      padding: 11px 16px;
-      text-decoration: none;
-      background: var(--primary);
-      color: #000;
-      margin-top: 14px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .btn:hover { background: var(--primary-deep); }
-    .btn.secondary { background: transparent; color: var(--text); border: 1px solid rgba(255,255,255,0.24); }
-    .btn.small { padding: 8px 11px; margin-top: 0; font-size: 0.85rem; }
-
-    .message { margin-top: 12px; font-weight: 600; }
-    .ok { color: var(--success); }
-    .bad { color: var(--danger); }
-
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 10px;
-      margin-bottom: 12px;
-    }
-
-    .stat {
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 10px;
-      padding: 10px;
-      background: rgba(255,255,255,0.04);
-    }
-
-    .stat b { display: block; font-size: 1.2rem; margin-top: 3px; }
-
-    .order {
-      border: 1px solid rgba(255,255,255,0.11);
-      border-radius: 12px;
-      padding: 12px;
-      margin-top: 12px;
-      background: rgba(255,255,255,0.05);
-    }
-
-    .order-head {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    .chip {
-      border-radius: 999px;
-      padding: 4px 10px;
-      font-size: 0.78rem;
-      font-weight: 700;
-      background: rgba(73, 242, 255, 0.16);
-      color: #8df6ff;
-    }
-
-    .row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
-    .hidden { display: none !important; }
-
-    footer { color: var(--muted); text-align: center; padding: 30px 0 40px; }
-
-    @media (max-width: 900px) {
-      .hero { grid-template-columns: 1fr; padding-top: 55px; }
-    }
-  </style>
+  <title>Bonker Orders (Clean Firebase)</title>
 </head>
+
 <body>
-  <nav>
-    <div class="container nav-inner">
-      <div class="brand">Bonker T-Shirts</div>
-      <div class="nav-links">
-        <a href="#home">Home</a>
-        <a href="#order">Order</a>
-        <a href="#track">Track</a>
-        <a href="#admin">Admin</a>
-      </div>
-    </div>
-  </nav>
 
-  <header class="container hero" id="home">
-    <div>
-      <h1>Premium <span>Cotton T-Shirts</span> with live order tracking</h1>
-      <p>Orders are saved in Firebase Realtime Database, so admin updates work across devices.</p>
-      <p class="wa-highlight">📲 WhatsApp Orders: <a href="https://wa.me/917351008716" target="_blank" rel="noopener">+91 73510 08716</a></p>
-    </div>
-    <aside class="hero-card">
-      <h3 style="margin-top:0;">What's improved</h3>
-      <ul>
-        <li>Backend API (Express) for order creation/tracking.</li>
-        <li>Firebase Realtime Database to persist every order.</li>
-        <li>Admin panel connected to Firebase for live status updates.</li>
-      </ul>
-    </aside>
-  </header>
+<h2>Place Order</h2>
+<input id="name" placeholder="Name"><br>
+<input id="qty" type="number" placeholder="Qty"><br>
+<select id="size">
+  <option>S</option>
+  <option selected>M</option>
+  <option>L</option>
+</select><br>
+<button onclick="createOrder()">Create Order</button>
+<p id="orderMessage"></p>
 
-  <main class="container">
-    <section id="order">
-      <h2>Place Your T-Shirt Order</h2>
-      <p class="subtitle">Fill your details and get a real database-backed Order ID.</p>
-      <div class="grid">
-        <form class="card" id="orderForm">
-          <label for="name">Customer Name</label>
-          <input id="name" required minlength="2" placeholder="Enter your name" />
+<hr>
 
-          <label for="phone">Phone (10 digits)</label>
-          <input id="phone" required pattern="[0-9]{10}" inputmode="numeric" placeholder="9876543210" />
+<h2>Track Order</h2>
+<input id="trackID" placeholder="Order ID">
+<button onclick="track()">Track</button>
+<p id="status"></p>
 
-          <label for="qty">Quantity</label>
-          <input id="qty" type="number" required min="1" max="500" value="1" />
+<hr>
 
-          <label for="size">Size</label>
-          <select id="size">
-            <option value="S">S</option>
-            <option value="M" selected>M</option>
-            <option value="L">L</option>
-            <option value="XL">XL</option>
-            <option value="XXL">XXL</option>
-          </select>
+<h2>Admin</h2>
+<input id="adminPass" type="password" placeholder="Password">
+<button onclick="login()">Login</button>
+<p id="adminMessage"></p>
 
-          <label for="color">Color</label>
-          <select id="color">
-            <option value="Black">Black</option>
-            <option value="White">White</option>
-            <option value="Navy">Navy</option>
-            <option value="Maroon">Maroon</option>
-          </select>
+<div id="adminPanel" style="display:none;">
+  <h3>All Orders</h3>
+  <div id="orders"></div>
+</div>
 
-          <label for="note">Print Note (optional)</label>
-          <textarea id="note" rows="3" placeholder="Text/logo instruction"></textarea>
+<!-- FIREBASE -->
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-database-compat.js"></script>
 
-          <button class="btn" type="submit" style="width:100%;">Create Order</button>
-          <p id="orderMessage" class="message"></p>
-        </form>
-      </div>
-    </section>
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyBr_Y35_d02wdvLyiLn3GfD416_377kclM",
+  authDomain: "bonker-448ff.firebaseapp.com",
+  databaseURL: "https://bonker-448ff-default-rtdb.firebaseio.com",
+  projectId: "bonker-448ff"
+};
 
-    <section id="track">
-      <h2>Track Your Order</h2>
-      <p class="subtitle">Check latest status directly from server database.</p>
-      <div class="grid">
-        <form class="card" id="trackForm">
-          <label for="trackID">Order ID</label>
-          <input id="trackID" required placeholder="Example: TS123456" />
-          <button class="btn" type="submit" style="width:100%;">Check Status</button>
-          <p id="trackMessage" class="message"></p>
-        </form>
-      </div>
-    </section>
+firebase.initializeApp(firebaseConfig);
+const db = firebase.database();
 
-    <section id="admin">
-      <h2>Admin Panel</h2>
-      <p class="subtitle">Login and manage all orders across devices.</p>
-      <div class="card">
-        <form id="adminLoginForm">
-          <label for="adminUser">Admin Username</label>
-          <input id="adminUser" placeholder="admin" required />
+/* CREATE ORDER */
+function createOrder() {
+  const name = document.getElementById("name").value.trim();
+  const qty = Number(document.getElementById("qty").value);
+  const size = document.getElementById("size").value;
+  const msg = document.getElementById("orderMessage");
 
-          <label for="adminPass">Admin Password</label>
-          <input id="adminPass" type="password" placeholder="Enter password" required />
+  if (!name || qty < 1) {
+    msg.textContent = "Fill properly";
+    return;
+  }
 
-          <button class="btn" type="submit" style="width:100%;">Login to Admin</button>
-          <p id="adminMessage" class="message"></p>
-        </form>
+  const orderCode = "TS" + Date.now();
 
-        <div id="adminPanel" class="hidden" style="margin-top:18px;">
-          <div class="row" style="justify-content:space-between;">
-            <h3 style="margin:0;">All Shirt Orders</h3>
-            <div class="row">
-              <button class="btn secondary small" id="refreshBtn" type="button">Refresh</button>
-              <button class="btn secondary small" id="logoutBtn" type="button">Logout</button>
-            </div>
-          </div>
+  db.ref("orders").push({
+    order_code: orderCode,
+    name,
+    qty,
+    size,
+    status: "Pending",
+    created_at: new Date().toISOString()
+  })
+  .then(() => {
+    msg.textContent = "Order ID: " + orderCode;
+  });
+}
 
-          <div class="stats" id="stats"></div>
-          <div id="orders"></div>
-        </div>
-      </div>
-    </section>
-  </main>
+/* TRACK ORDER */
+function track() {
+  const id = document.getElementById("trackID").value.trim();
+  const statusEl = document.getElementById("status");
 
-  <footer>© <span id="year"></span> Bonker T-Shirts · Full Stack Ordering System</footer>
-
-  <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-database-compat.js"></script>
-  <script>
-    const firebaseConfig = {
-      apiKey: "AIzaSyBr_Y35_d02wdvLyiLn3GfD416_377kclM",
-      authDomain: "bonker-448ff.firebaseapp.com",
-      projectId: "bonker-448ff",
-      storageBucket: "bonker-448ff.firebasestorage.app",
-      messagingSenderId: "1021425830931",
-      appId: "1:1021425830931:web:aff544a716cae2c922c3e6",
-      measurementId: "G-J6CDDW0JZ9",
-      databaseURL: "https://bonker-448ff-default-rtdb.firebaseio.com"
-    };
-
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.database();
-
-    const STATUS_OPTIONS = ["Pending", "Printing", "Processing", "Ready", "Shipped", "Delivered", "Cancelled"];
-    const PAYMENT_OPTIONS = ["Unpaid", "Paid"];
-    let adminLoggedIn = false;
-
-    const els = {
-      orderForm: document.getElementById("orderForm"),
-      trackForm: document.getElementById("trackForm"),
-      adminLoginForm: document.getElementById("adminLoginForm"),
-      orderMessage: document.getElementById("orderMessage"),
-      trackMessage: document.getElementById("trackMessage"),
-      adminMessage: document.getElementById("adminMessage"),
-      adminPanel: document.getElementById("adminPanel"),
-      orders: document.getElementById("orders"),
-      stats: document.getElementById("stats")
-    };
-
-    document.getElementById("year").textContent = new Date().getFullYear();
-    document.getElementById("refreshBtn").addEventListener("click", loadAdminOrders);
-    document.getElementById("logoutBtn").addEventListener("click", logoutAdmin);
-
-    function setMessage(el, text, ok = false) {
-      el.textContent = text;
-      el.className = `message ${ok ? "ok" : "bad"}`;
-    }
-
-    function toSafeText(value) {
-      return String(value || "")
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#39;");
-    }
-
-    function normalizeOrder(key, order) {
-      return {
-        key,
-        order_code: order.order_code || "",
-        customer_name: order.customer_name || "",
-        phone: order.phone || "",
-        quantity: Number(order.quantity || 0),
-        size: order.size || "M",
-        color: order.color || "Black",
-        note: order.note || "",
-        status: STATUS_OPTIONS.includes(order.status) ? order.status : "Pending",
-        payment_status: PAYMENT_OPTIONS.includes(order.payment_status) ? order.payment_status : "Unpaid",
-        created_at: order.created_at || new Date().toISOString()
-      };
-    }
-
-    function createOrderCode() {
-      return `TS${Date.now().toString().slice(-8)}${Math.floor(Math.random() * 90 + 10)}`;
-    }
-
-    async function createOrder(payload) {
-      const orderCode = createOrderCode();
-      const createdAt = new Date().toISOString();
-
-      const order = {
-        order_code: orderCode,
-        customer_name: payload.customerName,
-        phone: payload.phone,
-        quantity: payload.quantity,
-        size: payload.size,
-        color: payload.color,
-        note: payload.note,
-        status: "Pending",
-        payment_status: "Unpaid",
-        created_at: createdAt
-      };
-
-      const orderRef = db.ref("orders").push();
-      await orderRef.set(order);
-      return orderCode;
-    }
-
-    async function findOrderByCode(code) {
-      const snap = await db
-        .ref("orders")
-        .orderByChild("order_code")
-        .equalTo(code)
-        .limitToFirst(1)
-        .once("value");
-
-      if (!snap.exists()) return null;
-
-      const val = snap.val();
-      const key = Object.keys(val)[0];
-      return normalizeOrder(key, val[key]);
-    }
-
-    async function fetchAllOrders() {
-      const snap = await db.ref("orders").once("value");
-      if (!snap.exists()) return [];
-
-      const rows = snap.val();
-      return Object.keys(rows)
-        .map((key) => normalizeOrder(key, rows[key]))
-        .sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
-    }
-
-    async function updateOrderInFirebase(key, patch) {
-      await db.ref(`orders/${key}`).update(patch);
-    }
-
-    els.orderForm.addEventListener("submit", async (e) => {
-      e.preventDefault();
-
-      const payload = {
-        customerName: document.getElementById("name").value.trim(),
-        phone: document.getElementById("phone").value.trim(),
-        quantity: Number(document.getElementById("qty").value),
-        size: document.getElementById("size").value,
-        color: document.getElementById("color").value,
-        note: document.getElementById("note").value.trim()
-      };
-
-      if (!payload.customerName || !payload.phone || !payload.quantity || payload.quantity < 1) {
-        setMessage(els.orderMessage, "Please fill all required fields correctly.", false);
+  db.ref("orders")
+    .orderByChild("order_code")
+    .equalTo(id)
+    .once("value")
+    .then(snap => {
+      if (!snap.exists()) {
+        statusEl.textContent = "Not found";
         return;
       }
 
-      try {
-        const orderCode = await createOrder(payload);
-        setMessage(els.orderMessage, `Order created successfully. Order ID: ${orderCode}`, true);
-        els.orderForm.reset();
-        document.getElementById("qty").value = 1;
-
-        if (adminLoggedIn) {
-          await loadAdminOrders();
-        }
-      } catch (err) {
-        setMessage(els.orderMessage, `Could not create order: ${err.message}`, false);
-      }
+      const data = Object.values(snap.val())[0];
+      statusEl.textContent = "Status: " + data.status;
     });
+}
 
-    els.trackForm.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const code = document.getElementById("trackID").value.trim().toUpperCase();
-      if (!code) {
-        setMessage(els.trackMessage, "Please enter an Order ID.", false);
-        return;
-      }
+/* ADMIN LOGIN */
+function login() {
+  const pass = document.getElementById("adminPass").value;
+  const msg = document.getElementById("adminMessage");
 
-      try {
-        const order = await findOrderByCode(code);
-        if (!order) {
-          setMessage(els.trackMessage, "Order not found. Please check your Order ID.", false);
-          return;
-        }
+  if (pass === "admin123") {
+    document.getElementById("adminPanel").style.display = "block";
+    msg.textContent = "Logged in";
+    loadOrders();
+  } else {
+    msg.textContent = "Wrong password";
+  }
+}
 
-        setMessage(
-          els.trackMessage,
-          `${order.order_code}: ${order.status} | Payment: ${order.payment_status} | Qty: ${order.quantity} | Size: ${order.size} | Color: ${order.color}`,
-          true
-        );
-      } catch (err) {
-        setMessage(els.trackMessage, `Could not track order: ${err.message}`, false);
-      }
-    });
+/* LOAD + UPDATE ORDERS */
+function loadOrders() {
+  const container = document.getElementById("orders");
 
-    els.adminLoginForm.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const username = document.getElementById("adminUser").value.trim();
-      const password = document.getElementById("adminPass").value;
+  db.ref("orders").on("value", snap => {
+    if (!snap.exists()) {
+      container.innerHTML = "No orders";
+      return;
+    }
 
-      if (username === "admin" && password === "admin123") {
-        adminLoggedIn = true;
-        setMessage(els.adminMessage, "Admin login successful.", true);
-        els.adminPanel.classList.remove("hidden");
-        await loadAdminOrders();
-      } else {
-        setMessage(els.adminMessage, "Wrong admin username or password.", false);
-      }
-    });
+    container.innerHTML = "";
 
-    function renderStats(orders) {
-      const countByStatus = STATUS_OPTIONS.reduce((acc, s) => {
-        acc[s] = 0;
-        return acc;
-      }, {});
+    snap.forEach(child => {
+      const o = child.val();
+      const key = child.key;
 
-      let paid = 0;
-      orders.forEach((order) => {
-        countByStatus[order.status] = (countByStatus[order.status] || 0) + 1;
-        if (order.payment_status === "Paid") paid += 1;
-      });
-
-      els.stats.innerHTML = `
-        <div class="stat">Total<b>${orders.length}</b></div>
-        <div class="stat">Pending<b>${countByStatus.Pending || 0}</b></div>
-        <div class="stat">Printing<b>${countByStatus.Printing || 0}</b></div>
-        <div class="stat">Processing<b>${countByStatus.Processing || 0}</b></div>
-        <div class="stat">Shipped<b>${countByStatus.Shipped || 0}</b></div>
-        <div class="stat">Delivered<b>${countByStatus.Delivered || 0}</b></div>
-        <div class="stat">Paid<b>${paid}</b></div>
+      const div = document.createElement("div");
+      div.innerHTML = `
+        <b>${o.order_code}</b> - ${o.name} (${o.qty}) - ${o.status}
+        <select onchange="updateStatus('${key}', this.value)">
+          <option ${o.status==="Pending"?"selected":""}>Pending</option>
+          <option ${o.status==="Processing"?"selected":""}>Processing</option>
+          <option ${o.status==="Shipped"?"selected":""}>Shipped</option>
+          <option ${o.status==="Delivered"?"selected":""}>Delivered</option>
+        </select>
+        <hr>
       `;
-    }
 
-    function createSelect(options, selectedValue, onChange) {
-      const select = document.createElement("select");
-      options.forEach((optionValue) => {
-        const option = document.createElement("option");
-        option.value = optionValue;
-        option.textContent = optionValue;
-        option.selected = optionValue === selectedValue;
-        select.appendChild(option);
-      });
-      select.addEventListener("change", onChange);
-      return select;
-    }
+      container.appendChild(div);
+    });
+  });
+}
 
-    async function updateOrder(key, patch) {
-      try {
-        await updateOrderInFirebase(key, patch);
-        await loadAdminOrders();
-      } catch (err) {
-        alert(`Failed to update order: ${err.message}`);
-      }
-    }
+/* UPDATE STATUS */
+function updateStatus(key, status) {
+  db.ref("orders/" + key).update({ status });
+}
+</script>
 
-    function renderOrders(orders) {
-      if (!orders.length) {
-        els.orders.innerHTML = "<p class='subtitle'>No orders yet.</p>";
-        return;
-      }
-
-      els.orders.innerHTML = "";
-
-      orders.forEach((order) => {
-        const card = document.createElement("div");
-        card.className = "order";
-
-        const statusSelect = createSelect(STATUS_OPTIONS, order.status, (e) => {
-          updateOrder(order.key, { status: e.target.value });
-        });
-
-        const paymentSelect = createSelect(PAYMENT_OPTIONS, order.payment_status, (e) => {
-          updateOrder(order.key, { payment_status: e.target.value });
-        });
-
-        card.innerHTML = `
-          <div class="order-head">
-            <strong>${toSafeText(order.order_code)}</strong>
-            <span class="chip">${toSafeText(order.status)}</span>
-          </div>
-          <div>${toSafeText(order.customer_name)} · ${toSafeText(order.phone)}</div>
-          <div>Qty: ${toSafeText(order.quantity)} · Size: ${toSafeText(order.size)} · Color: ${toSafeText(order.color)}</div>
-          <div style="color:var(--muted); font-size:0.88rem; margin-top:6px;">Created: ${new Date(order.created_at).toLocaleString()}</div>
-        `;
-
-        const row = document.createElement("div");
-        row.className = "row";
-
-        const statusWrap = document.createElement("div");
-        statusWrap.style.flex = "1";
-        statusWrap.appendChild(statusSelect);
-
-        const paymentWrap = document.createElement("div");
-        paymentWrap.style.flex = "1";
-        paymentWrap.appendChild(paymentSelect);
-
-        row.appendChild(statusWrap);
-        row.appendChild(paymentWrap);
-        card.appendChild(row);
-
-        if (order.note) {
-          const note = document.createElement("div");
-          note.style.marginTop = "8px";
-          note.style.color = "#dbe7ff";
-          note.textContent = `Note: ${order.note}`;
-          card.appendChild(note);
-        }
-
-        els.orders.appendChild(card);
-      });
-    }
-
-    async function loadAdminOrders() {
-      if (!adminLoggedIn) return;
-
-      try {
-        const orders = await fetchAllOrders();
-        renderStats(orders);
-        renderOrders(orders);
-      } catch (err) {
-        setMessage(els.adminMessage, `Could not load orders: ${err.message}`, false);
-      }
-    }
-
-    function logoutAdmin() {
-      adminLoggedIn = false;
-      els.adminPanel.classList.add("hidden");
-      els.orders.innerHTML = "";
-      els.stats.innerHTML = "";
-      setMessage(els.adminMessage, "Logged out.", true);
-      document.getElementById("adminPass").value = "";
-    }
-  </script>
 </body>
 </html>
