@@ -1,156 +1,81 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Bonker Orders (Clean Firebase)</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Effective Octo Palm Tree</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(120deg, rgba(255, 206, 0, 1), rgba(255, 105, 180, 1));
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        header {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin: 0;
+            color: #333;
+        }
+        section {
+            width: 90%;
+            max-width: 1200px;
+            margin: 20px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+        footer {
+            position: fixed;
+            bottom: 10px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #007bff;
+            color: #fff;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+        .btn:hover {
+            background: #0056b3;
+        }
+    </style>
 </head>
-
 <body>
-
-<h2>Place Order</h2>
-<input id="name" placeholder="Name"><br>
-<input id="qty" type="number" placeholder="Qty"><br>
-<select id="size">
-  <option>S</option>
-  <option selected>M</option>
-  <option>L</option>
-</select><br>
-<button onclick="createOrder()">Create Order</button>
-<p id="orderMessage"></p>
-
-<hr>
-
-<h2>Track Order</h2>
-<input id="trackID" placeholder="Order ID">
-<button onclick="track()">Track</button>
-<p id="status"></p>
-
-<hr>
-
-<h2>Admin</h2>
-<input id="adminPass" type="password" placeholder="Password">
-<button onclick="login()">Login</button>
-<p id="adminMessage"></p>
-
-<div id="adminPanel" style="display:none;">
-  <h3>All Orders</h3>
-  <div id="orders"></div>
-</div>
-
-<!-- FIREBASE -->
-<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-database-compat.js"></script>
-
-<script>
-const firebaseConfig = {
-  apiKey: "AIzaSyBr_Y35_d02wdvLyiLn3GfD416_377kclM",
-  authDomain: "bonker-448ff.firebaseapp.com",
-  databaseURL: "https://bonker-448ff-default-rtdb.firebaseio.com",
-  projectId: "bonker-448ff"
-};
-
-firebase.initializeApp(firebaseConfig);
-const db = firebase.database();
-
-/* CREATE ORDER */
-function createOrder() {
-  const name = document.getElementById("name").value.trim();
-  const qty = Number(document.getElementById("qty").value);
-  const size = document.getElementById("size").value;
-  const msg = document.getElementById("orderMessage");
-
-  if (!name || qty < 1) {
-    msg.textContent = "Fill properly";
-    return;
-  }
-
-  const orderCode = "TS" + Date.now();
-
-  db.ref("orders").push({
-    order_code: orderCode,
-    name,
-    qty,
-    size,
-    status: "Pending",
-    created_at: new Date().toISOString()
-  })
-  .then(() => {
-    msg.textContent = "Order ID: " + orderCode;
-  });
-}
-
-/* TRACK ORDER */
-function track() {
-  const id = document.getElementById("trackID").value.trim();
-  const statusEl = document.getElementById("status");
-
-  db.ref("orders")
-    .orderByChild("order_code")
-    .equalTo(id)
-    .once("value")
-    .then(snap => {
-      if (!snap.exists()) {
-        statusEl.textContent = "Not found";
-        return;
-      }
-
-      const data = Object.values(snap.val())[0];
-      statusEl.textContent = "Status: " + data.status;
-    });
-}
-
-/* ADMIN LOGIN */
-function login() {
-  const pass = document.getElementById("adminPass").value;
-  const msg = document.getElementById("adminMessage");
-
-  if (pass === "admin123") {
-    document.getElementById("adminPanel").style.display = "block";
-    msg.textContent = "Logged in";
-    loadOrders();
-  } else {
-    msg.textContent = "Wrong password";
-  }
-}
-
-/* LOAD + UPDATE ORDERS */
-function loadOrders() {
-  const container = document.getElementById("orders");
-
-  db.ref("orders").on("value", snap => {
-    if (!snap.exists()) {
-      container.innerHTML = "No orders";
-      return;
-    }
-
-    container.innerHTML = "";
-
-    snap.forEach(child => {
-      const o = child.val();
-      const key = child.key;
-
-      const div = document.createElement("div");
-      div.innerHTML = `
-        <b>${o.order_code}</b> - ${o.name} (${o.qty}) - ${o.status}
-        <select onchange="updateStatus('${key}', this.value)">
-          <option ${o.status==="Pending"?"selected":""}>Pending</option>
-          <option ${o.status==="Processing"?"selected":""}>Processing</option>
-          <option ${o.status==="Shipped"?"selected":""}>Shipped</option>
-          <option ${o.status==="Delivered"?"selected":""}>Delivered</option>
-        </select>
-        <hr>
-      `;
-
-      container.appendChild(div);
-    });
-  });
-}
-
-/* UPDATE STATUS */
-function updateStatus(key, status) {
-  db.ref("orders/" + key).update({ status });
-}
-</script>
-
+    <header>
+        <h1>Welcome to Effective Octo Palm Tree</h1>
+    </header>
+    <section>
+        <h2>Admin Dashboard</h2>
+        <p>Analytics, Product Showcase, Customer Testimonials, and more!</p>
+        <h3>Admin Login</h3>
+        <form action="/admin" method="POST">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" value="admin123" required>
+            <button type="submit" class="btn">Login</button>
+        </form>
+    </section>
+    <footer>
+        <p>UPI ID: someshtandon75@okicici</p>
+    </footer>
 </body>
 </html>
