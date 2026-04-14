@@ -3,79 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Effective Octo Palm Tree</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            background: linear-gradient(120deg, rgba(255, 206, 0, 1), rgba(255, 105, 180, 1));
-            color: #333;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-        }
-        header {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(10px);
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-        }
-        h1 {
-            font-size: 2.5rem;
-            margin: 0;
-            color: #333;
-        }
-        section {
-            width: 90%;
-            max-width: 1200px;
-            margin: 20px;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 10px;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-        }
-        footer {
-            position: fixed;
-            bottom: 10px;
-            font-size: 0.9rem;
-            color: #666;
-        }
-        .btn {
-            display: inline-block;
-            padding: 10px 20px;
-            background: #007bff;
-            color: #fff;
-            border-radius: 5px;
-            text-decoration: none;
-            transition: background 0.3s;
-        }
-        .btn:hover {
-            background: #0056b3;
-        }
-    </style>
+    <title>Bonker T-Shirts</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
-        <h1>Welcome to Effective Octo Palm Tree</h1>
+        <h1>Welcome to Bonker T-Shirts!</h1>
+        <p>Get the best quality t-shirts at the most affordable prices!</p>
+        <a href="#products" class="btn">Shop Now</a>
     </header>
-    <section>
-        <h2>Admin Dashboard</h2>
-        <p>Analytics, Product Showcase, Customer Testimonials, and more!</p>
-        <h3>Admin Login</h3>
-        <form action="/admin" method="POST">
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required>
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" value="admin123" required>
-            <button type="submit" class="btn">Login</button>
+
+    <section id="products">
+        <h2>Product Showcase</h2>
+        <div class="product">
+            <img src="tshirt1.jpg" alt="T-Shirt 1">
+            <h3>Bonker Classic Tee</h3>
+            <p>Description of Bonker Classic Tee.</p>
+            <span>$20.00</span>
+        </div>
+        <div class="product">
+            <img src="tshirt2.jpg" alt="T-Shirt 2">
+            <h3>Bonker Graphic Tee</h3>
+            <p>Description of Bonker Graphic Tee.</p>
+            <span>$25.00</span>
+        </div>
+        <div class="product">
+            <img src="tshirt3.jpg" alt="T-Shirt 3">
+            <h3>Bonker Vintage Tee</h3>
+            <p>Description of Bonker Vintage Tee.</p>
+            <span>$30.00</span>
+        </div>
+    </section>
+
+    <section id="testimonials">
+        <h2>Testimonials</h2>
+        <blockquote>
+            <p>"Best t-shirts I've ever purchased!" - Customer A</p>
+        </blockquote>
+        <blockquote>
+            <p>"Amazing quality and comfort!" - Customer B</p>
+        </blockquote>
+    </section>
+
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <form>
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required>
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+            <label for="message">Message</label>
+            <textarea id="message" name="message" required></textarea>
+            <button type="submit">Send</button>
         </form>
     </section>
+
     <footer>
-        <p>UPI ID: someshtandon75@okicici</p>
+        <p>&copy; 2026 Bonker T-Shirts. All rights reserved.</p>
     </footer>
 </body>
 </html>
