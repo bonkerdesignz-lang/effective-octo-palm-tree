@@ -1,65 +1,442 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bonker T-Shirts</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bonker T-Shirts | Wear Your Design</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --glass-bg: rgba(26,23,60,0.59);
+      --gradient: linear-gradient(120deg, #09091b 0%, #281848 38%, #092040 100%);
+      --glow: 0 0 32px #a86fff88, 0 0 8px #0ffaf9cc;
+      --primary: #a86fff;
+      --secondary: #0ffaf9;
+    }
+    html, body { min-height: 100%; }
+    body {
+      font-family: 'Montserrat', Arial, sans-serif;
+      margin: 0;
+      background: var(--gradient);
+      color: #eef4fb;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    /* Glowing animated bg layer */
+    body::before {
+      content: "";
+      position: fixed; inset: 0;
+      background:
+        radial-gradient(circle at 12% 95%, #0ffaf944 0,transparent 75%),
+        radial-gradient(circle at 95% 30%, #b284ff33 0, transparent 55%);
+      pointer-events: none;
+      z-index: 0;
+      animation: bgMove 14s linear alternate infinite;
+    }
+    @keyframes bgMove {
+      0%{ background-position: 12% 95%, 95% 30%; }
+      100%{ background-position: 19% 85%, 75% 35%; }
+    }
+    /* Reusable glassy card base */
+    .glass-card {
+      background: var(--glass-bg);
+      box-shadow: 0 8px 40px #0ffaf91a, 0 0 0 transparent;
+      border-radius: 2rem;
+      border: 1.5px solid #2d254477;
+      backdrop-filter: blur(19px);
+      position: relative;
+      overflow: hidden;
+      transition:.22s box-shadow, .22s border,.22s background;
+    }
+    /* NAV */
+    .brand-header {
+      width: 100%;
+      text-align: center;
+      margin-top: 38px;
+      margin-bottom: 0.5rem;
+    }
+    .brand-title {
+      font-size: 2.7rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+      color: #fff;
+      background: linear-gradient(90deg,#a86fff 30%,#0ffaf9 90%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 3px 10px #0ffaf9bb);
+      text-shadow: var(--glow);
+    }
+    .brand-tagline {
+      font-weight: 600;
+      color: #dbe9fc;
+      font-size: 1.26rem;
+      letter-spacing: 1.55px;
+      margin-bottom:2.3rem;
+    }
+    /* HERO */
+    .hero-section {
+      min-height: 270px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding-bottom: 2.2rem;
+    }
+    .order-now-btn {
+      display: inline-block;
+      background: linear-gradient(90deg,var(--primary) 43%,var(--secondary) 90%);
+      color: #0b092a;
+      padding: 1rem 2.5rem;
+      border-radius: 100px;
+      font-size: 1.37rem;
+      font-weight: 800;
+      box-shadow: 0 2px 44px #0ffaf950;
+      text-shadow: 0 2px 3px #b284ff55;
+      border: none;
+      letter-spacing: 1.2px;
+      margin-top: 16px;
+      margin-bottom: 10px;
+      cursor: pointer;
+      transition: 0.23s box-shadow, 0.17s transform;
+    }
+    .order-now-btn:hover {
+      box-shadow: 0 6px 60px #a86fff44, 0 0 30px #0ffaf977;
+      transform: scale(1.05) ;
+    }
+    /* ORDER CONTACT FORM */
+    .order-contact-section {
+      max-width: 550px;
+      margin: 2.7rem auto 3.2rem auto;
+      padding: 2.15rem 1.6rem 1.7rem 1.6rem;
+      box-shadow: 0 4px 40px #a86fff22, 0 0 0 transparent;
+    }
+    .form-title {
+      text-align: center;
+      color: var(--primary);
+      margin-top: 0;
+      font-size: 1.32rem;
+      letter-spacing: 1px;
+      font-weight: 800;
+      margin-bottom: 1.6rem;
+    }
+    form.order-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .order-form label {
+      font-weight: 700;
+      color: #a86fff;
+      letter-spacing: 1px;
+      margin-bottom: 0.2rem;
+    }
+    .order-form input, .order-form textarea {
+      background: rgba(42,37,104,0.34);
+      border: 1.5px solid #5e4c87;
+      padding: .95rem 1.1rem;
+      color: #eee;
+      font-size: 1.07rem;
+      font-family: inherit;
+      border-radius: 1.2rem;
+      outline: none;
+      transition: border .22s, background .2s;
+    }
+    .order-form input:focus, .order-form textarea:focus {
+      border-color: var(--secondary);
+      background: rgba(56,56,156,0.44);
+    }
+    .order-form textarea { min-height: 72px; resize: vertical;}
+    .order-form button[type="submit"] {
+      margin-top: 6px;
+      background: linear-gradient(90deg,#0ffaf9 20%,#a86fff 95%);
+      color: #211d35;
+      font-weight: 800;
+      font-size: 1.13rem;
+      border: none;
+      border-radius: 44px;
+      padding: .96rem 2.7rem;
+      box-shadow: 0 2px 24px #0ffaf982;
+      cursor: pointer;
+      letter-spacing: 1px;
+      transition: transform .18s, box-shadow .17s;
+    }
+    .order-form button[type="submit"]:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 36px #a86fff99, 0 0 22px #0ffaf933;
+    }
+    .whatsapp-contact-row {
+      display: flex; justify-content: center; align-items: center;
+      gap: .6rem;
+      margin-top: 12px;
+    }
+    .whatsapp-btn {
+      background: #25d366;
+      color: #222342;
+      font-weight: 800;
+      font-size: 1.17rem;
+      border: none;
+      border-radius: 30px;
+      padding: .7rem 2rem;
+      display: flex; align-items: center; gap: .5rem;
+      text-decoration: none;
+      box-shadow: 0 1px 12px #25d36653;
+      margin-left: .6rem;
+      transition: box-shadow .17s, transform .18s;
+    }
+    .whatsapp-btn:hover {
+      color: #090926;
+      background: #65f19c;
+      box-shadow: 0 2px 20px #25d366bf;
+      transform: scale(1.07);
+    }
+    .phone-number {
+      margin-top: 4px;
+      font-weight: 600;
+      color: #c2fded;
+      text-align: center;
+      letter-spacing: .07em;
+    }
+    /* PAYMENTS */
+    .payment-section {
+      max-width: 420px;
+      margin: 3.5rem auto 3.5rem auto;
+      text-align: center;
+    }
+    .qr-card {
+      display: inline-block;
+      margin: 0 auto 0.9rem auto;
+      background: var(--glass-bg);
+      border-radius: 2.3rem;
+      padding: 2rem 2rem 1.7rem 2rem;
+      border: 2.5px solid #0ffaf9;
+      box-shadow: 0 0 24px #0ffaf9cc, 0 0 18px #a86fff88;
+      position: relative;
+      transition: box-shadow .20s;
+      animation: qrPulse 2s infinite alternate;
+    }
+    @keyframes qrPulse {
+      0% { box-shadow: 0 0 18px #0ffaf977, 0 0 8px #a86fff88; }
+      100% { box-shadow: 0 0 36px #0ffaf9dd, 0 0 26px #a86fff90; }
+    }
+    .qr-card img {
+      display: block;
+      width: 180px;
+      height: 180px;
+      margin: 0 auto 0.9rem auto;
+      background: #0ffaf940;
+      border-radius: 18px;
+    }
+    .scan-heading {
+      font-weight: 800; color: var(--primary);
+      font-size: 1.3rem;
+      margin-bottom: .5rem;
+      letter-spacing: 2px;
+    }
+    .upi-id-text {
+      font-family: monospace;
+      background: #181a33;
+      color: #0ffaf9;
+      font-weight: 800;
+      border-radius: 10px;
+      padding: 7px 19px;
+      font-size: 1.1rem;
+      margin: 0.5rem 0 1.2rem 0;
+      letter-spacing: .03em;
+      border: 1.2px solid #0ffaf933;
+      display: inline-block;
+      box-shadow: 0 3px 18px #0ffaf944;
+    }
+    .payment-note {
+      color: #ffe0ff;
+      opacity: 0.85;
+      font-size: .99rem;
+      font-weight: 500;
+      margin-top: 8px;
+    }
+    /* FEATURED DESIGNS */
+    .designs-section {
+      margin: 4rem 0 2.3rem 0;
+      padding: 0 5vw;
+    }
+    .featured-title {
+      text-align: center;
+      color: var(--secondary);
+      font-size: 2.1rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+      margin-bottom: 2.4rem;
+      text-shadow: 0 6px 40px #a86fff33;
+    }
+    .featured-cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+    }
+    .featured-card {
+      background: var(--glass-bg);
+      border-radius: 22px;
+      min-width: 220px; max-width: 270px;
+      box-shadow: 0 3px 24px #0ffaf92a;
+      border: 1.7px solid #a86fff55;
+      padding: 1.35rem 1.1rem 1.1rem 1.1rem;
+      display: flex; flex-direction: column; align-items: center;
+      transition: box-shadow .16s, border .16s, transform .17s;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+    .featured-card img {
+      width: 120px; height: 120px;
+      border-radius: 14px;
+      margin-bottom: 0.9rem;
+      box-shadow: 0 1px 14px #0ffaf965;
+    }
+    .featured-card h4 {
+      margin: 3px 0 7px 0;
+      font-size: 1.15rem;
+      color: #fff;
+      letter-spacing:.5px;
+      font-weight: 700;
+      text-shadow: 0 0 18px #0ffaf911;
+    }
+    .featured-card p {
+      color: #bbd9f2;
+      font-size: .97rem;
+      text-align: center;
+      min-height: 50px;
+      margin-bottom: 0;
+    }
+    .featured-card:hover, .featured-card:focus {
+      border: 2.5px solid #0ffaf9;
+      box-shadow: 0 6px 36px #0ffaf9cc, 0 6px 24px #a86fff66;
+      transform: scale(1.05) translateY(-9px);
+      z-index: 2;
+    }
+    /* FOOTER */
+    footer {
+      background: #120f2e;
+      color: #ccccff;
+      text-align: center;
+      font-size: 1rem;
+      letter-spacing: 1px;
+      padding: 2rem 0 1rem 0;
+      margin-top: 2.5rem;
+    }
+    .footer-contact {
+      margin-bottom: 8px;
+    }
+    /* UTILITIES */
+    @media (max-width: 900px) {
+      .product-cards, .featured-cards { flex-direction: column; gap: 2.2rem;}
+      .order-section, .payment-section {margin: 1.7rem .5vw;}
+      .designs-section {padding: 0 1vw;}
+    }
+    @media (max-width: 540px) {
+      .brand-title {font-size: 2rem;}
+      .order-contact-section {padding: 1.5rem 0.2rem;}
+      .designs-section {padding: 0;}
+      .product-cards, .featured-cards {gap:.9rem;}
+      .hero-section {padding: 3.2rem 9vw 2rem 9vw;}
+      .order-now-btn {font-size: 1.03rem; padding:.75rem 1.3rem;}
+      nav {padding: .9rem 1.1rem;}
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <h1>Welcome to Bonker T-Shirts!</h1>
-        <p>Get the best quality t-shirts at the most affordable prices!</p>
-        <a href="#products" class="btn">Shop Now</a>
-    </header>
+  <!-- HERO -->
+  <div class="brand-header">
+    <div class="brand-title">Bonker T-Shirts</div>
+    <div class="brand-tagline">Wear Your Design</div>
+  </div>
+  <section class="hero-section">
+    <button class="order-now-btn" onclick="document.getElementById('order-contact').scrollIntoView({behavior:'smooth'})">
+      ✨ Order Now
+    </button>
+  </section>
+  <!-- ORDER / CONTACT -->
+  <section class="glass-card order-contact-section" id="order-contact">
+    <div class="form-title">Order Your Custom T-Shirt</div>
+    <form class="order-form" onsubmit="showThanks(event)">
+      <label for="order-name">Name</label>
+      <input id="order-name" name="name" autocomplete="name" required placeholder="Your Name" />
 
-    <section id="products">
-        <h2>Product Showcase</h2>
-        <div class="product">
-            <img src="tshirt1.jpg" alt="T-Shirt 1">
-            <h3>Bonker Classic Tee</h3>
-            <p>Description of Bonker Classic Tee.</p>
-            <span>$20.00</span>
-        </div>
-        <div class="product">
-            <img src="tshirt2.jpg" alt="T-Shirt 2">
-            <h3>Bonker Graphic Tee</h3>
-            <p>Description of Bonker Graphic Tee.</p>
-            <span>$25.00</span>
-        </div>
-        <div class="product">
-            <img src="tshirt3.jpg" alt="T-Shirt 3">
-            <h3>Bonker Vintage Tee</h3>
-            <p>Description of Bonker Vintage Tee.</p>
-            <span>$30.00</span>
-        </div>
-    </section>
+      <label for="order-phone">Phone Number</label>
+      <input id="order-phone" name="phone" autocomplete="tel" required placeholder="Your WhatsApp number" />
 
-    <section id="testimonials">
-        <h2>Testimonials</h2>
-        <blockquote>
-            <p>"Best t-shirts I've ever purchased!" - Customer A</p>
-        </blockquote>
-        <blockquote>
-            <p>"Amazing quality and comfort!" - Customer B</p>
-        </blockquote>
-    </section>
+      <label for="order-idea">T-shirt Idea / Description</label>
+      <textarea id="order-idea" name="desc" required placeholder="E.g. Black XL, front: Space Cat, back: Bonker logo..."></textarea>
 
-    <section id="contact">
-        <h2>Contact Us</h2>
-        <form>
-            <label for="name">Name</label>
-            <input type="text" id="name" name="name" required>
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" required>
-            <label for="message">Message</label>
-            <textarea id="message" name="message" required></textarea>
-            <button type="submit">Send</button>
-        </form>
-    </section>
-
-    <footer>
-        <p>&copy; 2026 Bonker T-Shirts. All rights reserved.</p>
-    </footer>
+      <button type="submit">Send Order</button>
+    </form>
+    <div class="whatsapp-contact-row">
+      <span>or</span>
+      <a class="whatsapp-btn" href="https://wa.me/917351008716" target="_blank">
+        <span>💬 WhatsApp</span>
+      </a>
+    </div>
+    <div class="phone-number">
+      📞 +91 73510 08716
+    </div>
+  </section>
+  <!-- PAYMENTS -->
+  <section class="payment-section">
+    <div class="qr-card">
+      <div class="scan-heading">Scan &amp; Pay</div>
+      <img src="https://api.qrserver.com/v1/create-qr-code/?data=someshtandon75@okicici&amp;size=240x240" alt="UPI QR Code" />
+      <div class="upi-id-text">UPI ID: someshtandon75@okicici</div>
+    </div>
+    <div class="payment-note">
+      Send screenshot after payment on WhatsApp<br>
+      <a class="whatsapp-btn" style="margin-top:.8em;" href="https://wa.me/917351008716?text=Here%20is%20my%20payment%20for%20T-Shirt%20order!" target="_blank">
+        <span>Send Screenshot 💬</span>
+      </a>
+    </div>
+  </section>
+  <!-- FEATURED DESIGNS -->
+  <section class="designs-section">
+    <div class="featured-title">Featured Designs</div>
+    <div class="featured-cards">
+      <div class="featured-card" tabindex="0">
+        <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=facearea&w=400&q=80" alt="Minimal Cat Tee" />
+        <h4>Space Cat</h4>
+        <p>Minimal cat design for stargazers. Soft cotton, all sizes.</p>
+      </div>
+      <div class="featured-card" tabindex="0">
+        <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=facearea&w=400&q=80" alt="Art Neon Tee" />
+        <h4>Art Neon</h4>
+        <p>Vibrant neon art for a bold look. Comfort stretch fit.</p>
+      </div>
+      <div class="featured-card" tabindex="0">
+        <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=facearea&w=400&q=80" alt="Surf Retro Tee" />
+        <h4>Surf Retro</h4>
+        <p>Classic surf style with a retro twist.</p>
+      </div>
+    </div>
+  </section>
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-contact">
+      📧 bonkerdesignz@gmail.com &nbsp; | &nbsp; 📱 +91 73510 08716
+    </div>
+    <div>
+      &copy; 2026 Bonker T-Shirts. All rights reserved.
+    </div>
+  </footer>
+  <script>
+    // Show thank you popup and clear form
+    function showThanks(e){
+      e.preventDefault();
+      const form = e.target;
+      form.style.pointerEvents = "none";
+      form.style.opacity = .66;
+      setTimeout(()=>{
+        alert("Thank you! We'll contact you via WhatsApp soon.");
+        form.reset();
+        form.style.opacity=1; form.style.pointerEvents="auto";
+      },400)
+    }
+  </script>
 </body>
 </html>
