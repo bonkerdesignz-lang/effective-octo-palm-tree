@@ -1,30 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
   <title>Bonker T-Shirts – Premium Custom Tees</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <!-- Modern font family -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet"/>
   <style>
     :root {
-      --gradient-bg: linear-gradient(135deg, #0a0c0f 0%, #22243a 60%, #3c2567 100%);
-      --card-gradient: linear-gradient(120deg, rgba(34,36,58,0.7), rgba(46,48,75,0.9) 80%);
-      --button-gradient: linear-gradient(90deg, #262e77 0%, #512e77 100%);
-      --blur-bg: rgba(40,46,75,0.6);
-      --focus-outline: #6c63ff;
-      --brand: #c6c2fc;
-      --accent: #8378de;
+      --brand-gradient: linear-gradient(120deg, #11141B 0%, #19203A 50%, #233055 100%);
+      --section-gradient: linear-gradient(120deg, #181B22 80%, #1F2335 100%);
+      --button-gradient: linear-gradient(90deg, #232840 0%, #304063 100%);
+      --button-hover-gradient: linear-gradient(90deg, #2A344D 0%, #28395A 100%);
+      --input-bg: #212432;
+      --input-border: #353952;
+      --input-focus: #4D5474;
+      --shadow: 0 6px 40px 0 #10121B33, 0 1.5px 8px 0 #28305A18;
+      --radius: 1.1rem;
+      --text-main: #eff2f7;
+      --text-muted: #b1b7c7;
+      --accent: #6c74b9;
+      --section-space: 64px;
+      --max-width: 1120px;
+      --upibox-bg: rgba(36,38,62,0.81);
     }
 
     html, body {
-      margin: 0;
       padding: 0;
+      margin: 0;
+      background: var(--brand-gradient);
+      color: var(--text-main);
       font-family: 'Inter', Arial, sans-serif;
-      background: var(--gradient-bg);
-      color: #EAEAF0;
-      min-height: 100%;
+      font-size: 18px;
+      min-height: 100vh;
       box-sizing: border-box;
       scroll-behavior: smooth;
     }
@@ -32,462 +40,381 @@
     body {
       display: flex;
       flex-direction: column;
-      min-height: 100vh;
     }
 
     .container {
-      max-width: 1100px;
+      max-width: var(--max-width);
       margin: 0 auto;
-      padding: 0 1.5rem;
+      padding: 0 2.5rem;
       width: 100%;
     }
 
-    /* NAVBAR */
     nav {
-      background: rgba(18,20,35,0.95);
-      backdrop-filter: blur(8px);
-      box-shadow: 0 2px 12px rgba(20,18,30,0.07);
-      border-radius: 0 0 1.5rem 1.5rem;
-      margin-bottom: 1.5rem;
+      background: var(--section-gradient);
+      border-radius: 0 0 var(--radius) var(--radius);
+      box-shadow: var(--shadow);
+      padding: 0;
     }
-    .navbar-content {
+    .navbar {
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      padding: 1.2rem 0;
+      align-items: center;
+      font-weight: 600;
+      padding: 2rem 0 1.7rem 0;
     }
-
     .brand {
-      font-size: 1.35rem;
+      color: var(--accent);
+      font-size: 2rem;
       font-weight: 800;
-      color: var(--brand);
-      letter-spacing: 2px;
-      text-shadow: 0 2px 14px #15124944;
+      letter-spacing: 2.5px;
+      text-shadow: 0 2px 14px #21283d26;
     }
-
     .nav-links {
       display: flex;
-      gap: 2.2rem;
+      gap: 2.4rem;
+    }
+    .nav-links a {
+      color: var(--text-main);
+      text-decoration: none;
+      background: none;
+      padding: .3rem .95rem;
+      border-radius: .6rem;
+      font-size: 1.08rem;
+      transition: background .18s, color .13s;
+    }
+    .nav-links a:hover, .nav-links a:focus {
+      background: #2324366e;
+      color: var(--accent);
+      outline: none;
     }
 
-    .nav-links a {
-      color: #EAEAF0;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 1rem;
-      padding: 0.2rem 0.6rem;
-      border-radius: 8px;
-      transition: background 0.18s;
-    }
-    .nav-links a:hover,
-    .nav-links a:focus {
-      background: var(--card-gradient);
-      outline: 2px solid var(--focus-outline);
-      outline-offset: -2px;
-    }
-    /* SECTION TITLES */
     section {
-      margin: 2.5rem 0;
+      margin: var(--section-space) 0 0 0;
+      padding: 0;
+      width: 100%;
     }
+    .section-inner {
+      background: var(--section-gradient);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 3.2rem 2.3rem 2.7rem 2.3rem;
+      margin-bottom: 2.6rem;
+      position: relative;
+    }
+
     .section-title {
-      margin-bottom: 0.6rem;
-      font-size: 2.1rem;
+      font-size: 2.2rem;
       font-weight: 800;
-      letter-spacing: 1px;
-      color: var(--brand);
-      text-shadow: 0 1px 10px #433e7255;
+      letter-spacing: .5px;
+      margin-bottom: .4rem;
+      color: var(--accent);
     }
     .section-desc {
-      margin-bottom: 1.6rem;
-      color: #b3b4c2;
+      max-width: 520px;
+      color: var(--text-muted);
       font-size: 1.08rem;
       font-weight: 500;
+      margin-bottom: 1.6rem;
+      line-height: 1.5;
     }
 
     /* HERO */
-    .hero {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 330px;
-      background: linear-gradient(120deg, #23223a88 90%, #33135566 100%);
-      border-radius: 1.5rem;
-      box-shadow: 0 4px 32px 4px #1c122e20;
-      position: relative;
-      margin-top: 0.3rem;
-      overflow: hidden;
-    }
-    .hero::before {
-      content: '';
-      position: absolute;
-      left: -60px;
-      top: 30px;
-      width: 260px;
-      height: 240px;
-      background: radial-gradient(circle, #8173fc33, transparent 76%);
-      filter: blur(16px);
-      z-index: 0;
-      pointer-events: none;
-    }
-    .hero-content {
-      z-index: 1;
-      position: relative;
-      padding: 2.5rem 0;
-      width: 100%;
+    .hero .section-inner {
       text-align: center;
+      padding-top: 4rem;
+      padding-bottom: 4rem;
+      background: linear-gradient(112deg, #1b1d26 80%, #28314b 100%);
     }
     .hero-title {
-      font-size: 2.6rem;
+      font-size: 2.8rem;
       font-weight: 800;
-      margin-bottom: 0.7rem;
-      color: #edeaff;
-      letter-spacing: 1.5px;
+      color: #f4f6fa;
+      margin-bottom: 1.2rem;
+      letter-spacing: 1px;
+      text-shadow: 0 2px 13px #22294b11;
     }
     .hero-desc {
-      color: #c3c6e6;
-      font-size: 1.16rem;
-      margin-bottom: 2rem;
+      color: var(--text-muted);
+      font-size: 1.17rem;
       font-weight: 500;
-      max-width: 600px;
+      margin-bottom: 2.7rem;
       margin-left: auto;
       margin-right: auto;
+      max-width: 620px;
     }
     .cta-btn {
-      font-size: 1.09rem;
-      padding: 0.9rem 2.6rem;
-      border: none;
-      border-radius: 2.2rem;
+      font-size: 1.12rem;
       font-weight: 700;
+      padding: 1.1rem 2.9rem;
+      border: none;
+      border-radius: 2rem;
       background: var(--button-gradient);
       color: #fff;
       cursor: pointer;
-      letter-spacing: 1px;
-      box-shadow: 0 2px 18px 0 #2b1d400f;
-      transition: background 0.20s, transform 0.12s, box-shadow 0.12s;
-      backdrop-filter: blur(4px);
+      box-shadow: 0 4px 21px 0 #181e3526;
+      transition: background 0.21s, transform 0.12s, box-shadow 0.12s;
       outline: none;
     }
-    .cta-btn:hover, .cta-btn:focus {
-      background: linear-gradient(90deg,#5148ff 0%,#6131c6 100%);
-      transform: translateY(-2px) scale(1.04);
-      box-shadow: 0 6px 26px 0 #36209944;
+    .cta-btn:hover, .cta-btn:focus-visible {
+      background: var(--button-hover-gradient);
+      color: var(--accent);
+      transform: translateY(-2px) scale(1.035);
+      box-shadow: 0 9px 27px 0 #232c4914;
     }
 
-    /* PRODUCTS */
-    .products-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2rem;
-      justify-content: center;
-    }
-    .product-card {
-      background: var(--card-gradient);
-      border-radius: 1.2rem;
-      padding: 2rem 1.5rem 1.6rem 1.5rem;
-      min-width: 260px;
-      max-width: 320px;
-      box-shadow: 0 4px 22px 2px #23203b22;
+    /* ORDER FORM */
+    .form-card {
+      max-width: 450px;
+      margin: 0 auto;
+      background: var(--upibox-bg);
+      border-radius: var(--radius);
+      box-shadow: 0 2px 18px #20274422;
+      padding: 2.5rem 2rem 2rem 2rem;
+      backdrop-filter: blur(12px);
+      border: 1.5px solid #262a3644;
       display: flex;
       flex-direction: column;
-      align-items: flex-start;
-      position: relative;
-      backdrop-filter: blur(7px);
-      border: 1.5px solid #32225535;
-      transition: transform 0.14s, box-shadow 0.2s;
-    }
-    .product-card:hover, .product-card:focus-within {
-      transform: translateY(-3px) scale(1.025);
-      box-shadow: 0 10px 35px 8px #533a9955;
-      border-color: var(--accent);
-    }
-    .product-name {
-      font-size: 1.19rem;
-      font-weight: 700;
-      color: var(--brand);
-      margin-bottom: 0.28rem;
-    }
-    .product-desc {
-      font-size: 1rem;
-      color: #e7e8f9bb;
-      margin-bottom: 1rem;
-      font-weight: 500;
-    }
-    .product-price {
-      font-weight: 700;
-      font-size: 1.04rem;
-      color: #c6c2fc;
-      padding: 0.19rem 0.7rem;
-      background: #23203b66;
-      border-radius: 0.66rem;
-      margin-left: -0.1rem;
-      box-shadow: 0 2px 10px #150e2b1a;
-    }
-
-    /* FORMS */
-    .card-section {
-      background: var(--blur-bg);
-      border-radius: 1.15rem;
-      padding: 2.2rem 1.8rem 1.4rem 1.8rem;
-      box-shadow: 0 4px 25px 0 #31204028;
-      margin-bottom: 2.2rem;
-      backdrop-filter: blur(10px);
-      border: 1.5px solid #35296325;
-      max-width: 520px;
-      margin-left: auto;
-      margin-right: auto;
+      gap: 1.1rem;
     }
 
     form {
       display: flex;
       flex-direction: column;
-      gap: 1.15rem;
-      margin-top: 0.7rem;
+      gap: 1.25rem;
     }
     label {
       font-size: 1rem;
       font-weight: 600;
-      color: #d7d4fe;
-      margin-bottom: 0.35rem;
-      letter-spacing: .5px;
-      display: block;
+      margin-bottom: 0.5rem;
+      color: #dadbe8;
+      letter-spacing: .3px;
     }
     input, select, textarea {
-      padding: 0.8rem .9rem;
-      border-radius: 0.7rem;
-      border: 1.5px solid #333144;
-      background: #241f3775;
-      color: #eaeaf0;
-      font-size: 1.04rem;
+      padding: 0.82rem 1.05rem;
+      border-radius: .6rem;
+      border: 1.5px solid var(--input-border);
+      background: var(--input-bg);
+      color: var(--text-main);
+      font-size: 1.06rem;
+      margin-bottom: 0;
       font-family: inherit;
-      box-shadow: 0 2.5px 13px 0 #221f2a14;
+      box-shadow: 0 2.5px 13px 0 #1a193b13;
       outline: none;
-      transition: border 0.17s, box-shadow 0.13s;
+      transition: border 0.20s, box-shadow 0.14s;
     }
     input:focus, select:focus, textarea:focus {
-      border: 1.5px solid var(--focus-outline);
-      box-shadow: 0 2px 16px 0 #7b5fff77;
+      border-color: var(--input-focus);
+      box-shadow: 0 2px 16px 0 #6879ee33;
     }
     textarea {
       min-height: 62px;
       resize: vertical;
     }
-
     .form-btn {
-      padding: 0.87rem 2rem;
-      font-size: 1.05rem;
+      padding: 0.95rem 0rem;
+      font-size: 1.08rem;
       font-weight: 700;
       background: var(--button-gradient);
       color: #fff;
       border: none;
-      border-radius: 2rem;
-      box-shadow: 0 3px 13px #40307718;
+      border-radius: 1.7rem;
+      box-shadow: 0 4px 16px #232a5535;
       cursor: pointer;
-      align-self: flex-start;
-      transition: background 0.18s, box-shadow 0.15s, transform 0.12s;
+      margin-top: .6rem;
+      transition: background 0.18s, color 0.14s, box-shadow 0.16s, transform 0.09s;
     }
-    .form-btn:hover, .form-btn:focus {
-      background: linear-gradient(90deg, #6858ff 0%, #573ed2 100%);
-      transform: translateY(-1.5px) scale(1.02);
-      outline: 2px solid var(--focus-outline);
-      outline-offset: -2px;
-      box-shadow: 0 6px 22px #36209955;
+    .form-btn:hover, .form-btn:focus-visible {
+      background: var(--button-hover-gradient);
+      color: var(--accent);
+      transform: translateY(-1px) scale(1.018);
+      box-shadow: 0 9px 21px 0 #28338226;
     }
-
-    /* PAYMENT */
-    .upi-box {
-      margin-top: 1.09rem;
-      margin-bottom: 1rem;
-      background: rgba(40,50,90,0.65);
-      border-radius: 0.8rem;
-      padding: 1.2rem 1.6rem;
-      font-size: 1.13rem;
-      font-weight: 600;
-      letter-spacing: .5px;
-      backdrop-filter: blur(6px);
-      box-shadow: 0 3px 13px 0 #1e185828;
-      border: 1.5px solid #35296325;
-      color: #e7eaff;
-      position:relative;
-      width: fit-content;
-      max-width: 100%;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .upi-note {
-      color: #a8a4d6;
-      font-size: 0.99rem;
-      margin-top: 0.5rem;
+    .form-success {
+      color: #bde5be;
+      background: #22312eAA;
+      border: 1.5px solid #3b8e43bb;
+      border-radius: .7rem;
+      padding: .85rem 1rem .7rem 1rem;
+      margin: 0.75rem 0 0.2rem 0;
       text-align: center;
+      font-size: 1.03rem;
+      font-weight: 600;
+      letter-spacing: .3px;
+      box-shadow: 0 3px 12px #123A2338;
+    }
+    .form-error {
+      color: #efb2b2;
+      background: #362221AA;
+      border: 1.5px solid #e77968cc;
+      border-radius: .7rem;
+      padding: .85rem 1rem .7rem 1rem;
+      margin: 0.7rem 0 0.2rem 0;
+      text-align: center;
+      font-size: 1.01rem;
+      letter-spacing: .2px;
+    }
+    /* BUTTON for copy to clipboard */
+    .copy-btn {
+      margin-left: 0.6em;
+      background: none;
+      border: none;
+      color: var(--accent);
+      padding: .2em .7em;
+      border-radius: .6em;
+      font-size: 1.09em;
+      cursor: pointer;
+      font-weight: 700;
+      transition: background 0.2s, color 0.14s;
+      position: relative;
+      top: 1px;
+    }
+    .copy-btn:active, .copy-btn:focus-visible {
+      background: #252c4866;
+      color: var(--text-main);
+      outline: none;
     }
 
-    /* CONTACT */
-    .contact-links {
+    /* UPI PAYMENT */
+    .upi-box {
+      margin: 2.2rem auto 1.2rem auto;
+      background: var(--upibox-bg);
+      border-radius: .93rem;
+      padding: 1.5rem 2.2rem;
+      font-size: 1.18rem;
+      font-weight: 700;
+      letter-spacing: .55px;
+      box-shadow: 0 3px 15px 0 #151e3424;
+      border: 1.5px solid #252c4162;
+      color: var(--accent);
+      width: fit-content;
+      min-width: 260px;
+      display: flex;
+      align-items: center;
+      gap: .5em;
+    }
+    .upi-instructions {
+      color: var(--text-muted);
+      font-size: 1.04rem;
+      text-align: center;
+      margin-bottom: .6rem;
+      margin-top: 0.3rem;
+    }
+
+    /* CONTACT INFO */
+    .contact-info-wrap {
       display: flex;
       flex-direction: row;
-      gap: 2.5rem;
+      gap: 2.8rem;
       align-items: flex-start;
-      margin-bottom: 1.6rem;
+      margin-top: 0.9rem;
+      margin-bottom: 1.8rem;
       justify-content: center;
       flex-wrap: wrap;
     }
     .contact-info-item {
       display: flex;
       flex-direction: column;
-      gap: 0.32rem;
+      gap: 0.17rem;
       font-size: 1.07rem;
-      color: #cec9fe;
+      color: #b5bbec;
+      background: #1A1B2566;
+      border-radius: .7rem;
+      padding: .7em 1.16em;
+      box-shadow: 0 2px 14px #191c3844;
     }
     .contact-info-label {
       font-size: 1rem;
-      color: #b6b1f0;
-      font-weight: 500;
+      color: #c3bedb;
+      font-weight: 600;
     }
 
     /* FOOTER */
-    footer {
+    footer  {
       margin-top: auto;
-      width: 100%;
-      padding: 1.7rem 0 1rem 0;
-      background: linear-gradient(90deg, #130e23cc 0%, #251c3b89 100%);
-      border-radius: 1.3rem 1.3rem 0 0;
-      box-shadow: 0 -2px 22px 0 #26205125;
+      background: linear-gradient(90deg, #191c27cc 0%, #262b3a95 100%);
+      border-radius: var(--radius) var(--radius) 0 0;
+      box-shadow: 0 -2px 22px 0 #181c3220;
       text-align: center;
-      font-size: 1.01rem;
-      letter-spacing: 0.3px;
-      color: #8b88be;
+      font-size: 1.03rem;
+      letter-spacing: 0.36px;
+      color: #888ead;
+      padding: 2rem 0 1.09rem 0;
     }
     .footer-brand {
       font-weight: 700;
-      color: var(--brand);
-      font-size: 1.15rem;
+      color: var(--accent);
+      font-size: 1.17rem;
       letter-spacing: 1px;
       display: block;
+      margin-bottom: .19rem;
     }
 
-    /* RESPONSIVE STYLES */
-    @media (max-width: 850px) {
-      .products-list {
-        flex-direction: column;
-        align-items: center;
-      }
-      .product-card {
-        width: 94%;
-        min-width: 0;
-        max-width: 410px;
-      }
-      .navbar-content {
-        flex-direction: column;
-        gap: 1.1rem;
-      }
+    /* RESPONSIVE */
+    @media (max-width: 1100px) {
+      .container {padding: 0 1.2rem;}
+      .section-inner {padding: 2.2rem 0.7rem;}
     }
-    @media (max-width: 600px) {
-      .hero-title {
-        font-size: 2.1rem;
-      }
-      .section-title {
-        font-size: 1.4rem;
-      }
-      .hero {
-        min-height: 190px;
-        padding: 1.1rem 0;
-      }
-      .product-card, .card-section {
-        padding: 1.1rem;
-      }
-      .footer-brand {
-        font-size: 1rem;
-      }
-      .container {
-        padding: 0 0.4rem;
-      }
+    @media (max-width: 700px) {
+      .navbar, .nav-links, .contact-info-wrap {flex-direction: column; gap: 1.2rem;}
+      .section-inner {padding: 1.4rem 0.1rem;}
+      .hero .section-inner {padding-bottom: 2.1rem; padding-top: 2.2rem;}
+    }
+    @media (max-width: 520px) {
+      .container {padding: 0 0.2rem;}
+      .footer-brand {font-size: 1rem;}
+      .section-title {font-size: 1.28rem;}
+      .hero-title {font-size: 1.58rem;}
+      .form-card {padding: .88rem;}
     }
   </style>
 </head>
 <body>
   <nav>
-    <div class="container navbar-content">
+    <div class="container navbar">
       <span class="brand">Bonker T-Shirts</span>
       <div class="nav-links">
         <a href="#home">Home</a>
-        <a href="#products">Products</a>
         <a href="#order">Order</a>
+        <a href="#payment">Payment</a>
         <a href="#contact">Contact</a>
       </div>
     </div>
   </nav>
 
-  <main id="home">
-    <section class="hero">
-      <div class="container hero-content">
+  <main>
+    <!-- HERO SECTION -->
+    <section id="home" class="hero">
+      <div class="container section-inner">
         <h1 class="hero-title">Premium Custom T-Shirts</h1>
-        <p class="hero-desc">
-          Elevate your style with our high-quality, custom-printed tees. Modern, comfortable, and made for you – perfect for teams, events, or daily wear.
-        </p>
-        <a href="#order"><button class="cta-btn">Order Now</button></a>
+        <div class="hero-desc">
+          Elevate your style with our high-quality, custom-printed tees. Modern, comfortable, and made for you—perfect for teams, events, or daily wear.
+        </div>
+        <a href="#order">
+          <button class="cta-btn">Order Now</button>
+        </a>
       </div>
     </section>
 
-    <section id="products">
-      <div class="container">
-        <h2 class="section-title">Our Products</h2>
-        <div class="section-desc">
-          Choose from our premium, comfortable shirt types designed to suit every style.
-        </div>
-        <div class="products-list">
-          <div class="product-card" tabindex="0">
-            <div class="product-name">Classic Tee</div>
-            <div class="product-desc">Timeless fit, soft feel, perfect for everyday comfort and style.</div>
-            <div class="product-price">₹399</div>
-          </div>
-          <div class="product-card" tabindex="0">
-            <div class="product-name">Oversized Tee</div>
-            <div class="product-desc">Relaxed, fashionable fit with premium fabric. Great for streetwear lovers.</div>
-            <div class="product-price">₹449</div>
-          </div>
-          <div class="product-card" tabindex="0">
-            <div class="product-name">V-Neck Tee</div>
-            <div class="product-desc">Elegant v-neckline. Lightweight and comfortable for all occasions.</div>
-            <div class="product-price">₹399</div>
-          </div>
-          <div class="product-card" tabindex="0">
-            <div class="product-name">Long Sleeve Tee</div>
-            <div class="product-desc">Perfect for layering. Ultra-soft jersey material for year-round wear.</div>
-            <div class="product-price">₹499</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
+    <!-- ORDER SECTION -->
     <section id="order">
-      <div class="container">
-        <h2 class="section-title">Place Your Order</h2>
+      <div class="container section-inner">
+        <div class="section-title">Place Your Order</div>
         <div class="section-desc">
-          Fill in the form below &mdash; we will contact you promptly to confirm your order and design.
+          Fill in the form below. We will contact you soon to confirm your order.
         </div>
-        <div class="card-section">
-          <form autocomplete="off">
+        <div class="form-card" id="order-form-card">
+          <form id="orderForm" autocomplete="off" novalidate>
             <div>
-              <label for="name">Name</label>
-              <input id="name" name="name" type="text" placeholder="Your Name" required autocomplete="off">
+              <label for="order-name">Name</label>
+              <input id="order-name" name="name" type="text" placeholder="Your Name" required />
             </div>
             <div>
-              <label for="phone">Phone Number</label>
-              <input id="phone" name="phone" type="tel" placeholder="e.g. 9876543210" required autocomplete="off">
+              <label for="order-phone">Phone Number</label>
+              <input id="order-phone" name="phone" type="tel" placeholder="e.g. 9876543210" required pattern="[0-9]{10}" maxlength="10"/>
             </div>
             <div>
-              <label for="shirt-type">Shirt Type</label>
-              <select id="shirt-type" name="shirt-type" required>
-                <option value="">Select Shirt Type</option>
-                <option>Classic Tee</option>
-                <option>Oversized Tee</option>
-                <option>V-Neck Tee</option>
-                <option>Long Sleeve Tee</option>
-              </select>
-            </div>
-            <div>
-              <label for="size">Size</label>
-              <select id="size" name="size" required>
+              <label for="order-size">Size</label>
+              <select id="order-size" name="size" required>
                 <option value="">Select Size</option>
                 <option>S</option>
                 <option>M</option>
@@ -497,77 +424,156 @@
               </select>
             </div>
             <div>
-              <label for="quantity">Quantity</label>
-              <input id="quantity" name="quantity" type="number" min="1" placeholder="Enter quantity" required>
+              <label for="order-quantity">Quantity</label>
+              <input id="order-quantity" name="quantity" type="number" min="1" placeholder="Enter quantity" required />
             </div>
             <div>
-              <label for="notes">Additional Notes</label>
-              <textarea id="notes" name="notes" placeholder="Design details, preferred colors, etc."></textarea>
+              <label for="order-notes">Additional Notes</label>
+              <textarea id="order-notes" name="notes" placeholder="Design details, colors, etc."></textarea>
             </div>
             <button type="submit" class="form-btn">Submit Order</button>
+            <div id="orderMsg"></div>
           </form>
         </div>
       </div>
     </section>
 
+    <!-- PAYMENT SECTION -->
     <section id="payment">
-      <div class="container">
-        <h2 class="section-title">How to Pay</h2>
+      <div class="container section-inner">
+        <div class="section-title">UPI Payment</div>
         <div class="section-desc">
-          Make your payment securely via UPI.
+          Make payment via UPI and confirm your order through contact.
         </div>
-        <div class="upi-box" id="upi-id">
-          UPI ID: <span style="color:var(--accent); font-weight:800;">your-upi-id@bank</span>
+        <div class="upi-box">
+          UPI ID:
+          <span id="upiId">someshtandon75@okicici</span>
+          <button class="copy-btn" onclick="copyUPI()">Copy</button>
         </div>
-        <div class="upi-note">
-          Send payment and <b>confirm your order in the contact section</b>.
+        <div class="upi-instructions">
+          After payment, <b>please confirm your order through the contact section.</b>
         </div>
       </div>
     </section>
 
+    <!-- CONTACT SECTION -->
     <section id="contact">
-      <div class="container">
-        <h2 class="section-title">Contact Us</h2>
+      <div class="container section-inner">
+        <div class="section-title">Contact Us</div>
         <div class="section-desc">
-          Have questions or want to confirm your order? Reach us anytime.
+          Email us or use the form below to confirm your payment or for any queries.
         </div>
-        <div class="contact-links">
+        <div class="contact-info-wrap">
+          <div class="contact-info-item">
+            <span class="contact-info-label">Email</span>
+            <span>bonkerdesignz@gmail.com</span>
+          </div>
           <div class="contact-info-item">
             <span class="contact-info-label">Phone</span>
             <span>+91 9876543210</span>
           </div>
-          <div class="contact-info-item">
-            <span class="contact-info-label">Email</span>
-            <span>support@bonkertshirts.com</span>
-          </div>
-          <div class="contact-info-item">
-            <span class="contact-info-label">WhatsApp</span>
-            <span>+91 9876543210</span>
-          </div>
         </div>
-        <div class="card-section" style="margin-top:0;">
-          <form autocomplete="off">
+        <div class="form-card" id="contact-form-card" style="margin-bottom:0">
+          <form id="contactForm" autocomplete="off" novalidate>
             <div>
-              <label for="cname">Name</label>
-              <input id="cname" name="cname" type="text" placeholder="Your Name" required>
+              <label for="contact-name">Name</label>
+              <input id="contact-name" name="name" type="text" placeholder="Your Name" required />
             </div>
             <div>
-              <label for="cemail">Email or WhatsApp</label>
-              <input id="cemail" name="cemail" type="text" placeholder="Your Email or WhatsApp" required>
+              <label for="contact-email">Email</label>
+              <input id="contact-email" name="email" type="email" placeholder="Your Email" required />
             </div>
             <div>
-              <label for="cmsg">Your message</label>
-              <textarea id="cmsg" name="cmsg" placeholder="How can we help you?" required></textarea>
+              <label for="contact-msg">Your Message</label>
+              <textarea id="contact-msg" name="message" placeholder="How can we help you?" required></textarea>
             </div>
             <button type="submit" class="form-btn">Send Message</button>
+            <div id="contactMsg"></div>
           </form>
         </div>
       </div>
     </section>
   </main>
+
   <footer>
     <span class="footer-brand">Bonker T-Shirts</span>
     &copy; 2026 Bonker T-Shirts. All rights reserved.
   </footer>
+  <script>
+    // Copy UPI ID to clipboard
+    function copyUPI() {
+      const upiId = document.getElementById('upiId').innerText;
+      navigator.clipboard.writeText(upiId).then(function () {
+        alert('UPI ID copied to clipboard!');
+      }, function () {
+        alert('Could not copy UPI ID.');
+      });
+    }
+
+    // Simple helper: validate a field is non-empty (and for email/phone)
+    function showFormMsg(target, msg, isSuccess) {
+      target.innerHTML =
+        `<div class="${isSuccess ? 'form-success' : 'form-error'}">${msg}</div>`;
+    }
+
+    // ORDER FORM frontend submission
+    document.getElementById("orderForm").onsubmit = function (e) {
+      e.preventDefault();
+      const name = document.getElementById("order-name");
+      const phone = document.getElementById("order-phone");
+      const size = document.getElementById("order-size");
+      const quantity = document.getElementById("order-quantity");
+      // Basic validation
+      if (!name.value.trim()) {
+        name.focus();
+        showFormMsg(orderMsg, "Please enter your name.", false);
+        return;
+      }
+      if (!/^\d{10}$/.test(phone.value)) {
+        phone.focus();
+        showFormMsg(orderMsg, "Please enter a valid 10-digit phone number.", false);
+        return;
+      }
+      if (!size.value) {
+        size.focus();
+        showFormMsg(orderMsg, "Please select a size.", false);
+        return;
+      }
+      if (!quantity.value || isNaN(quantity.value) || Number(quantity.value) < 1) {
+        quantity.focus();
+        showFormMsg(orderMsg, "Please enter a valid quantity (1 or more).", false);
+        return;
+      }
+      // Simulate submission
+      showFormMsg(orderMsg, "Thank you! Your order is received. We will contact you soon.", true);
+      setTimeout(() => { orderForm.reset(); orderMsg.innerHTML = ""; }, 3000);
+    };
+
+    // CONTACT FORM frontend submission
+    document.getElementById("contactForm").onsubmit = function (e) {
+      e.preventDefault();
+      const name = document.getElementById("contact-name");
+      const email = document.getElementById("contact-email");
+      const message = document.getElementById("contact-msg");
+      if (!name.value.trim()) {
+        name.focus();
+        showFormMsg(contactMsg, "Please enter your name.", false);
+        return;
+      }
+      // Email regex: basic
+      if (!/^[\w\-\.]+@[\w\-]+(\.[\w\-]+)+$/.test(email.value)) {
+        email.focus();
+        showFormMsg(contactMsg, "Please enter a valid email address.", false);
+        return;
+      }
+      if (!message.value.trim()) {
+        message.focus();
+        showFormMsg(contactMsg, "Please enter your message.", false);
+        return;
+      }
+      showFormMsg(contactMsg, "Thank you! We have received your message.", true);
+      setTimeout(() => { contactForm.reset(); contactMsg.innerHTML = ""; }, 3000);
+    };
+  </script>
 </body>
 </html>
