@@ -7,22 +7,33 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet"/>
   <style>
     :root {
-      --gradient-bg: linear-gradient(120deg, #11141B 0%, #1a2132 60%, #213058 100%);
-      --section-bg: linear-gradient(120deg, #181b23 80%, #22293a 100%);
+      --max-width: 1200px;
+      --gradient-bg: linear-gradient(120deg, #10131a 0%, #1b2233 80%, #213058 100%);
+      --section-bg: linear-gradient(120deg, #181b23 75%, #22293a 100%);
+
       --nav-bg: rgba(24,27,35,0.98);
       --button-bg: linear-gradient(90deg, #232840 0%, #304063 100%);
       --button-hover: linear-gradient(90deg, #2A344D 0%, #28395A 100%);
+      --success-bg: #283c2938;
+      --error-bg: #36222199;
+
       --input-bg: #202338;
       --input-border: #384167;
       --input-focus: #5b61a8;
-      --shadow: 0 6px 40px 0 #18213b33, 0 1.5px 8px 0 #28305A18;
-      --radius: 1.2rem;
-      --max-width: 1220px;
+
+      --shadow-lg: 0 10px 54px 0 #171b342a;
+      --shadow: 0 6px 33px 0 #1a223c2c;
+      --card-shadow: 0 2px 16px 0 #11162418;
+
+      --radius: 1.1rem;
+      --table-radius: 0.8rem;
       --text-main: #f1f3f8;
       --text-muted: #b3b8bf;
       --accent: #9199e8;
+      --completed: #85dab6;
+
       --upibox-bg: rgba(36,38,62,0.87);
-      --section-space: 72px;
+      --section-space: 70px;
     }
 
     html, body {
@@ -39,12 +50,11 @@
     body {
       display: flex;
       flex-direction: column;
-      min-height: 100vh;
     }
     .container {
       max-width: var(--max-width);
       margin: 0 auto;
-      padding: 0 2.8rem;
+      padding: 0 2.3rem;
       width: 100%;
     }
     /* --- NAVBAR --- */
@@ -53,7 +63,7 @@
       position: sticky;
       top: 0; left: 0;
       z-index: 50;
-      box-shadow: 0 5px 40px #090a158c;
+      box-shadow: 0 4px 32px #090a158a;
       border-radius: 0 0 var(--radius) var(--radius);
       width: 100%;
     }
@@ -61,7 +71,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 1.6rem 0 1.2rem 0;
+      padding: 1.4rem 0 1rem 0;
       max-width: var(--max-width);
       margin: 0 auto;
     }
@@ -75,21 +85,38 @@
     }
     .nav-links {
       display: flex;
-      gap: 2.8rem;
+      gap: 2.5rem;
     }
     .nav-links a {
       color: var(--text-main);
       text-decoration: none;
-      padding: .25rem .85rem;
-      border-radius: 0.7rem;
+      padding: .27rem 1.08rem;
+      border-radius: 0.69rem;
       font-size: 1.05rem;
       font-weight: 600;
       letter-spacing: 0.3px;
-      transition: background 0.17s, color 0.13s;
+      transition: background .17s, color .13s;
     }
     .nav-links a:hover, .nav-links a:focus {
       background: #23243652;
       color: var(--accent);
+    }
+    #admin-btn {
+      padding: .25rem 1rem;
+      margin-left: 2rem;
+      background: var(--button-bg);
+      border-radius: .7rem;
+      color: var(--accent);
+      font-size: 1.01rem;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background .12s, color .13s;
+      outline: none;
+    }
+    #admin-btn:hover, #admin-btn:focus {
+      background: var(--button-hover);
+      color: #a4acf7;
     }
     /* --- SECTIONS --- */
     section {
@@ -99,37 +126,39 @@
     .section-inner {
       background: var(--section-bg);
       border-radius: var(--radius);
-      box-shadow: var(--shadow);
+      box-shadow: var(--shadow-lg);
       padding: 3.3rem 2.4rem 2.6rem 2.4rem;
-      margin-bottom: 2.9rem;
+      margin-bottom: 3.3rem;
       position: relative;
     }
     /* --- SECTION TITLES --- */
     .section-title {
       font-size: 2.2rem;
       font-weight: 800;
-      margin-bottom: .7rem;
+      margin-bottom: .75rem;
       color: var(--accent);
       letter-spacing: .6px;
+      text-align: center;
     }
     .section-desc {
       max-width: 560px;
       color: var(--text-muted);
-      font-size: 1.10rem;
+      font-size: 1.11rem;
       font-weight: 500;
-      margin-bottom: 1.7rem;
-      line-height: 1.5;
+      margin: 0 auto 1.8rem auto;
+      line-height: 1.6;
+      text-align: center;
     }
     /* --- HERO --- */
     .hero .section-inner {
       text-align: center;
-      background: linear-gradient(108deg, #21232e 85%, #253558 98%);
-      padding: 4.2rem 2rem 4.2rem 2rem;
+      background: linear-gradient(106deg, #21232e 85%, #253558 98%);
+      padding: 4.3rem 2rem 4.3rem 2rem;
     }
     .hero-title {
       font-size: 2.95rem;
       font-weight: 800;
-      margin-bottom: 1.1rem;
+      margin-bottom: 1.2rem;
       color: #f5f7fa;
       letter-spacing: 1px;
       text-shadow: 0 2px 13px #2323440d;
@@ -138,20 +167,20 @@
       color: var(--text-muted);
       font-size: 1.23rem;
       font-weight: 500;
-      margin-bottom: 3.1rem;
+      margin-bottom: 3.15rem;
       margin-left: auto;
       margin-right: auto;
-      max-width: 650px;
+      max-width: 670px;
       line-height: 1.8;
     }
     .cta-btn {
-      padding: 1.1rem 2.9rem;
+      padding: 1.09rem 2.9rem;
       border: none;
       border-radius: 2rem;
       background: var(--button-bg);
       color: #fff;
       cursor: pointer;
-      font-size: 1.13rem;
+      font-size: 1.15rem;
       font-weight: 700;
       box-shadow: 0 6px 21px 0 #1f234021;
       transition: background 0.21s, color 0.13s, transform 0.10s, box-shadow 0.11s;
@@ -160,45 +189,44 @@
     .cta-btn:hover, .cta-btn:focus-visible {
       background: var(--button-hover);
       color: var(--accent);
-      transform: translateY(-2px) scale(1.035);
+      transform: translateY(-2px) scale(1.03);
       box-shadow: 0 9px 27px 0 #232c4919;
     }
     /* --- FORM CARD --- */
     .form-card {
-      max-width: 520px;
+      max-width: 540px;
       margin: 0 auto;
       background: var(--upibox-bg);
       border-radius: var(--radius);
-      box-shadow: 0 2px 18px #20274422;
-      padding: 2.8rem 2rem 2.2rem 2rem;
+      box-shadow: var(--card-shadow);
+      padding: 2.7rem 2rem 1.9rem 2rem;
       backdrop-filter: blur(12px);
-      border: 1.4px solid #2c314155;
+      border: 1.3px solid #282d3954;
       display: flex;
       flex-direction: column;
-      gap: 1.2rem;
+      gap: 1.15rem;
     }
     form {
       display: flex;
       flex-direction: column;
-      gap: 1.28rem;
+      gap: 1.19rem;
     }
     label {
       font-size: 1rem;
       font-weight: 600;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.45rem;
       color: #e9eafd;
       letter-spacing: .33px;
     }
     input, select, textarea {
-      padding: 0.85rem 1.09rem;
-      border-radius: .75rem;
+      padding: 0.88rem 1.13rem;
+      border-radius: .77rem;
       border: 1.5px solid var(--input-border);
       background: var(--input-bg);
       color: var(--text-main);
-      font-size: 1.09rem;
-      margin-bottom: 0;
+      font-size: 1.11rem;
       font-family: inherit;
-      box-shadow: 0 2.5px 13px 0 #22213b11;
+      box-shadow: 0 2.5px 13px 0 #22213b18;
       outline: none;
       transition: border 0.18s, box-shadow 0.13s;
     }
@@ -207,11 +235,11 @@
       box-shadow: 0 2px 16px 0 #6879ee2e;
     }
     textarea {
-      min-height: 65px;
+      min-height: 70px;
       resize: vertical;
     }
     .form-btn {
-      padding: 1.09rem 0rem;
+      padding: 1.12rem 0rem;
       font-size: 1.09rem;
       font-weight: 700;
       background: var(--button-bg);
@@ -220,18 +248,19 @@
       border-radius: 2rem;
       box-shadow: 0 4px 18px #232a5531;
       cursor: pointer;
-      margin-top: .73rem;
-      transition: background 0.18s, color 0.16s, box-shadow 0.16s, transform 0.09s;
+      margin-top: .7rem;
+      transition: background 0.18s, color 0.16s, box-shadow 0.16s, transform 0.08s;
+      outline: none;
     }
     .form-btn:hover, .form-btn:focus-visible {
       background: var(--button-hover);
       color: var(--accent);
-      transform: translateY(-1.5px) scale(1.019);
+      transform: translateY(-1.5px) scale(1.015);
       box-shadow: 0 9px 21px 0 #2833821e;
     }
     .form-success {
       color: #aef5aa;
-      background: #283c2936;
+      background: var(--success-bg);
       border: 1.5px solid #35a748bb;
       border-radius: .7rem;
       padding: .85rem 1rem .7rem 1rem;
@@ -244,28 +273,26 @@
     }
     .form-error {
       color: #efb2b2;
-      background: #36222199;
-      border: 1.5px solid #e77968 b8;
+      background: var(--error-bg);
+      border: 1.5px solid #e05c5cbb;
       border-radius: .7rem;
-      padding: .85rem 1rem .7rem 1rem;
+      padding: .83rem 1rem .7rem 1rem;
       margin: 0.8rem 0 0 0;
       text-align: center;
       font-size: 1.02rem;
     }
-    /* --- BUTTON for copy to clipboard --- */
+    /* --- BUTTON: Copy to clipboard --- */
     .copy-btn {
-      margin-left: 0.6em;
+      margin-left: 0.54em;
       background: none;
       border: none;
       color: var(--accent);
-      padding: .25em .8em;
-      border-radius: .7em;
-      font-size: 1.13em;
+      padding: .25em .82em;
+      border-radius: .8em;
+      font-size: 1.07em;
       cursor: pointer;
       font-weight: 700;
-      transition: background 0.16s, color 0.13s;
-      position: relative;
-      top: 1.5px;
+      transition: background 0.18s, color 0.13s;
       outline: none;
     }
     .copy-btn:active, .copy-btn:focus-visible {
@@ -278,7 +305,7 @@
       background: var(--upibox-bg);
       border-radius: .97rem;
       padding: 1.49rem 2.3rem;
-      font-size: 1.21rem;
+      font-size: 1.17rem;
       font-weight: 700;
       letter-spacing: .59px;
       box-shadow: 0 3px 19px 0 #151e3420;
@@ -293,18 +320,18 @@
     }
     .upi-instructions {
       color: var(--text-muted);
-      font-size: 1.07rem;
+      font-size: 1.06rem;
       text-align: center;
       margin-bottom: .7rem;
-      margin-top: 0.2rem;
+      margin-top: 0.1rem;
     }
     /* --- CONTACT INFO --- */
     .contact-info-wrap {
       display: flex;
       flex-direction: row;
-      gap: 2.6rem;
+      gap: 2.4rem;
       align-items: flex-start;
-      margin-top: 1.5rem;
+      margin-top: 1.6rem;
       margin-bottom: 2.1rem;
       justify-content: center;
       flex-wrap: wrap;
@@ -312,19 +339,21 @@
     .contact-info-item {
       display: flex;
       flex-direction: column;
-      gap: 0.19rem;
-      font-size: 1.08rem;
+      gap: 0.13rem;
+      font-size: 1.11rem;
       color: #ced5fa;
       background: #1A1B2569;
       border-radius: .7rem;
-      padding: .92em 1.16em;
+      padding: .92em 1.13em;
       box-shadow: 0 2px 12px #191c383a;
+      min-width: 200px;
+      align-items: center;
     }
     .contact-info-label {
-      font-size: 1rem;
+      font-size: 1.03rem;
       color: #bfc7ec;
       font-weight: 600;
-      margin-bottom: 0.2rem;
+      margin-bottom: 0.19rem;
     }
     /* --- FOOTER --- */
     footer {
@@ -333,10 +362,10 @@
       border-radius: var(--radius) var(--radius) 0 0;
       box-shadow: 0 -2px 22px 0 #181c322f;
       text-align: center;
-      font-size: 1.05rem;
+      font-size: 1.06rem;
       letter-spacing: 0.37px;
       color: #9196ad;
-      padding: 2.1rem 0 1.1rem 0;
+      padding: 2.1rem 0 1.15rem 0;
     }
     .footer-brand {
       font-weight: 700;
@@ -346,21 +375,110 @@
       display: block;
       margin-bottom: .19rem;
     }
-    /* --- RESPONSIVE --- */
-    @media (max-width: 1300px) {
-      .container {max-width: 99vw;}
+    /* --- Responsive --- */
+    @media (max-width: 1280px) {
+      .container {max-width: 95vw;}
     }
-    @media (max-width: 880px) {
-      .container {padding: 0 1.05rem;}
-      .section-inner {padding: 1.5rem 0.25rem;}
-      .navbar {padding: 1.1rem 0 1.1rem 0;}
+    @media (max-width: 900px) {
+      .container {padding: 0 1.1rem;}
+      .navbar {padding: 1.1rem 0 1rem 0;}
+      .section-inner {padding: 2.1rem 0.4rem;}
+      .hero .section-inner {padding: 3.1rem 1rem 3.1rem 1rem;}
     }
     @media (max-width: 630px) {
-      .navbar, .nav-links, .contact-info-wrap {flex-direction: column; gap: 1.18rem;}
-      .container {padding: 0 0.25rem;}
+      .navbar, .nav-links, .contact-info-wrap {flex-direction: column; gap: 1.13rem;}
+      .container {padding: 0 0.12rem;}
       .section-title {font-size: 1.28rem;}
-      .hero-title {font-size: 1.51rem;}
-      .form-card {padding: .78rem;}
+      .hero-title {font-size: 1.12rem;}
+      .form-card {padding: .61rem;}
+      .contact-info-item {min-width: 100%; align-items: flex-start;}
+    }
+    /* --- Admin Modal --- */
+    #admin-modal-bg {
+      position: fixed; left: 0; top: 0; width: 100vw; height: 100vh;
+      background: rgba(20,22,42,0.96);
+      z-index: 9999;
+      display: none; justify-content: center; align-items: center;
+      flex-direction: column;
+      transition: opacity 0.25s;
+    }
+    #admin-modal-bg.show { display: flex;}
+    #admin-modal {
+      background: var(--section-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-lg);
+      padding: 3.1rem 2.2rem 2rem 2.2rem;
+      min-width: 370px;
+      max-width: 98vw;
+      position: relative;
+      margin: 0 auto;
+      color: var(--text-main);
+    }
+    #admin-close-btn {
+      position: absolute; top: 1.08rem; right: 1.25rem; padding: .2rem .7rem;
+      background: none; border: none;
+      color: var(--accent); font-size: 1.7rem; cursor: pointer;
+      border-radius: .7em;
+      font-weight: bold;
+      transition: background 0.13s;
+    }
+    #admin-close-btn:hover {background: #23243652;}
+    /* Login */
+    #admin-login {
+      max-width: 340px; margin: 0 auto;
+      display: flex; flex-direction: column; gap: 1.1rem;
+    }
+    #admin-login input { font-size: 1.07rem;}
+    #admin-login .form-btn {margin-top: 0;}
+    /* Orders Table */
+    #orders-table {
+      max-width: 980px;
+      margin: 2rem auto 0 auto;
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      box-shadow: var(--card-shadow);
+      background: var(--upibox-bg);
+      border-radius: var(--table-radius);
+      overflow: hidden;
+    }
+    #orders-table th, #orders-table td {
+      padding: 0.78rem 1.17rem;
+      text-align: center;
+      border-bottom: 1px solid #262b457a;
+    }
+    #orders-table th {
+      background: #1f213097;
+      font-weight: bold; color: var(--accent);
+    }
+    #orders-table td {
+      font-size: 1.01rem;
+    }
+    #orders-table tr:last-child td {border-bottom: none;}
+    .row-completed td {
+      background: #223a3349;
+      color: var(--completed);
+    }
+    .table-btn {
+      outline: none;
+      background: none;
+      border: 1.2px solid #455389;
+      border-radius: .5em;
+      padding: .21em 1.01em;
+      margin: .2em;
+      color: #c1c7ed;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: .99em;
+      transition: background 0.13s, color 0.12s;
+    }
+    .table-btn:hover {
+      background: var(--button-bg);
+      color: var(--accent);
+    }
+    @media (max-width: 600px) {
+      #orders-table th, #orders-table td {padding: .39rem .3rem; font-size: .83em;}
+      #admin-modal {padding: 1.15rem .3rem 1.05rem .3rem;}
     }
   </style>
 </head>
@@ -373,6 +491,7 @@
         <a href="#order">Order</a>
         <a href="#payment">Payment</a>
         <a href="#contact">Contact</a>
+        <button id="admin-btn" title="Admin panel">Admin</button>
       </div>
     </div>
   </nav>
@@ -473,13 +592,44 @@
     <span class="footer-brand">Bonker Designz</span>
     &copy; 2026 Bonker Designz. All rights reserved.
   </footer>
-  <!-- Firebase Modular SDK via CDN -->
+
+  <!-- --- ADMIN PANEL MODAL --- -->
+  <div id="admin-modal-bg">
+    <div id="admin-modal">
+      <button id="admin-close-btn" title="Close">&times;</button>
+      <div id="admin-panel-content">
+        <form id="admin-login" autocomplete="off" novalidate>
+          <h2 class="section-title" style="margin-bottom:.9em;">Admin Login</h2>
+          <input id="admin-user" type="text" placeholder="Username" autocomplete="off" required/>
+          <input id="admin-pass" type="password" placeholder="Password" autocomplete="off" required/>
+          <button class="form-btn" style="width:100%;" type="submit">Login</button>
+          <div id="admin-login-msg"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- FIREBASE (modules) + app JS -->
   <script type="module">
+    // --- HARD CODED ADMIN CREDENTIALS ---
+    const ADMIN_USER = 'admin';
+    const ADMIN_PASS = 'designz';
+
+    // --- Firebase Modular SDK via CDN ---
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
     import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-analytics.js";
-    import { getDatabase, ref, push, set } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-database.js";
+    import {
+      getDatabase,
+      ref,
+      push,
+      set,
+      get,
+      remove,
+      update,
+      onValue,
+    } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-database.js";
 
-    // Firebase config (as specified)
+    // Firebase config
     const firebaseConfig = {
       apiKey: "AIzaSyBr_Y35_d02wdvLyiLn3GfD416_377kclM",
       authDomain: "bonker-448ff.firebaseapp.com",
@@ -490,12 +640,13 @@
       appId: "1:1021425830931:web:aff544a716cae2c922c3e6",
       measurementId: "G-J6CDDW0JZ9"
     };
-    // Initialize Firebase
     const app = initializeApp(firebaseConfig);
     const analytics = getAnalytics(app);
     const db = getDatabase(app);
 
-    // Copy UPI ID button
+    // ----------- CLIENT SIDE LOGIC ------------
+
+    // UPI Copy button
     window.copyUPI = function() {
       const upiId = document.getElementById('upiId').innerText;
       navigator.clipboard.writeText(upiId).then(
@@ -504,7 +655,7 @@
       );
     };
 
-    // Order form submission with validation and Firebase database push
+    // Order form submission + Firebase Write
     const orderForm = document.getElementById('orderForm');
     const orderMsg = document.getElementById('orderMsg');
     orderForm.addEventListener('submit', async function(e) {
@@ -529,18 +680,20 @@
       if (!quantity.value || isNaN(quantity.value) || Number(quantity.value) < 1) {
         showFormMsg(orderMsg, "Please enter a valid quantity (1 or more).", false); quantity.focus(); return;
       }
-
-      // Push data to Firebase Realtime Database
       try {
+        const now = new Date();
+        const ts = now.toISOString();
         const orderRef = push(ref(db, 'orders'));
         await set(orderRef, {
           name: name.value.trim(),
           phone: phone.value.trim(),
           size: size.value,
           quantity: Number(quantity.value),
-          notes: notes.value.trim()
+          notes: notes.value.trim(),
+          timestamp: ts,
+          completed: false
         });
-        showFormMsg(orderMsg, "Thank you! Your order is received. We will contact you soon.", true);
+        showFormMsg(orderMsg, "Thank you! Your order is received.", true);
         orderForm.reset();
         setTimeout(() => { orderMsg.innerHTML = ""; }, 4000);
       } catch (err) {
@@ -552,7 +705,7 @@
       target.innerHTML = `<div class="${isSuccess ? 'form-success' : 'form-error'}">${msg}</div>`;
     }
 
-    // Smooth scroll for nav (including older browsers)
+    // Smooth scroll for nav and hero-cta
     document.querySelectorAll('.nav-links a, .cta-btn').forEach(link => {
       link.addEventListener('click', function(e) {
         const href = this.getAttribute('href');
@@ -565,6 +718,118 @@
         }
       });
     });
+
+    // ----------- ADMIN PANEL (IN-MODAL) ------------
+
+    // Admin modal DOM refs
+    const adminModalBg = document.getElementById("admin-modal-bg");
+    const adminPanelContent = document.getElementById("admin-panel-content");
+    const adminOpenBtn = document.getElementById("admin-btn");
+    const adminCloseBtn = document.getElementById("admin-close-btn");
+    function openAdminModal() {
+      adminModalBg.classList.add("show");
+      document.body.style.overflow = 'hidden';
+    }
+    function closeAdminModal() {
+      adminModalBg.classList.remove("show");
+      document.body.style.overflow = '';
+    }
+    adminOpenBtn.onclick = openAdminModal;
+    adminCloseBtn.onclick = closeAdminModal;
+    adminModalBg.addEventListener('click', e=>{
+      if(e.target===adminModalBg)closeAdminModal();
+    });
+
+    // Login logic
+    let adminAuthed = false;
+    document.getElementById("admin-login").onsubmit = function(e) {
+      e.preventDefault();
+      const user = document.getElementById('admin-user').value.trim();
+      const pass = document.getElementById('admin-pass').value;
+      const msg = document.getElementById('admin-login-msg');
+      if(user===ADMIN_USER && pass===ADMIN_PASS) {
+        adminAuthed = true;
+        loadOrdersTable();
+      } else {
+        msg.innerHTML = `<div class="form-error" style="margin:0.7em 0 0 0">Invalid credentials.</div>`;
+      }
+    };
+
+    // Orders Table logic
+    function renderTable(ordersObj) {
+      let arr = [];
+      for(const [key, v] of Object.entries(ordersObj||{})) {
+        arr.push({id:key, ...v});
+      }
+      arr.sort((a,b)=>(b.timestamp||"").localeCompare(a.timestamp||""));
+      let rows = arr.map(order=>{
+        let ts = order.timestamp?new Date(order.timestamp).toLocaleString(): "--";
+        return `
+          <tr class="${order.completed ? 'row-completed':''}">
+            <td>${order.name||''}</td>
+            <td>${order.phone||''}</td>
+            <td>${order.size||''}</td>
+            <td>${order.quantity||''}</td>
+            <td style="max-width:220px;word-break:break-word">${order.notes||''}</td>
+            <td>${ts}</td>
+            <td>
+               <button class="table-btn" data-act="done" data-id="${order.id}" ${order.completed?"disabled":""}>${order.completed?"✔":"Complete"}</button>
+               <button class="table-btn" data-act="del" data-id="${order.id}">Delete</button>
+            </td>
+          </tr>`;
+      }).join("");
+      return `
+      <h2 class="section-title" style="margin-bottom:.1em;font-size:2rem;">Orders</h2>
+      <div style="margin-bottom:1em;font-size:.97rem;color:var(--text-muted)">
+        <b>Legend:</b> <span style="color:var(--completed)">Completed = green row</span>
+      </div>
+      <div style="overflow-x:auto;">
+      <table id="orders-table">
+        <thead>
+          <tr>
+            <th>Name</th><th>Phone</th><th>Size</th><th>Qty</th><th>Notes</th><th>Time</th><th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>${rows||''}</tbody>
+      </table></div>`;
+    }
+    function loadOrdersTable() {
+      adminPanelContent.innerHTML = `<div class="section-title" style="margin-bottom:1.5em">Loading...</div>`;
+      const ordersRef = ref(db, 'orders');
+      onValue(ordersRef, (snap)=>{
+        const data = snap.val()||{};
+        adminPanelContent.innerHTML = renderTable(data) + 
+          `<button class="form-btn" style="margin:1.9em auto 0 auto;display:block;" onclick="logoutAdmin()">Logout</button>
+          <div style="height:2em"></div>`;
+        // Action bindings
+        adminPanelContent.querySelectorAll('.table-btn').forEach(btn=>{
+          btn.onclick = async function() {
+            const id = btn.getAttribute("data-id");
+            const act = btn.getAttribute("data-act");
+            if(!id)return;
+            if(act==="del" && confirm("Delete this order?")) {
+              await remove(ref(db,"orders/"+id));
+            }
+            if(act==="done" && confirm("Mark as completed?")) {
+              await update(ref(db,"orders/"+id),{completed:true});
+            }
+          }
+        });
+      });
+    }
+    window.logoutAdmin = function(){
+      adminAuthed = false;
+      adminPanelContent.innerHTML = `
+        <form id="admin-login" autocomplete="off" novalidate>
+          <h2 class="section-title" style="margin-bottom:.9em;">Admin Login</h2>
+          <input id="admin-user" type="text" placeholder="Username" required/>
+          <input id="admin-pass" type="password" placeholder="Password" required/>
+          <button class="form-btn" style="width:100%;" type="submit">Login</button>
+          <div id="admin-login-msg"></div>
+        </form>
+      `;
+      document.getElementById("admin-login").onsubmit = arguments.callee;
+    }
   </script>
 </body>
 </html>
