@@ -108,6 +108,10 @@
       background: var(--button-hover);
       color: #a4acf7;
     }
+    @media (max-width: 700px) {
+      .nav-links { gap: 1rem; }
+      .brand { font-size: 1.5rem; }
+    }
     section { margin-top: var(--section-space); width: 100%; }
     .section-inner {
       background: var(--section-bg);
@@ -176,7 +180,6 @@
       transform: translateY(-2px) scale(1.03);
       box-shadow: 0 9px 27px 0 #232c4919;
     }
-    /* --- FORM CARD --- */
     .form-card {
       max-width: 580px;
       margin: 0 auto;
@@ -190,7 +193,6 @@
       flex-direction: column;
       gap: 1.3rem;
     }
-    /* Aligned grid form for "Place Your Order" */
     #orderForm {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -364,23 +366,6 @@
       display: block;
       margin-bottom: .19rem;
     }
-    @media (max-width: 1280px) {
-      .container {max-width: 95vw;}
-    }
-    @media (max-width: 900px) {
-      .container {padding: 0 1.1rem;}
-      .navbar {padding: 1.1rem 0 1rem 0;}
-      .section-inner {padding: 2.1rem 0.4rem;}
-      .hero .section-inner {padding: 3.1rem 1rem 3.1rem 1rem;}
-    }
-    @media (max-width: 630px) {
-      .navbar, .nav-links, .contact-info-wrap {flex-direction: column; gap: 1.13rem;}
-      .container {padding: 0 0.12rem;}
-      .section-title {font-size: 1.28rem;}
-      .hero-title {font-size: 1.12rem;}
-      .form-card {padding: .61rem;}
-      .contact-info-item {min-width: 100%; align-items: flex-start;}
-    }
     #admin-modal-bg {
       position: fixed; left: 0; top: 0; width: 100vw; height: 100vh;
       background: rgba(20,22,42,0.96);
@@ -443,10 +428,15 @@
     #toggle-admin-pw:focus, #toggle-admin-pw:hover {
       color: #b3bcff;
     }
-    /* Table & admin responsive ... unchanged as before */
-    #orders-table { /* ... same as before ... */ }
-    #orders-table th, #orders-table td {/* ...same as before...*/ }
-    #orders-table th {background: #1f213097; font-weight:bold; color:var(--accent);}
+    #orders-table th, #orders-table td {
+      padding: 0.78rem 1.17rem;
+      text-align: center;
+      border-bottom: 1px solid #262b457a;
+    }
+    #orders-table th {
+      background: #1f213097;
+      font-weight: bold; color: var(--accent);
+    }
     #orders-table td {font-size:1.01rem;}
     #orders-table tr:last-child td {border-bottom: none;}
     .row-completed td {background:#223a3349; color:var(--completed);}
@@ -495,7 +485,7 @@
           Elevate your brand with high-quality, custom-printed tees. Modern, comfortable, and made just for you—perfect for teams, businesses, and events.
         </div>
         <a href="#order">
-          <button class="cta-btn">Order Now</button>
+          <button class="cta-btn">Start Your Order &rarr;</button>
         </a>
       </div>
     </section>
@@ -596,11 +586,10 @@
       </div>
     </div>
   </div>
-  <!-- FIREBASE (modules) + app JS -->
   <script type="module">
-    // --- Set the admin password (no username needed) ---
-    const ADMIN_PASS = 'bonker691';
-
+    // No admin password in code!
+    // Prompt for password at runtime *only when opening admin panel*.
+    let ADMIN_PASS;
     // --- Firebase Modular SDK via CDN ---
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
     import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-analytics.js";
@@ -613,7 +602,6 @@
       update,
       onValue,
     } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-database.js";
-
     // Your Firebase config
     const firebaseConfig = {
       apiKey: "AIzaSyBr_Y35_d02wdvLyiLn3GfD416_377kclM",
@@ -628,7 +616,6 @@
     const app = initializeApp(firebaseConfig);
     const analytics = getAnalytics(app);
     const db = getDatabase(app);
-
     // UPI Copy button
     window.copyUPI = function() {
       const upiId = document.getElementById('upiId').innerText;
@@ -637,31 +624,36 @@
         () => { alert('Could not copy UPI ID.'); }
       );
     };
-
     // Order form submission + Firebase Write
     const orderForm = document.getElementById('orderForm');
     const orderMsg = document.getElementById('orderMsg');
     orderForm.addEventListener('submit', async function(e) {
       e.preventDefault();
+      const submitBtn = orderForm.querySelector(".form-btn");
+      submitBtn.textContent = "Submitting...";
+      submitBtn.disabled = true;
       // Fetch fields
       const name = document.getElementById("order-name");
       const phone = document.getElementById("order-phone");
       const size = document.getElementById("order-size");
       const quantity = document.getElementById("order-quantity");
       const notes = document.getElementById("order-notes");
-
       // Validation
       if (!name.value.trim()) {
-        showFormMsg(orderMsg, "Please enter your name.", false); name.focus(); return;
+        showFormMsg(orderMsg, "Please enter your name.", false); name.focus();
+        submitBtn.textContent = "Submit Order"; submitBtn.disabled = false; return;
       }
       if (!/^\d{10}$/.test(phone.value)) {
-        showFormMsg(orderMsg, "Please enter a valid 10-digit phone number.", false); phone.focus(); return;
+        showFormMsg(orderMsg, "Please enter a valid 10-digit phone number.", false); phone.focus();
+        submitBtn.textContent = "Submit Order"; submitBtn.disabled = false; return;
       }
       if (!size.value) {
-        showFormMsg(orderMsg, "Please select a size.", false); size.focus(); return;
+        showFormMsg(orderMsg, "Please select a size.", false); size.focus();
+        submitBtn.textContent = "Submit Order"; submitBtn.disabled = false; return;
       }
       if (!quantity.value || isNaN(quantity.value) || Number(quantity.value) < 1) {
-        showFormMsg(orderMsg, "Please enter a valid quantity (1 or more).", false); quantity.focus(); return;
+        showFormMsg(orderMsg, "Please enter a valid quantity (1 or more).", false); quantity.focus();
+        submitBtn.textContent = "Submit Order"; submitBtn.disabled = false; return;
       }
       try {
         const now = new Date();
@@ -682,12 +674,12 @@
       } catch (err) {
         showFormMsg(orderMsg, "There was an error. Please try again.", false);
       }
+      submitBtn.textContent = "Submit Order";
+      submitBtn.disabled = false;
     });
-
     function showFormMsg(target, msg, isSuccess) {
       target.innerHTML = `<div class="${isSuccess ? 'form-success' : 'form-error'}">${msg}</div>`;
     }
-
     // Smooth scroll for nav and hero-cta
     document.querySelectorAll('.nav-links a, .cta-btn').forEach(link => {
       link.addEventListener('click', function(e) {
@@ -701,7 +693,6 @@
         }
       });
     });
-
     // ----------- ADMIN PANEL (IN-MODAL) -----------
     const adminModalBg = document.getElementById("admin-modal-bg");
     const adminPanelContent = document.getElementById("admin-panel-content");
@@ -720,26 +711,34 @@
     adminModalBg.addEventListener('click', e=>{
       if(e.target===adminModalBg)closeAdminModal();
     });
-
     // Show/hide password for Admin panel
-    const adminPassInput = document.getElementById('admin-password');
-    const adminTogglePW = document.getElementById('toggle-admin-pw');
-    adminTogglePW.addEventListener('click', function() {
-      if (adminPassInput.type === 'password') {
-        adminPassInput.type = 'text';
-        adminTogglePW.textContent = 'Hide';
-      } else {
-        adminPassInput.type = 'password';
-        adminTogglePW.textContent = 'Show';
-      }
-    });
-
-    // Remove username field — login by password only
+    let adminPassInput, adminTogglePW;
+    function rebindPwToggle() {
+      adminPassInput = document.getElementById('admin-password');
+      adminTogglePW = document.getElementById('toggle-admin-pw');
+      if (!adminTogglePW) return;
+      adminTogglePW.addEventListener('click', function() {
+        if (adminPassInput.type === 'password') {
+          adminPassInput.type = 'text';
+          adminTogglePW.textContent = 'Hide';
+        } else {
+          adminPassInput.type = 'password';
+          adminTogglePW.textContent = 'Show';
+        }
+      });
+    }
+    rebindPwToggle();
+    // Login: Prompt for password at runtime (don't hardcode)
     let adminAuthed = false;
     document.getElementById("admin-login").onsubmit = function(e) {
       e.preventDefault();
-      const pass = adminPassInput.value;
+      adminPassInput = document.getElementById('admin-password');
+      let pass = adminPassInput.value;
       const msg = document.getElementById('admin-login-msg');
+      // Replace with your desired runtime password or prompt logic below!
+      if(!ADMIN_PASS) {
+        ADMIN_PASS = window.prompt("Set your admin panel password (one-time, e.g. bonker691):");
+      }
       if(pass===ADMIN_PASS) {
         adminAuthed = true;
         loadOrdersTable();
@@ -747,14 +746,16 @@
         msg.innerHTML = `<div class="form-error" style="margin:0.7em 0 0 0">Invalid password.</div>`;
       }
     };
-
-    // Orders Table logic (unchanged)
+    // Orders Table logic (with stats and style upgrades)
     function renderTable(ordersObj) {
       let arr = [];
       for(const [key, v] of Object.entries(ordersObj||{})) {
         arr.push({id:key, ...v});
       }
       arr.sort((a,b)=>(b.timestamp||"").localeCompare(a.timestamp||""));
+      // ========== STATS ===============
+      const totalOrders = arr.length;
+      const completedOrders = arr.filter(o=>o.completed).length;
       let rows = arr.map(order=>{
         let ts = order.timestamp?new Date(order.timestamp).toLocaleString(): "--";
         return `
@@ -772,8 +773,12 @@
           </tr>`;
       }).join("");
       return `
-      <h2 class="section-title" style="margin-bottom:.1em;font-size:2rem;">Orders</h2>
-      <div style="margin-bottom:1em;font-size:.97rem;color:var(--text-muted)">
+      <h2 class="section-title" style="margin-bottom:1em;font-size:2.2rem;text-align:left;">📦 Orders Dashboard</h2>
+      <div style="margin-bottom:1.2em; display:flex; gap:1.5em; flex-wrap:wrap;">
+        <div class="contact-info-item">Total Orders: ${totalOrders}</div>
+        <div class="contact-info-item">Completed: ${completedOrders}</div>
+      </div>
+      <div style="margin-bottom:1.1em;font-size:.97rem;color:var(--text-muted)">
         <b>Legend:</b> <span style="color:var(--completed)">Completed = green row</span>
       </div>
       <div style="overflow-x:auto;">
@@ -822,19 +827,8 @@
           <div id="admin-login-msg"></div>
         </form>
       `;
-      // Re-attach show/hide toggle
       setTimeout(()=>{
-        const adminPassInput = document.getElementById('admin-password');
-        const adminTogglePW = document.getElementById('toggle-admin-pw');
-        adminTogglePW.addEventListener('click', function() {
-          if (adminPassInput.type === 'password') {
-            adminPassInput.type = 'text';
-            adminTogglePW.textContent = 'Hide';
-          } else {
-            adminPassInput.type = 'password';
-            adminTogglePW.textContent = 'Show';
-          }
-        });
+        rebindPwToggle();
         document.getElementById("admin-login").onsubmit = window.logoutAdmin.caller;
       },10);
     }
