@@ -3,375 +3,371 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-  <title>Bonker T-Shirts – Premium Custom Tees</title>
-  <!-- Modern font family -->
+  <title>Bonker Designz – Premium Custom T-Shirts</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet"/>
   <style>
     :root {
-      --brand-gradient: linear-gradient(120deg, #11141B 0%, #19203A 50%, #233055 100%);
-      --section-gradient: linear-gradient(120deg, #181B22 80%, #1F2335 100%);
-      --button-gradient: linear-gradient(90deg, #232840 0%, #304063 100%);
-      --button-hover-gradient: linear-gradient(90deg, #2A344D 0%, #28395A 100%);
-      --input-bg: #212432;
-      --input-border: #353952;
-      --input-focus: #4D5474;
-      --shadow: 0 6px 40px 0 #10121B33, 0 1.5px 8px 0 #28305A18;
-      --radius: 1.1rem;
-      --text-main: #eff2f7;
-      --text-muted: #b1b7c7;
-      --accent: #6c74b9;
-      --section-space: 64px;
-      --max-width: 1120px;
-      --upibox-bg: rgba(36,38,62,0.81);
+      --gradient-bg: linear-gradient(120deg, #11141B 0%, #1a2132 60%, #213058 100%);
+      --section-bg: linear-gradient(120deg, #181b23 80%, #22293a 100%);
+      --nav-bg: rgba(24,27,35,0.98);
+      --button-bg: linear-gradient(90deg, #232840 0%, #304063 100%);
+      --button-hover: linear-gradient(90deg, #2A344D 0%, #28395A 100%);
+      --input-bg: #202338;
+      --input-border: #384167;
+      --input-focus: #5b61a8;
+      --shadow: 0 6px 40px 0 #18213b33, 0 1.5px 8px 0 #28305A18;
+      --radius: 1.2rem;
+      --max-width: 1220px;
+      --text-main: #f1f3f8;
+      --text-muted: #b3b8bf;
+      --accent: #9199e8;
+      --upibox-bg: rgba(36,38,62,0.87);
+      --section-space: 72px;
     }
 
     html, body {
-      padding: 0;
-      margin: 0;
-      background: var(--brand-gradient);
+      background: var(--gradient-bg);
       color: var(--text-main);
       font-family: 'Inter', Arial, sans-serif;
       font-size: 18px;
+      margin: 0;
+      padding: 0;
       min-height: 100vh;
       box-sizing: border-box;
       scroll-behavior: smooth;
     }
-
     body {
       display: flex;
       flex-direction: column;
+      min-height: 100vh;
     }
-
     .container {
       max-width: var(--max-width);
       margin: 0 auto;
-      padding: 0 2.5rem;
+      padding: 0 2.8rem;
       width: 100%;
     }
-
+    /* --- NAVBAR --- */
     nav {
-      background: var(--section-gradient);
+      background: var(--nav-bg);
+      position: sticky;
+      top: 0; left: 0;
+      z-index: 50;
+      box-shadow: 0 5px 40px #090a158c;
       border-radius: 0 0 var(--radius) var(--radius);
-      box-shadow: var(--shadow);
-      padding: 0;
+      width: 100%;
     }
     .navbar {
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      font-weight: 600;
-      padding: 2rem 0 1.7rem 0;
+      justify-content: space-between;
+      padding: 1.6rem 0 1.2rem 0;
+      max-width: var(--max-width);
+      margin: 0 auto;
     }
     .brand {
-      color: var(--accent);
       font-size: 2rem;
       font-weight: 800;
       letter-spacing: 2.5px;
-      text-shadow: 0 2px 14px #21283d26;
+      color: var(--accent);
+      text-shadow: 0 1px 8px #23314522;
+      user-select: none;
     }
     .nav-links {
       display: flex;
-      gap: 2.4rem;
+      gap: 2.8rem;
     }
     .nav-links a {
       color: var(--text-main);
       text-decoration: none;
-      background: none;
-      padding: .3rem .95rem;
-      border-radius: .6rem;
-      font-size: 1.08rem;
-      transition: background .18s, color .13s;
+      padding: .25rem .85rem;
+      border-radius: 0.7rem;
+      font-size: 1.05rem;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+      transition: background 0.17s, color 0.13s;
     }
     .nav-links a:hover, .nav-links a:focus {
-      background: #2324366e;
+      background: #23243652;
       color: var(--accent);
-      outline: none;
     }
-
+    /* --- SECTIONS --- */
     section {
-      margin: var(--section-space) 0 0 0;
-      padding: 0;
+      margin-top: var(--section-space);
       width: 100%;
     }
     .section-inner {
-      background: var(--section-gradient);
+      background: var(--section-bg);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
-      padding: 3.2rem 2.3rem 2.7rem 2.3rem;
-      margin-bottom: 2.6rem;
+      padding: 3.3rem 2.4rem 2.6rem 2.4rem;
+      margin-bottom: 2.9rem;
       position: relative;
     }
-
+    /* --- SECTION TITLES --- */
     .section-title {
       font-size: 2.2rem;
       font-weight: 800;
-      letter-spacing: .5px;
-      margin-bottom: .4rem;
+      margin-bottom: .7rem;
       color: var(--accent);
+      letter-spacing: .6px;
     }
     .section-desc {
-      max-width: 520px;
+      max-width: 560px;
       color: var(--text-muted);
-      font-size: 1.08rem;
+      font-size: 1.10rem;
       font-weight: 500;
-      margin-bottom: 1.6rem;
+      margin-bottom: 1.7rem;
       line-height: 1.5;
     }
-
-    /* HERO */
+    /* --- HERO --- */
     .hero .section-inner {
       text-align: center;
-      padding-top: 4rem;
-      padding-bottom: 4rem;
-      background: linear-gradient(112deg, #1b1d26 80%, #28314b 100%);
+      background: linear-gradient(108deg, #21232e 85%, #253558 98%);
+      padding: 4.2rem 2rem 4.2rem 2rem;
     }
     .hero-title {
-      font-size: 2.8rem;
+      font-size: 2.95rem;
       font-weight: 800;
-      color: #f4f6fa;
-      margin-bottom: 1.2rem;
+      margin-bottom: 1.1rem;
+      color: #f5f7fa;
       letter-spacing: 1px;
-      text-shadow: 0 2px 13px #22294b11;
+      text-shadow: 0 2px 13px #2323440d;
     }
     .hero-desc {
       color: var(--text-muted);
-      font-size: 1.17rem;
+      font-size: 1.23rem;
       font-weight: 500;
-      margin-bottom: 2.7rem;
+      margin-bottom: 3.1rem;
       margin-left: auto;
       margin-right: auto;
-      max-width: 620px;
+      max-width: 650px;
+      line-height: 1.8;
     }
     .cta-btn {
-      font-size: 1.12rem;
-      font-weight: 700;
       padding: 1.1rem 2.9rem;
       border: none;
       border-radius: 2rem;
-      background: var(--button-gradient);
+      background: var(--button-bg);
       color: #fff;
       cursor: pointer;
-      box-shadow: 0 4px 21px 0 #181e3526;
-      transition: background 0.21s, transform 0.12s, box-shadow 0.12s;
+      font-size: 1.13rem;
+      font-weight: 700;
+      box-shadow: 0 6px 21px 0 #1f234021;
+      transition: background 0.21s, color 0.13s, transform 0.10s, box-shadow 0.11s;
       outline: none;
     }
     .cta-btn:hover, .cta-btn:focus-visible {
-      background: var(--button-hover-gradient);
+      background: var(--button-hover);
       color: var(--accent);
       transform: translateY(-2px) scale(1.035);
-      box-shadow: 0 9px 27px 0 #232c4914;
+      box-shadow: 0 9px 27px 0 #232c4919;
     }
-
-    /* ORDER FORM */
+    /* --- FORM CARD --- */
     .form-card {
-      max-width: 450px;
+      max-width: 520px;
       margin: 0 auto;
       background: var(--upibox-bg);
       border-radius: var(--radius);
       box-shadow: 0 2px 18px #20274422;
-      padding: 2.5rem 2rem 2rem 2rem;
+      padding: 2.8rem 2rem 2.2rem 2rem;
       backdrop-filter: blur(12px);
-      border: 1.5px solid #262a3644;
+      border: 1.4px solid #2c314155;
       display: flex;
       flex-direction: column;
-      gap: 1.1rem;
+      gap: 1.2rem;
     }
-
     form {
       display: flex;
       flex-direction: column;
-      gap: 1.25rem;
+      gap: 1.28rem;
     }
     label {
       font-size: 1rem;
       font-weight: 600;
       margin-bottom: 0.5rem;
-      color: #dadbe8;
-      letter-spacing: .3px;
+      color: #e9eafd;
+      letter-spacing: .33px;
     }
     input, select, textarea {
-      padding: 0.82rem 1.05rem;
-      border-radius: .6rem;
+      padding: 0.85rem 1.09rem;
+      border-radius: .75rem;
       border: 1.5px solid var(--input-border);
       background: var(--input-bg);
       color: var(--text-main);
-      font-size: 1.06rem;
+      font-size: 1.09rem;
       margin-bottom: 0;
       font-family: inherit;
-      box-shadow: 0 2.5px 13px 0 #1a193b13;
+      box-shadow: 0 2.5px 13px 0 #22213b11;
       outline: none;
-      transition: border 0.20s, box-shadow 0.14s;
+      transition: border 0.18s, box-shadow 0.13s;
     }
     input:focus, select:focus, textarea:focus {
       border-color: var(--input-focus);
-      box-shadow: 0 2px 16px 0 #6879ee33;
+      box-shadow: 0 2px 16px 0 #6879ee2e;
     }
     textarea {
-      min-height: 62px;
+      min-height: 65px;
       resize: vertical;
     }
     .form-btn {
-      padding: 0.95rem 0rem;
-      font-size: 1.08rem;
+      padding: 1.09rem 0rem;
+      font-size: 1.09rem;
       font-weight: 700;
-      background: var(--button-gradient);
+      background: var(--button-bg);
       color: #fff;
       border: none;
-      border-radius: 1.7rem;
-      box-shadow: 0 4px 16px #232a5535;
+      border-radius: 2rem;
+      box-shadow: 0 4px 18px #232a5531;
       cursor: pointer;
-      margin-top: .6rem;
-      transition: background 0.18s, color 0.14s, box-shadow 0.16s, transform 0.09s;
+      margin-top: .73rem;
+      transition: background 0.18s, color 0.16s, box-shadow 0.16s, transform 0.09s;
     }
     .form-btn:hover, .form-btn:focus-visible {
-      background: var(--button-hover-gradient);
+      background: var(--button-hover);
       color: var(--accent);
-      transform: translateY(-1px) scale(1.018);
-      box-shadow: 0 9px 21px 0 #28338226;
+      transform: translateY(-1.5px) scale(1.019);
+      box-shadow: 0 9px 21px 0 #2833821e;
     }
     .form-success {
-      color: #bde5be;
-      background: #22312eAA;
-      border: 1.5px solid #3b8e43bb;
+      color: #aef5aa;
+      background: #283c2936;
+      border: 1.5px solid #35a748bb;
       border-radius: .7rem;
       padding: .85rem 1rem .7rem 1rem;
-      margin: 0.75rem 0 0.2rem 0;
+      margin: 0.8rem 0 0 0;
       text-align: center;
-      font-size: 1.03rem;
+      font-size: 1.05rem;
       font-weight: 600;
       letter-spacing: .3px;
-      box-shadow: 0 3px 12px #123A2338;
+      box-shadow: 0 2px 9px #123A2332;
     }
     .form-error {
       color: #efb2b2;
-      background: #362221AA;
-      border: 1.5px solid #e77968cc;
+      background: #36222199;
+      border: 1.5px solid #e77968 b8;
       border-radius: .7rem;
       padding: .85rem 1rem .7rem 1rem;
-      margin: 0.7rem 0 0.2rem 0;
+      margin: 0.8rem 0 0 0;
       text-align: center;
-      font-size: 1.01rem;
-      letter-spacing: .2px;
+      font-size: 1.02rem;
     }
-    /* BUTTON for copy to clipboard */
+    /* --- BUTTON for copy to clipboard --- */
     .copy-btn {
       margin-left: 0.6em;
       background: none;
       border: none;
       color: var(--accent);
-      padding: .2em .7em;
-      border-radius: .6em;
-      font-size: 1.09em;
+      padding: .25em .8em;
+      border-radius: .7em;
+      font-size: 1.13em;
       cursor: pointer;
       font-weight: 700;
-      transition: background 0.2s, color 0.14s;
+      transition: background 0.16s, color 0.13s;
       position: relative;
-      top: 1px;
-    }
-    .copy-btn:active, .copy-btn:focus-visible {
-      background: #252c4866;
-      color: var(--text-main);
+      top: 1.5px;
       outline: none;
     }
-
-    /* UPI PAYMENT */
+    .copy-btn:active, .copy-btn:focus-visible {
+      background: #252c4869;
+      color: var(--text-main);
+    }
+    /* --- UPI PAYMENT --- */
     .upi-box {
-      margin: 2.2rem auto 1.2rem auto;
+      margin: 2.1rem auto 1.1rem auto;
       background: var(--upibox-bg);
-      border-radius: .93rem;
-      padding: 1.5rem 2.2rem;
-      font-size: 1.18rem;
+      border-radius: .97rem;
+      padding: 1.49rem 2.3rem;
+      font-size: 1.21rem;
       font-weight: 700;
-      letter-spacing: .55px;
-      box-shadow: 0 3px 15px 0 #151e3424;
+      letter-spacing: .59px;
+      box-shadow: 0 3px 19px 0 #151e3420;
       border: 1.5px solid #252c4162;
       color: var(--accent);
       width: fit-content;
-      min-width: 260px;
+      min-width: 250px;
       display: flex;
       align-items: center;
-      gap: .5em;
+      gap: .7em;
+      user-select: all;
     }
     .upi-instructions {
       color: var(--text-muted);
-      font-size: 1.04rem;
+      font-size: 1.07rem;
       text-align: center;
-      margin-bottom: .6rem;
-      margin-top: 0.3rem;
+      margin-bottom: .7rem;
+      margin-top: 0.2rem;
     }
-
-    /* CONTACT INFO */
+    /* --- CONTACT INFO --- */
     .contact-info-wrap {
       display: flex;
       flex-direction: row;
-      gap: 2.8rem;
+      gap: 2.6rem;
       align-items: flex-start;
-      margin-top: 0.9rem;
-      margin-bottom: 1.8rem;
+      margin-top: 1.5rem;
+      margin-bottom: 2.1rem;
       justify-content: center;
       flex-wrap: wrap;
     }
     .contact-info-item {
       display: flex;
       flex-direction: column;
-      gap: 0.17rem;
-      font-size: 1.07rem;
-      color: #b5bbec;
-      background: #1A1B2566;
+      gap: 0.19rem;
+      font-size: 1.08rem;
+      color: #ced5fa;
+      background: #1A1B2569;
       border-radius: .7rem;
-      padding: .7em 1.16em;
-      box-shadow: 0 2px 14px #191c3844;
+      padding: .92em 1.16em;
+      box-shadow: 0 2px 12px #191c383a;
     }
     .contact-info-label {
       font-size: 1rem;
-      color: #c3bedb;
+      color: #bfc7ec;
       font-weight: 600;
+      margin-bottom: 0.2rem;
     }
-
-    /* FOOTER */
-    footer  {
+    /* --- FOOTER --- */
+    footer {
       margin-top: auto;
-      background: linear-gradient(90deg, #191c27cc 0%, #262b3a95 100%);
+      background: linear-gradient(90deg, #1a1c27e3 0%, #222a3ab8 100%);
       border-radius: var(--radius) var(--radius) 0 0;
-      box-shadow: 0 -2px 22px 0 #181c3220;
+      box-shadow: 0 -2px 22px 0 #181c322f;
       text-align: center;
-      font-size: 1.03rem;
-      letter-spacing: 0.36px;
-      color: #888ead;
-      padding: 2rem 0 1.09rem 0;
+      font-size: 1.05rem;
+      letter-spacing: 0.37px;
+      color: #9196ad;
+      padding: 2.1rem 0 1.1rem 0;
     }
     .footer-brand {
       font-weight: 700;
       color: var(--accent);
-      font-size: 1.17rem;
-      letter-spacing: 1px;
+      font-size: 1.18rem;
+      letter-spacing: 1.1px;
       display: block;
       margin-bottom: .19rem;
     }
-
-    /* RESPONSIVE */
-    @media (max-width: 1100px) {
-      .container {padding: 0 1.2rem;}
-      .section-inner {padding: 2.2rem 0.7rem;}
+    /* --- RESPONSIVE --- */
+    @media (max-width: 1300px) {
+      .container {max-width: 99vw;}
     }
-    @media (max-width: 700px) {
-      .navbar, .nav-links, .contact-info-wrap {flex-direction: column; gap: 1.2rem;}
-      .section-inner {padding: 1.4rem 0.1rem;}
-      .hero .section-inner {padding-bottom: 2.1rem; padding-top: 2.2rem;}
+    @media (max-width: 880px) {
+      .container {padding: 0 1.05rem;}
+      .section-inner {padding: 1.5rem 0.25rem;}
+      .navbar {padding: 1.1rem 0 1.1rem 0;}
     }
-    @media (max-width: 520px) {
-      .container {padding: 0 0.2rem;}
-      .footer-brand {font-size: 1rem;}
+    @media (max-width: 630px) {
+      .navbar, .nav-links, .contact-info-wrap {flex-direction: column; gap: 1.18rem;}
+      .container {padding: 0 0.25rem;}
       .section-title {font-size: 1.28rem;}
-      .hero-title {font-size: 1.58rem;}
-      .form-card {padding: .88rem;}
+      .hero-title {font-size: 1.51rem;}
+      .form-card {padding: .78rem;}
     }
   </style>
 </head>
 <body>
   <nav>
-    <div class="container navbar">
-      <span class="brand">Bonker T-Shirts</span>
+    <div class="navbar container">
+      <span class="brand">Bonker Designz</span>
       <div class="nav-links">
         <a href="#home">Home</a>
         <a href="#order">Order</a>
@@ -387,7 +383,7 @@
       <div class="container section-inner">
         <h1 class="hero-title">Premium Custom T-Shirts</h1>
         <div class="hero-desc">
-          Elevate your style with our high-quality, custom-printed tees. Modern, comfortable, and made for you—perfect for teams, events, or daily wear.
+          Elevate your brand with high-quality, custom-printed tees. Modern, comfortable, and made just for you—perfect for teams, businesses, and events.
         </div>
         <a href="#order">
           <button class="cta-btn">Order Now</button>
@@ -400,7 +396,7 @@
       <div class="container section-inner">
         <div class="section-title">Place Your Order</div>
         <div class="section-desc">
-          Fill in the form below. We will contact you soon to confirm your order.
+          Complete this form and we’ll confirm your order soon!
         </div>
         <div class="form-card" id="order-form-card">
           <form id="orderForm" autocomplete="off" novalidate>
@@ -429,7 +425,7 @@
             </div>
             <div>
               <label for="order-notes">Additional Notes</label>
-              <textarea id="order-notes" name="notes" placeholder="Design details, colors, etc."></textarea>
+              <textarea id="order-notes" name="notes" placeholder="Design details, preferred colors, etc."></textarea>
             </div>
             <button type="submit" class="form-btn">Submit Order</button>
             <div id="orderMsg"></div>
@@ -443,7 +439,7 @@
       <div class="container section-inner">
         <div class="section-title">UPI Payment</div>
         <div class="section-desc">
-          Make payment via UPI and confirm your order through contact.
+          Complete payment via UPI and confirm your order through contact.
         </div>
         <div class="upi-box">
           UPI ID:
@@ -456,13 +452,10 @@
       </div>
     </section>
 
-    <!-- CONTACT SECTION -->
+    <!-- CONTACT SECTION: NO FORM -->
     <section id="contact">
       <div class="container section-inner">
         <div class="section-title">Contact Us</div>
-        <div class="section-desc">
-          Email us or use the form below to confirm your payment or for any queries.
-        </div>
         <div class="contact-info-wrap">
           <div class="contact-info-item">
             <span class="contact-info-label">Email</span>
@@ -473,107 +466,105 @@
             <span>+91 9876543210</span>
           </div>
         </div>
-        <div class="form-card" id="contact-form-card" style="margin-bottom:0">
-          <form id="contactForm" autocomplete="off" novalidate>
-            <div>
-              <label for="contact-name">Name</label>
-              <input id="contact-name" name="name" type="text" placeholder="Your Name" required />
-            </div>
-            <div>
-              <label for="contact-email">Email</label>
-              <input id="contact-email" name="email" type="email" placeholder="Your Email" required />
-            </div>
-            <div>
-              <label for="contact-msg">Your Message</label>
-              <textarea id="contact-msg" name="message" placeholder="How can we help you?" required></textarea>
-            </div>
-            <button type="submit" class="form-btn">Send Message</button>
-            <div id="contactMsg"></div>
-          </form>
-        </div>
       </div>
     </section>
   </main>
-
   <footer>
-    <span class="footer-brand">Bonker T-Shirts</span>
-    &copy; 2026 Bonker T-Shirts. All rights reserved.
+    <span class="footer-brand">Bonker Designz</span>
+    &copy; 2026 Bonker Designz. All rights reserved.
   </footer>
-  <script>
-    // Copy UPI ID to clipboard
-    function copyUPI() {
+  <!-- Firebase Modular SDK via CDN -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-analytics.js";
+    import { getDatabase, ref, push, set } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-database.js";
+
+    // Firebase config (as specified)
+    const firebaseConfig = {
+      apiKey: "AIzaSyBr_Y35_d02wdvLyiLn3GfD416_377kclM",
+      authDomain: "bonker-448ff.firebaseapp.com",
+      databaseURL: "https://bonker-448ff-default-rtdb.firebaseio.com",
+      projectId: "bonker-448ff",
+      storageBucket: "bonker-448ff.firebasestorage.app",
+      messagingSenderId: "1021425830931",
+      appId: "1:1021425830931:web:aff544a716cae2c922c3e6",
+      measurementId: "G-J6CDDW0JZ9"
+    };
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    const db = getDatabase(app);
+
+    // Copy UPI ID button
+    window.copyUPI = function() {
       const upiId = document.getElementById('upiId').innerText;
-      navigator.clipboard.writeText(upiId).then(function () {
-        alert('UPI ID copied to clipboard!');
-      }, function () {
-        alert('Could not copy UPI ID.');
-      });
-    }
+      navigator.clipboard.writeText(upiId).then(
+        () => { alert('UPI ID copied to clipboard!'); },
+        () => { alert('Could not copy UPI ID.'); }
+      );
+    };
 
-    // Simple helper: validate a field is non-empty (and for email/phone)
-    function showFormMsg(target, msg, isSuccess) {
-      target.innerHTML =
-        `<div class="${isSuccess ? 'form-success' : 'form-error'}">${msg}</div>`;
-    }
-
-    // ORDER FORM frontend submission
-    document.getElementById("orderForm").onsubmit = function (e) {
+    // Order form submission with validation and Firebase database push
+    const orderForm = document.getElementById('orderForm');
+    const orderMsg = document.getElementById('orderMsg');
+    orderForm.addEventListener('submit', async function(e) {
       e.preventDefault();
+      // Fetch fields
       const name = document.getElementById("order-name");
       const phone = document.getElementById("order-phone");
       const size = document.getElementById("order-size");
       const quantity = document.getElementById("order-quantity");
-      // Basic validation
+      const notes = document.getElementById("order-notes");
+
+      // Validation
       if (!name.value.trim()) {
-        name.focus();
-        showFormMsg(orderMsg, "Please enter your name.", false);
-        return;
+        showFormMsg(orderMsg, "Please enter your name.", false); name.focus(); return;
       }
       if (!/^\d{10}$/.test(phone.value)) {
-        phone.focus();
-        showFormMsg(orderMsg, "Please enter a valid 10-digit phone number.", false);
-        return;
+        showFormMsg(orderMsg, "Please enter a valid 10-digit phone number.", false); phone.focus(); return;
       }
       if (!size.value) {
-        size.focus();
-        showFormMsg(orderMsg, "Please select a size.", false);
-        return;
+        showFormMsg(orderMsg, "Please select a size.", false); size.focus(); return;
       }
       if (!quantity.value || isNaN(quantity.value) || Number(quantity.value) < 1) {
-        quantity.focus();
-        showFormMsg(orderMsg, "Please enter a valid quantity (1 or more).", false);
-        return;
+        showFormMsg(orderMsg, "Please enter a valid quantity (1 or more).", false); quantity.focus(); return;
       }
-      // Simulate submission
-      showFormMsg(orderMsg, "Thank you! Your order is received. We will contact you soon.", true);
-      setTimeout(() => { orderForm.reset(); orderMsg.innerHTML = ""; }, 3000);
-    };
 
-    // CONTACT FORM frontend submission
-    document.getElementById("contactForm").onsubmit = function (e) {
-      e.preventDefault();
-      const name = document.getElementById("contact-name");
-      const email = document.getElementById("contact-email");
-      const message = document.getElementById("contact-msg");
-      if (!name.value.trim()) {
-        name.focus();
-        showFormMsg(contactMsg, "Please enter your name.", false);
-        return;
+      // Push data to Firebase Realtime Database
+      try {
+        const orderRef = push(ref(db, 'orders'));
+        await set(orderRef, {
+          name: name.value.trim(),
+          phone: phone.value.trim(),
+          size: size.value,
+          quantity: Number(quantity.value),
+          notes: notes.value.trim()
+        });
+        showFormMsg(orderMsg, "Thank you! Your order is received. We will contact you soon.", true);
+        orderForm.reset();
+        setTimeout(() => { orderMsg.innerHTML = ""; }, 4000);
+      } catch (err) {
+        showFormMsg(orderMsg, "There was an error. Please try again.", false);
       }
-      // Email regex: basic
-      if (!/^[\w\-\.]+@[\w\-]+(\.[\w\-]+)+$/.test(email.value)) {
-        email.focus();
-        showFormMsg(contactMsg, "Please enter a valid email address.", false);
-        return;
-      }
-      if (!message.value.trim()) {
-        message.focus();
-        showFormMsg(contactMsg, "Please enter your message.", false);
-        return;
-      }
-      showFormMsg(contactMsg, "Thank you! We have received your message.", true);
-      setTimeout(() => { contactForm.reset(); contactMsg.innerHTML = ""; }, 3000);
-    };
+    });
+
+    function showFormMsg(target, msg, isSuccess) {
+      target.innerHTML = `<div class="${isSuccess ? 'form-success' : 'form-error'}">${msg}</div>`;
+    }
+
+    // Smooth scroll for nav (including older browsers)
+    document.querySelectorAll('.nav-links a, .cta-btn').forEach(link => {
+      link.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href && href.startsWith('#')) {
+          e.preventDefault();
+          const section = document.querySelector(href);
+          if (section) {
+            section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }
+      });
+    });
   </script>
 </body>
 </html>
