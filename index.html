@@ -1,442 +1,573 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Bonker T-Shirts | Wear Your Design</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Bonker T-Shirts – Premium Custom Tees</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --glass-bg: rgba(26,23,60,0.59);
-      --gradient: linear-gradient(120deg, #09091b 0%, #281848 38%, #092040 100%);
-      --glow: 0 0 32px #a86fff88, 0 0 8px #0ffaf9cc;
-      --primary: #a86fff;
-      --secondary: #0ffaf9;
+      --gradient-bg: linear-gradient(135deg, #0a0c0f 0%, #22243a 60%, #3c2567 100%);
+      --card-gradient: linear-gradient(120deg, rgba(34,36,58,0.7), rgba(46,48,75,0.9) 80%);
+      --button-gradient: linear-gradient(90deg, #262e77 0%, #512e77 100%);
+      --blur-bg: rgba(40,46,75,0.6);
+      --focus-outline: #6c63ff;
+      --brand: #c6c2fc;
+      --accent: #8378de;
     }
-    html, body { min-height: 100%; }
-    body {
-      font-family: 'Montserrat', Arial, sans-serif;
+
+    html, body {
       margin: 0;
-      background: var(--gradient);
-      color: #eef4fb;
+      padding: 0;
+      font-family: 'Inter', Arial, sans-serif;
+      background: var(--gradient-bg);
+      color: #EAEAF0;
+      min-height: 100%;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
       min-height: 100vh;
-      overflow-x: hidden;
     }
-    /* Glowing animated bg layer */
-    body::before {
-      content: "";
-      position: fixed; inset: 0;
-      background:
-        radial-gradient(circle at 12% 95%, #0ffaf944 0,transparent 75%),
-        radial-gradient(circle at 95% 30%, #b284ff33 0, transparent 55%);
-      pointer-events: none;
-      z-index: 0;
-      animation: bgMove 14s linear alternate infinite;
-    }
-    @keyframes bgMove {
-      0%{ background-position: 12% 95%, 95% 30%; }
-      100%{ background-position: 19% 85%, 75% 35%; }
-    }
-    /* Reusable glassy card base */
-    .glass-card {
-      background: var(--glass-bg);
-      box-shadow: 0 8px 40px #0ffaf91a, 0 0 0 transparent;
-      border-radius: 2rem;
-      border: 1.5px solid #2d254477;
-      backdrop-filter: blur(19px);
-      position: relative;
-      overflow: hidden;
-      transition:.22s box-shadow, .22s border,.22s background;
-    }
-    /* NAV */
-    .brand-header {
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
       width: 100%;
-      text-align: center;
-      margin-top: 38px;
-      margin-bottom: 0.5rem;
     }
-    .brand-title {
-      font-size: 2.7rem;
+
+    /* NAVBAR */
+    nav {
+      background: rgba(18,20,35,0.95);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 2px 12px rgba(20,18,30,0.07);
+      border-radius: 0 0 1.5rem 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .navbar-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 0;
+    }
+
+    .brand {
+      font-size: 1.35rem;
       font-weight: 800;
+      color: var(--brand);
       letter-spacing: 2px;
-      color: #fff;
-      background: linear-gradient(90deg,#a86fff 30%,#0ffaf9 90%);
-      background-clip: text;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      filter: drop-shadow(0 3px 10px #0ffaf9bb);
-      text-shadow: var(--glow);
+      text-shadow: 0 2px 14px #15124944;
     }
-    .brand-tagline {
+
+    .nav-links {
+      display: flex;
+      gap: 2.2rem;
+    }
+
+    .nav-links a {
+      color: #EAEAF0;
+      text-decoration: none;
       font-weight: 600;
-      color: #dbe9fc;
-      font-size: 1.26rem;
-      letter-spacing: 1.55px;
-      margin-bottom:2.3rem;
+      font-size: 1rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 8px;
+      transition: background 0.18s;
     }
+    .nav-links a:hover,
+    .nav-links a:focus {
+      background: var(--card-gradient);
+      outline: 2px solid var(--focus-outline);
+      outline-offset: -2px;
+    }
+    /* SECTION TITLES */
+    section {
+      margin: 2.5rem 0;
+    }
+    .section-title {
+      margin-bottom: 0.6rem;
+      font-size: 2.1rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+      color: var(--brand);
+      text-shadow: 0 1px 10px #433e7255;
+    }
+    .section-desc {
+      margin-bottom: 1.6rem;
+      color: #b3b4c2;
+      font-size: 1.08rem;
+      font-weight: 500;
+    }
+
     /* HERO */
-    .hero-section {
-      min-height: 270px;
+    .hero {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding-bottom: 2.2rem;
-    }
-    .order-now-btn {
-      display: inline-block;
-      background: linear-gradient(90deg,var(--primary) 43%,var(--secondary) 90%);
-      color: #0b092a;
-      padding: 1rem 2.5rem;
-      border-radius: 100px;
-      font-size: 1.37rem;
-      font-weight: 800;
-      box-shadow: 0 2px 44px #0ffaf950;
-      text-shadow: 0 2px 3px #b284ff55;
-      border: none;
-      letter-spacing: 1.2px;
-      margin-top: 16px;
-      margin-bottom: 10px;
-      cursor: pointer;
-      transition: 0.23s box-shadow, 0.17s transform;
-    }
-    .order-now-btn:hover {
-      box-shadow: 0 6px 60px #a86fff44, 0 0 30px #0ffaf977;
-      transform: scale(1.05) ;
-    }
-    /* ORDER CONTACT FORM */
-    .order-contact-section {
-      max-width: 550px;
-      margin: 2.7rem auto 3.2rem auto;
-      padding: 2.15rem 1.6rem 1.7rem 1.6rem;
-      box-shadow: 0 4px 40px #a86fff22, 0 0 0 transparent;
-    }
-    .form-title {
-      text-align: center;
-      color: var(--primary);
-      margin-top: 0;
-      font-size: 1.32rem;
-      letter-spacing: 1px;
-      font-weight: 800;
-      margin-bottom: 1.6rem;
-    }
-    form.order-form {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-    .order-form label {
-      font-weight: 700;
-      color: #a86fff;
-      letter-spacing: 1px;
-      margin-bottom: 0.2rem;
-    }
-    .order-form input, .order-form textarea {
-      background: rgba(42,37,104,0.34);
-      border: 1.5px solid #5e4c87;
-      padding: .95rem 1.1rem;
-      color: #eee;
-      font-size: 1.07rem;
-      font-family: inherit;
-      border-radius: 1.2rem;
-      outline: none;
-      transition: border .22s, background .2s;
-    }
-    .order-form input:focus, .order-form textarea:focus {
-      border-color: var(--secondary);
-      background: rgba(56,56,156,0.44);
-    }
-    .order-form textarea { min-height: 72px; resize: vertical;}
-    .order-form button[type="submit"] {
-      margin-top: 6px;
-      background: linear-gradient(90deg,#0ffaf9 20%,#a86fff 95%);
-      color: #211d35;
-      font-weight: 800;
-      font-size: 1.13rem;
-      border: none;
-      border-radius: 44px;
-      padding: .96rem 2.7rem;
-      box-shadow: 0 2px 24px #0ffaf982;
-      cursor: pointer;
-      letter-spacing: 1px;
-      transition: transform .18s, box-shadow .17s;
-    }
-    .order-form button[type="submit"]:hover {
-      transform: scale(1.05);
-      box-shadow: 0 8px 36px #a86fff99, 0 0 22px #0ffaf933;
-    }
-    .whatsapp-contact-row {
-      display: flex; justify-content: center; align-items: center;
-      gap: .6rem;
-      margin-top: 12px;
-    }
-    .whatsapp-btn {
-      background: #25d366;
-      color: #222342;
-      font-weight: 800;
-      font-size: 1.17rem;
-      border: none;
-      border-radius: 30px;
-      padding: .7rem 2rem;
-      display: flex; align-items: center; gap: .5rem;
-      text-decoration: none;
-      box-shadow: 0 1px 12px #25d36653;
-      margin-left: .6rem;
-      transition: box-shadow .17s, transform .18s;
-    }
-    .whatsapp-btn:hover {
-      color: #090926;
-      background: #65f19c;
-      box-shadow: 0 2px 20px #25d366bf;
-      transform: scale(1.07);
-    }
-    .phone-number {
-      margin-top: 4px;
-      font-weight: 600;
-      color: #c2fded;
-      text-align: center;
-      letter-spacing: .07em;
-    }
-    /* PAYMENTS */
-    .payment-section {
-      max-width: 420px;
-      margin: 3.5rem auto 3.5rem auto;
-      text-align: center;
-    }
-    .qr-card {
-      display: inline-block;
-      margin: 0 auto 0.9rem auto;
-      background: var(--glass-bg);
-      border-radius: 2.3rem;
-      padding: 2rem 2rem 1.7rem 2rem;
-      border: 2.5px solid #0ffaf9;
-      box-shadow: 0 0 24px #0ffaf9cc, 0 0 18px #a86fff88;
+      min-height: 330px;
+      background: linear-gradient(120deg, #23223a88 90%, #33135566 100%);
+      border-radius: 1.5rem;
+      box-shadow: 0 4px 32px 4px #1c122e20;
       position: relative;
-      transition: box-shadow .20s;
-      animation: qrPulse 2s infinite alternate;
-    }
-    @keyframes qrPulse {
-      0% { box-shadow: 0 0 18px #0ffaf977, 0 0 8px #a86fff88; }
-      100% { box-shadow: 0 0 36px #0ffaf9dd, 0 0 26px #a86fff90; }
-    }
-    .qr-card img {
-      display: block;
-      width: 180px;
-      height: 180px;
-      margin: 0 auto 0.9rem auto;
-      background: #0ffaf940;
-      border-radius: 18px;
-    }
-    .scan-heading {
-      font-weight: 800; color: var(--primary);
-      font-size: 1.3rem;
-      margin-bottom: .5rem;
-      letter-spacing: 2px;
-    }
-    .upi-id-text {
-      font-family: monospace;
-      background: #181a33;
-      color: #0ffaf9;
-      font-weight: 800;
-      border-radius: 10px;
-      padding: 7px 19px;
-      font-size: 1.1rem;
-      margin: 0.5rem 0 1.2rem 0;
-      letter-spacing: .03em;
-      border: 1.2px solid #0ffaf933;
-      display: inline-block;
-      box-shadow: 0 3px 18px #0ffaf944;
-    }
-    .payment-note {
-      color: #ffe0ff;
-      opacity: 0.85;
-      font-size: .99rem;
-      font-weight: 500;
-      margin-top: 8px;
-    }
-    /* FEATURED DESIGNS */
-    .designs-section {
-      margin: 4rem 0 2.3rem 0;
-      padding: 0 5vw;
-    }
-    .featured-title {
-      text-align: center;
-      color: var(--secondary);
-      font-size: 2.1rem;
-      font-weight: 800;
-      letter-spacing: 2px;
-      margin-bottom: 2.4rem;
-      text-shadow: 0 6px 40px #a86fff33;
-    }
-    .featured-cards {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 2rem;
-    }
-    .featured-card {
-      background: var(--glass-bg);
-      border-radius: 22px;
-      min-width: 220px; max-width: 270px;
-      box-shadow: 0 3px 24px #0ffaf92a;
-      border: 1.7px solid #a86fff55;
-      padding: 1.35rem 1.1rem 1.1rem 1.1rem;
-      display: flex; flex-direction: column; align-items: center;
-      transition: box-shadow .16s, border .16s, transform .17s;
-      cursor: pointer;
-      position: relative;
+      margin-top: 0.3rem;
       overflow: hidden;
     }
-    .featured-card img {
-      width: 120px; height: 120px;
-      border-radius: 14px;
-      margin-bottom: 0.9rem;
-      box-shadow: 0 1px 14px #0ffaf965;
+    .hero::before {
+      content: '';
+      position: absolute;
+      left: -60px;
+      top: 30px;
+      width: 260px;
+      height: 240px;
+      background: radial-gradient(circle, #8173fc33, transparent 76%);
+      filter: blur(16px);
+      z-index: 0;
+      pointer-events: none;
     }
-    .featured-card h4 {
-      margin: 3px 0 7px 0;
-      font-size: 1.15rem;
-      color: #fff;
-      letter-spacing:.5px;
-      font-weight: 700;
-      text-shadow: 0 0 18px #0ffaf911;
-    }
-    .featured-card p {
-      color: #bbd9f2;
-      font-size: .97rem;
+    .hero-content {
+      z-index: 1;
+      position: relative;
+      padding: 2.5rem 0;
+      width: 100%;
       text-align: center;
-      min-height: 50px;
-      margin-bottom: 0;
     }
-    .featured-card:hover, .featured-card:focus {
-      border: 2.5px solid #0ffaf9;
-      box-shadow: 0 6px 36px #0ffaf9cc, 0 6px 24px #a86fff66;
-      transform: scale(1.05) translateY(-9px);
-      z-index: 2;
+    .hero-title {
+      font-size: 2.6rem;
+      font-weight: 800;
+      margin-bottom: 0.7rem;
+      color: #edeaff;
+      letter-spacing: 1.5px;
     }
+    .hero-desc {
+      color: #c3c6e6;
+      font-size: 1.16rem;
+      margin-bottom: 2rem;
+      font-weight: 500;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .cta-btn {
+      font-size: 1.09rem;
+      padding: 0.9rem 2.6rem;
+      border: none;
+      border-radius: 2.2rem;
+      font-weight: 700;
+      background: var(--button-gradient);
+      color: #fff;
+      cursor: pointer;
+      letter-spacing: 1px;
+      box-shadow: 0 2px 18px 0 #2b1d400f;
+      transition: background 0.20s, transform 0.12s, box-shadow 0.12s;
+      backdrop-filter: blur(4px);
+      outline: none;
+    }
+    .cta-btn:hover, .cta-btn:focus {
+      background: linear-gradient(90deg,#5148ff 0%,#6131c6 100%);
+      transform: translateY(-2px) scale(1.04);
+      box-shadow: 0 6px 26px 0 #36209944;
+    }
+
+    /* PRODUCTS */
+    .products-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+    }
+    .product-card {
+      background: var(--card-gradient);
+      border-radius: 1.2rem;
+      padding: 2rem 1.5rem 1.6rem 1.5rem;
+      min-width: 260px;
+      max-width: 320px;
+      box-shadow: 0 4px 22px 2px #23203b22;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      position: relative;
+      backdrop-filter: blur(7px);
+      border: 1.5px solid #32225535;
+      transition: transform 0.14s, box-shadow 0.2s;
+    }
+    .product-card:hover, .product-card:focus-within {
+      transform: translateY(-3px) scale(1.025);
+      box-shadow: 0 10px 35px 8px #533a9955;
+      border-color: var(--accent);
+    }
+    .product-name {
+      font-size: 1.19rem;
+      font-weight: 700;
+      color: var(--brand);
+      margin-bottom: 0.28rem;
+    }
+    .product-desc {
+      font-size: 1rem;
+      color: #e7e8f9bb;
+      margin-bottom: 1rem;
+      font-weight: 500;
+    }
+    .product-price {
+      font-weight: 700;
+      font-size: 1.04rem;
+      color: #c6c2fc;
+      padding: 0.19rem 0.7rem;
+      background: #23203b66;
+      border-radius: 0.66rem;
+      margin-left: -0.1rem;
+      box-shadow: 0 2px 10px #150e2b1a;
+    }
+
+    /* FORMS */
+    .card-section {
+      background: var(--blur-bg);
+      border-radius: 1.15rem;
+      padding: 2.2rem 1.8rem 1.4rem 1.8rem;
+      box-shadow: 0 4px 25px 0 #31204028;
+      margin-bottom: 2.2rem;
+      backdrop-filter: blur(10px);
+      border: 1.5px solid #35296325;
+      max-width: 520px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.15rem;
+      margin-top: 0.7rem;
+    }
+    label {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #d7d4fe;
+      margin-bottom: 0.35rem;
+      letter-spacing: .5px;
+      display: block;
+    }
+    input, select, textarea {
+      padding: 0.8rem .9rem;
+      border-radius: 0.7rem;
+      border: 1.5px solid #333144;
+      background: #241f3775;
+      color: #eaeaf0;
+      font-size: 1.04rem;
+      font-family: inherit;
+      box-shadow: 0 2.5px 13px 0 #221f2a14;
+      outline: none;
+      transition: border 0.17s, box-shadow 0.13s;
+    }
+    input:focus, select:focus, textarea:focus {
+      border: 1.5px solid var(--focus-outline);
+      box-shadow: 0 2px 16px 0 #7b5fff77;
+    }
+    textarea {
+      min-height: 62px;
+      resize: vertical;
+    }
+
+    .form-btn {
+      padding: 0.87rem 2rem;
+      font-size: 1.05rem;
+      font-weight: 700;
+      background: var(--button-gradient);
+      color: #fff;
+      border: none;
+      border-radius: 2rem;
+      box-shadow: 0 3px 13px #40307718;
+      cursor: pointer;
+      align-self: flex-start;
+      transition: background 0.18s, box-shadow 0.15s, transform 0.12s;
+    }
+    .form-btn:hover, .form-btn:focus {
+      background: linear-gradient(90deg, #6858ff 0%, #573ed2 100%);
+      transform: translateY(-1.5px) scale(1.02);
+      outline: 2px solid var(--focus-outline);
+      outline-offset: -2px;
+      box-shadow: 0 6px 22px #36209955;
+    }
+
+    /* PAYMENT */
+    .upi-box {
+      margin-top: 1.09rem;
+      margin-bottom: 1rem;
+      background: rgba(40,50,90,0.65);
+      border-radius: 0.8rem;
+      padding: 1.2rem 1.6rem;
+      font-size: 1.13rem;
+      font-weight: 600;
+      letter-spacing: .5px;
+      backdrop-filter: blur(6px);
+      box-shadow: 0 3px 13px 0 #1e185828;
+      border: 1.5px solid #35296325;
+      color: #e7eaff;
+      position:relative;
+      width: fit-content;
+      max-width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .upi-note {
+      color: #a8a4d6;
+      font-size: 0.99rem;
+      margin-top: 0.5rem;
+      text-align: center;
+    }
+
+    /* CONTACT */
+    .contact-links {
+      display: flex;
+      flex-direction: row;
+      gap: 2.5rem;
+      align-items: flex-start;
+      margin-bottom: 1.6rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .contact-info-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.32rem;
+      font-size: 1.07rem;
+      color: #cec9fe;
+    }
+    .contact-info-label {
+      font-size: 1rem;
+      color: #b6b1f0;
+      font-weight: 500;
+    }
+
     /* FOOTER */
     footer {
-      background: #120f2e;
-      color: #ccccff;
+      margin-top: auto;
+      width: 100%;
+      padding: 1.7rem 0 1rem 0;
+      background: linear-gradient(90deg, #130e23cc 0%, #251c3b89 100%);
+      border-radius: 1.3rem 1.3rem 0 0;
+      box-shadow: 0 -2px 22px 0 #26205125;
       text-align: center;
-      font-size: 1rem;
+      font-size: 1.01rem;
+      letter-spacing: 0.3px;
+      color: #8b88be;
+    }
+    .footer-brand {
+      font-weight: 700;
+      color: var(--brand);
+      font-size: 1.15rem;
       letter-spacing: 1px;
-      padding: 2rem 0 1rem 0;
-      margin-top: 2.5rem;
+      display: block;
     }
-    .footer-contact {
-      margin-bottom: 8px;
+
+    /* RESPONSIVE STYLES */
+    @media (max-width: 850px) {
+      .products-list {
+        flex-direction: column;
+        align-items: center;
+      }
+      .product-card {
+        width: 94%;
+        min-width: 0;
+        max-width: 410px;
+      }
+      .navbar-content {
+        flex-direction: column;
+        gap: 1.1rem;
+      }
     }
-    /* UTILITIES */
-    @media (max-width: 900px) {
-      .product-cards, .featured-cards { flex-direction: column; gap: 2.2rem;}
-      .order-section, .payment-section {margin: 1.7rem .5vw;}
-      .designs-section {padding: 0 1vw;}
-    }
-    @media (max-width: 540px) {
-      .brand-title {font-size: 2rem;}
-      .order-contact-section {padding: 1.5rem 0.2rem;}
-      .designs-section {padding: 0;}
-      .product-cards, .featured-cards {gap:.9rem;}
-      .hero-section {padding: 3.2rem 9vw 2rem 9vw;}
-      .order-now-btn {font-size: 1.03rem; padding:.75rem 1.3rem;}
-      nav {padding: .9rem 1.1rem;}
+    @media (max-width: 600px) {
+      .hero-title {
+        font-size: 2.1rem;
+      }
+      .section-title {
+        font-size: 1.4rem;
+      }
+      .hero {
+        min-height: 190px;
+        padding: 1.1rem 0;
+      }
+      .product-card, .card-section {
+        padding: 1.1rem;
+      }
+      .footer-brand {
+        font-size: 1rem;
+      }
+      .container {
+        padding: 0 0.4rem;
+      }
     }
   </style>
 </head>
 <body>
-  <!-- HERO -->
-  <div class="brand-header">
-    <div class="brand-title">Bonker T-Shirts</div>
-    <div class="brand-tagline">Wear Your Design</div>
-  </div>
-  <section class="hero-section">
-    <button class="order-now-btn" onclick="document.getElementById('order-contact').scrollIntoView({behavior:'smooth'})">
-      ✨ Order Now
-    </button>
-  </section>
-  <!-- ORDER / CONTACT -->
-  <section class="glass-card order-contact-section" id="order-contact">
-    <div class="form-title">Order Your Custom T-Shirt</div>
-    <form class="order-form" onsubmit="showThanks(event)">
-      <label for="order-name">Name</label>
-      <input id="order-name" name="name" autocomplete="name" required placeholder="Your Name" />
-
-      <label for="order-phone">Phone Number</label>
-      <input id="order-phone" name="phone" autocomplete="tel" required placeholder="Your WhatsApp number" />
-
-      <label for="order-idea">T-shirt Idea / Description</label>
-      <textarea id="order-idea" name="desc" required placeholder="E.g. Black XL, front: Space Cat, back: Bonker logo..."></textarea>
-
-      <button type="submit">Send Order</button>
-    </form>
-    <div class="whatsapp-contact-row">
-      <span>or</span>
-      <a class="whatsapp-btn" href="https://wa.me/917351008716" target="_blank">
-        <span>💬 WhatsApp</span>
-      </a>
-    </div>
-    <div class="phone-number">
-      📞 +91 73510 08716
-    </div>
-  </section>
-  <!-- PAYMENTS -->
-  <section class="payment-section">
-    <div class="qr-card">
-      <div class="scan-heading">Scan &amp; Pay</div>
-      <img src="https://api.qrserver.com/v1/create-qr-code/?data=someshtandon75@okicici&amp;size=240x240" alt="UPI QR Code" />
-      <div class="upi-id-text">UPI ID: someshtandon75@okicici</div>
-    </div>
-    <div class="payment-note">
-      Send screenshot after payment on WhatsApp<br>
-      <a class="whatsapp-btn" style="margin-top:.8em;" href="https://wa.me/917351008716?text=Here%20is%20my%20payment%20for%20T-Shirt%20order!" target="_blank">
-        <span>Send Screenshot 💬</span>
-      </a>
-    </div>
-  </section>
-  <!-- FEATURED DESIGNS -->
-  <section class="designs-section">
-    <div class="featured-title">Featured Designs</div>
-    <div class="featured-cards">
-      <div class="featured-card" tabindex="0">
-        <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=facearea&w=400&q=80" alt="Minimal Cat Tee" />
-        <h4>Space Cat</h4>
-        <p>Minimal cat design for stargazers. Soft cotton, all sizes.</p>
-      </div>
-      <div class="featured-card" tabindex="0">
-        <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=facearea&w=400&q=80" alt="Art Neon Tee" />
-        <h4>Art Neon</h4>
-        <p>Vibrant neon art for a bold look. Comfort stretch fit.</p>
-      </div>
-      <div class="featured-card" tabindex="0">
-        <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=facearea&w=400&q=80" alt="Surf Retro Tee" />
-        <h4>Surf Retro</h4>
-        <p>Classic surf style with a retro twist.</p>
+  <nav>
+    <div class="container navbar-content">
+      <span class="brand">Bonker T-Shirts</span>
+      <div class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#products">Products</a>
+        <a href="#order">Order</a>
+        <a href="#contact">Contact</a>
       </div>
     </div>
-  </section>
-  <!-- FOOTER -->
+  </nav>
+
+  <main id="home">
+    <section class="hero">
+      <div class="container hero-content">
+        <h1 class="hero-title">Premium Custom T-Shirts</h1>
+        <p class="hero-desc">
+          Elevate your style with our high-quality, custom-printed tees. Modern, comfortable, and made for you – perfect for teams, events, or daily wear.
+        </p>
+        <a href="#order"><button class="cta-btn">Order Now</button></a>
+      </div>
+    </section>
+
+    <section id="products">
+      <div class="container">
+        <h2 class="section-title">Our Products</h2>
+        <div class="section-desc">
+          Choose from our premium, comfortable shirt types designed to suit every style.
+        </div>
+        <div class="products-list">
+          <div class="product-card" tabindex="0">
+            <div class="product-name">Classic Tee</div>
+            <div class="product-desc">Timeless fit, soft feel, perfect for everyday comfort and style.</div>
+            <div class="product-price">₹399</div>
+          </div>
+          <div class="product-card" tabindex="0">
+            <div class="product-name">Oversized Tee</div>
+            <div class="product-desc">Relaxed, fashionable fit with premium fabric. Great for streetwear lovers.</div>
+            <div class="product-price">₹449</div>
+          </div>
+          <div class="product-card" tabindex="0">
+            <div class="product-name">V-Neck Tee</div>
+            <div class="product-desc">Elegant v-neckline. Lightweight and comfortable for all occasions.</div>
+            <div class="product-price">₹399</div>
+          </div>
+          <div class="product-card" tabindex="0">
+            <div class="product-name">Long Sleeve Tee</div>
+            <div class="product-desc">Perfect for layering. Ultra-soft jersey material for year-round wear.</div>
+            <div class="product-price">₹499</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="order">
+      <div class="container">
+        <h2 class="section-title">Place Your Order</h2>
+        <div class="section-desc">
+          Fill in the form below &mdash; we will contact you promptly to confirm your order and design.
+        </div>
+        <div class="card-section">
+          <form autocomplete="off">
+            <div>
+              <label for="name">Name</label>
+              <input id="name" name="name" type="text" placeholder="Your Name" required autocomplete="off">
+            </div>
+            <div>
+              <label for="phone">Phone Number</label>
+              <input id="phone" name="phone" type="tel" placeholder="e.g. 9876543210" required autocomplete="off">
+            </div>
+            <div>
+              <label for="shirt-type">Shirt Type</label>
+              <select id="shirt-type" name="shirt-type" required>
+                <option value="">Select Shirt Type</option>
+                <option>Classic Tee</option>
+                <option>Oversized Tee</option>
+                <option>V-Neck Tee</option>
+                <option>Long Sleeve Tee</option>
+              </select>
+            </div>
+            <div>
+              <label for="size">Size</label>
+              <select id="size" name="size" required>
+                <option value="">Select Size</option>
+                <option>S</option>
+                <option>M</option>
+                <option>L</option>
+                <option>XL</option>
+                <option>XXL</option>
+              </select>
+            </div>
+            <div>
+              <label for="quantity">Quantity</label>
+              <input id="quantity" name="quantity" type="number" min="1" placeholder="Enter quantity" required>
+            </div>
+            <div>
+              <label for="notes">Additional Notes</label>
+              <textarea id="notes" name="notes" placeholder="Design details, preferred colors, etc."></textarea>
+            </div>
+            <button type="submit" class="form-btn">Submit Order</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section id="payment">
+      <div class="container">
+        <h2 class="section-title">How to Pay</h2>
+        <div class="section-desc">
+          Make your payment securely via UPI.
+        </div>
+        <div class="upi-box" id="upi-id">
+          UPI ID: <span style="color:var(--accent); font-weight:800;">your-upi-id@bank</span>
+        </div>
+        <div class="upi-note">
+          Send payment and <b>confirm your order in the contact section</b>.
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <h2 class="section-title">Contact Us</h2>
+        <div class="section-desc">
+          Have questions or want to confirm your order? Reach us anytime.
+        </div>
+        <div class="contact-links">
+          <div class="contact-info-item">
+            <span class="contact-info-label">Phone</span>
+            <span>+91 9876543210</span>
+          </div>
+          <div class="contact-info-item">
+            <span class="contact-info-label">Email</span>
+            <span>support@bonkertshirts.com</span>
+          </div>
+          <div class="contact-info-item">
+            <span class="contact-info-label">WhatsApp</span>
+            <span>+91 9876543210</span>
+          </div>
+        </div>
+        <div class="card-section" style="margin-top:0;">
+          <form autocomplete="off">
+            <div>
+              <label for="cname">Name</label>
+              <input id="cname" name="cname" type="text" placeholder="Your Name" required>
+            </div>
+            <div>
+              <label for="cemail">Email or WhatsApp</label>
+              <input id="cemail" name="cemail" type="text" placeholder="Your Email or WhatsApp" required>
+            </div>
+            <div>
+              <label for="cmsg">Your message</label>
+              <textarea id="cmsg" name="cmsg" placeholder="How can we help you?" required></textarea>
+            </div>
+            <button type="submit" class="form-btn">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
   <footer>
-    <div class="footer-contact">
-      📧 bonkerdesignz@gmail.com &nbsp; | &nbsp; 📱 +91 73510 08716
-    </div>
-    <div>
-      &copy; 2026 Bonker T-Shirts. All rights reserved.
-    </div>
+    <span class="footer-brand">Bonker T-Shirts</span>
+    &copy; 2026 Bonker T-Shirts. All rights reserved.
   </footer>
-  <script>
-    // Show thank you popup and clear form
-    function showThanks(e){
-      e.preventDefault();
-      const form = e.target;
-      form.style.pointerEvents = "none";
-      form.style.opacity = .66;
-      setTimeout(()=>{
-        alert("Thank you! We'll contact you via WhatsApp soon.");
-        form.reset();
-        form.style.opacity=1; form.style.pointerEvents="auto";
-      },400)
-    }
-  </script>
 </body>
 </html>
